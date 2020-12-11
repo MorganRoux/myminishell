@@ -4,7 +4,13 @@ LIBFT_DIR	=	./libs/libftprintf
 LIBFT		=	$(LIBFT_DIR)/libftprintf.a
 LIBS		=	$(LIBFT)
 
-SRCS		=	srcs/main.c 
+SRCS		=	srcs/main.c \
+				srcs/get_next_line/get_next_line.c \
+				srcs/get_next_line/get_next_line_utils.c \
+				srcs/parsing/parse.c \
+				srcs/parsing/redirections.c \
+				srcs/exec/exec.c \
+				srcs/utils/prints.c
 
 SRCS_PG		=	playground/main.c
 
