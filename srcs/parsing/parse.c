@@ -35,13 +35,11 @@ char        *get_next_token(char **line)
 
 int         count_commands(char *line)
 {
-    char    *str;
     char    *tkn;
     int     i;
 
-    str = ft_strdup(line);
     i = 1;
-    while  ((tkn = get_next_token(&str)) != NULL)
+    while  ((tkn = get_next_token(&line)) != NULL)
     {
         if (ft_strcmp(tkn,"| ") == 0 || ft_strcmp(tkn, "; ") == 0)      //TODO : ';' terminate the line
             i++;
@@ -86,7 +84,10 @@ char        **split_commands(char *line)
     {
         // printf(":%s:\n",tkn);
         if (ft_strcmp(tkn,"| ")  == 0 || ft_strcmp(tkn, "; ") == 0)
+        {
             i++;
+        }
+          
         else
             strs[i] = ft_strjoin(strs[i], tkn);
         free(tkn);
