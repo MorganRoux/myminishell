@@ -27,8 +27,6 @@ char        *get_next_token(char **line)
         i++;
     }
     tkn = ft_strnjoin(tkn, start, i);
-    // ft_printf("%d========%s - %s\n", i,start, tkn);
-    // getchar();
     if (**line != 0)
         (*line)++;
     ret = ft_strtrim(tkn, " ");
@@ -87,28 +85,33 @@ char        **split_commands(char *line)
     start = line;
     while  ((tkn = get_next_token(&line)) != NULL)
     {
-        // printf(":%s:\n",tkn);
         if (ft_strcmp(tkn,"|")  == 0 || ft_strcmp(tkn, ";") == 0)
         {
             strs[i] = ft_substr(start, 0, line - start);
             start = line;
             i++;
         }
-          
-        // else
-        //     strs[i] = ft_strjoin(strs[i], tkn);
         free(tkn);
     }
     strs[i] = ft_substr(start, 0, line - start);
-    // print_strs(strs);
     return strs;
 }
 
+void        analyse_command(char *str, t_command *cmd)
+{
+    char    *tkn;
 
+    cmd->exec = str;
+
+    while ((tkn = get_next_token(&str)) != NULL)
+    {
+
+        free(tkn);
+    }
+}
 
 char        *check_exec(char *str, t_command *cmd)
 {
-    cmd->exec = str;
     return str;
 }
 
@@ -124,9 +127,10 @@ t_command   *parse_commands(char **cmd_strs)
     {
         new =  ft_lstnew();
         str = *cmd_strs;
-        str = check_redirs(str, new);
-        str = check_args(str, new);
-        str = check_exec(str, new);
+        // str = check_redirs(str, new);
+        // str = check_args(str, new);
+        // str = check_exec(str, new);
+        analyse_command(str, new);
         ft_lstadd_back(&cmds, new);
         cmd_strs++;
     }
