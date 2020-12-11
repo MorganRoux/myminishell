@@ -13,7 +13,8 @@ char        *get_next_token(char **line)
     char *tkn;
     char *start;
     int i;
-    
+    char *ret;
+
     if (**line == 0)
         return NULL;
     tkn =  malloc(1);
@@ -30,7 +31,9 @@ char        *get_next_token(char **line)
     // getchar();
     if (**line != 0)
         (*line)++;
-    return tkn;
+    ret = ft_strtrim(tkn, " ");
+    free(tkn);
+    return ret;
 }
 
 int         count_commands(char *line)
@@ -41,7 +44,7 @@ int         count_commands(char *line)
     i = 1;
     while  ((tkn = get_next_token(&line)) != NULL)
     {
-        if (ft_strcmp(tkn,"| ") == 0 || ft_strcmp(tkn, "; ") == 0)      //TODO : ';' terminate the line
+        if (ft_strcmp(tkn,"|") == 0 || ft_strcmp(tkn, ";") == 0)      //TODO : ';' terminate the line
             i++;
         free(tkn);
     }
@@ -77,21 +80,26 @@ char        **split_commands(char *line)
     char    **strs;
     char    *tkn;
     int     i;
+    char    *start;
 
     i = 0;
     strs = allow_command(line);
+    start = line;
     while  ((tkn = get_next_token(&line)) != NULL)
     {
         // printf(":%s:\n",tkn);
-        if (ft_strcmp(tkn,"| ")  == 0 || ft_strcmp(tkn, "; ") == 0)
+        if (ft_strcmp(tkn,"|")  == 0 || ft_strcmp(tkn, ";") == 0)
         {
+            strs[i] = ft_substr(start, 0, line - start);
+            start = line;
             i++;
         }
           
-        else
-            strs[i] = ft_strjoin(strs[i], tkn);
+        // else
+        //     strs[i] = ft_strjoin(strs[i], tkn);
         free(tkn);
     }
+    strs[i] = ft_substr(start, 0, line - start);
     // print_strs(strs);
     return strs;
 }
