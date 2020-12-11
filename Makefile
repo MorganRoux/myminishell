@@ -8,9 +8,20 @@ SRCS		=	srcs/main.c \
 				srcs/get_next_line/get_next_line.c \
 				srcs/get_next_line/get_next_line_utils.c \
 				srcs/parsing/parse.c \
+				srcs/parsing/args.c \
 				srcs/parsing/redirections.c \
 				srcs/exec/exec.c \
-				srcs/utils/prints.c
+				srcs/utils/prints.c \
+				srcs/utils/list.c \
+				srcs/utils/list/ft_lstnew.c \
+				srcs/utils/list/ft_lstadd_back.c \
+				#srcs/utils/list/ft_lstadd_front.c \
+				srcs/utils/list/ft_lstsize.c \
+				srcs/utils/list/ft_lstlast.c \
+				srcs/utils/list/ft_lstiter.c \
+				srcs/utils/list/ft_lstmap.c \
+				srcs/utils/list/ft_lstclear.c \
+				srcs/utils/list/ft_lstdelone.c 
 
 SRCS_PG		=	playground/main.c
 

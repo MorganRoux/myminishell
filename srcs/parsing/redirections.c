@@ -1,25 +1,25 @@
 #include "minishell.h"
 
-char        *check_redirs(char *cmd)
+char        *check_redirs(char *str, t_command *cmd)
 {
     (void) cmd;
-    return 0;
+    return str;
 }
 
-char         *check_redir_in(char *cmd)
+char         *check_redir_in(char *str, t_command *cmd)
 {
     (void) cmd;
-    return 0;
+    return str;
 }
 
-char        *check_redir_out(char *cmd)
+char        *check_redir_out(char *str, t_command *cmd)
 {
     (void) cmd;
-    return 0;
+    return str;
 }
 
-char        *check_redir_err(char *cmd)
+char        *check_redir_err(char *str, t_command *cmd)
 {
     (void) cmd;
-    return 0;
+    return str;
 }
