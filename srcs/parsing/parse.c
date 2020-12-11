@@ -3,10 +3,99 @@
 char        **split_pipes(char *line)
 {
     char    **strs;
-    
+
     strs = ft_split(line,  '|');
     return strs;
 }
+
+char        *get_next_token(char **line)
+{
+    char *tkn;
+    char *start;
+    int i;
+    
+    if (**line == 0)
+        return NULL;
+    tkn =  malloc(1);
+    tkn[0] = 0;
+    i = 1;
+    start = *line;
+    while (**line != ' ' && **line != 0)
+    {
+        (*line)++;
+        i++;
+    }
+    tkn = ft_strnjoin(tkn, start, i);
+    // ft_printf("%d========%s - %s\n", i,start, tkn);
+    // getchar();
+    if (**line != 0)
+        (*line)++;
+    return tkn;
+}
+
+int         count_commands(char *line)
+{
+    char    *str;
+    char    *tkn;
+    int     i;
+
+    str = ft_strdup(line);
+    i = 1;
+    while  ((tkn = get_next_token(&str)) != NULL)
+    {
+        if (ft_strcmp(tkn,"| ") == 0 || ft_strcmp(tkn, "; ") == 0)      //TODO : ';' terminate the line
+            i++;
+        free(tkn);
+    }
+    return i;
+}
+
+char         **allow_command(char *line)
+{
+    char    **strs;
+    int     n_cmd;
+    int     i;
+
+    i = 0;
+    n_cmd  = count_commands(line);
+    // printf("ncomnd %d", n_cmd);
+    // getchar();
+    if  (!(strs = malloc((n_cmd + 1) * sizeof(char *))))
+        return  NULL;
+    while (i < n_cmd)
+    {
+        if  (!(strs[i] = malloc(sizeof(char))))
+            return  NULL;
+        *(strs[i]) = 0;
+        i++;
+    }
+    strs[i] = NULL;
+    return strs;
+    
+}
+
+char        **split_commands(char *line)
+{
+    char    **strs;
+    char    *tkn;
+    int     i;
+
+    i = 0;
+    strs = allow_command(line);
+    while  ((tkn = get_next_token(&line)) != NULL)
+    {
+        // printf(":%s:\n",tkn);
+        if (ft_strcmp(tkn,"| ")  == 0 || ft_strcmp(tkn, "; ") == 0)
+            i++;
+        else
+            strs[i] = ft_strjoin(strs[i], tkn);
+        free(tkn);
+    }
+    // print_strs(strs);
+    return strs;
+}
+
+
 
 char        *check_exec(char *str, t_command *cmd)
 {
@@ -42,7 +131,7 @@ t_command   *parse(char *line)
 
     cmd_strs = NULL;
     cmds = NULL;
-    if ((cmd_strs = split_pipes(line)) == NULL)
+    if ((cmd_strs = split_commands(line)) == NULL)
         return NULL;
     if ((cmds = parse_commands(cmd_strs)) == NULL)
         return NULL;

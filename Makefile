@@ -11,8 +11,7 @@ SRCS		=	srcs/main.c \
 				srcs/parsing/args.c \
 				srcs/parsing/redirections.c \
 				srcs/exec/exec.c \
-				srcs/utils/prints.c \
-				srcs/utils/list.c \
+				srcs/utils/prints/prints.c \
 				srcs/utils/list/ft_lstnew.c \
 				srcs/utils/list/ft_lstadd_back.c \
 				#srcs/utils/list/ft_lstadd_front.c \

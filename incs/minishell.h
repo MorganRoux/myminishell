@@ -14,13 +14,14 @@
 # define MINISHELL_H
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include "libftprintf.h"
 # include "get_next_line.h"
 
 typedef struct	        s_command
 {
 	char		        *exec;
-    int                 *argc;
+    int                 argc;
 	char		        **argv;
 	int			        *fd_in;
 	int			        *fd_out;
