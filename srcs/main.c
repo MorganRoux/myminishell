@@ -1,5 +1,5 @@
-#include <stdio.h>
+#include "minishell.h"
 
 int main()  {
-    printf("hello");
+    ft_printf("hello");
 }   

@@ -14,18 +14,19 @@
 # define MINISHELL_H
 # include <unistd.h>
 # include <stdlib.h>
+# include "libftprintf.h"
 
-typedef struct	s_command
+typedef struct	        s_command
 {
-	char		*cmd;
-    int         *argc;
-	char		**argv;
-	int			*fd_in;
-	int			*fd_out;
-    int         *fd_err;
-    t_command   *next;
-}				t_command;
+	char		        *cmd;
+    int                 *argc;
+	char		        **argv;
+	int			        *fd_in;
+	int			        *fd_out;
+    int                 *fd_err;
+    struct s_command    *next;
+}				        t_command;
 
-t_command       *parse();
-t_command       *init_command(char *command);
+t_command               *parse();
+t_command               *init_command(char *command);
 #endif
