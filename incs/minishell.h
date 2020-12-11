@@ -42,16 +42,15 @@ int                     exec(t_command *cmds);
 
 //Utils
 void                    print_strs(char **strs);
-t_command               *new_command(t_command *prev);
 void                    print_cmd(t_command *cmd);
 void                    print_cmds(t_command *cmd);
 
 //List
 t_command			*ft_lstnew();
+void			    ft_lstadd_back(t_command **alst, t_command *new);
 // void			ft_lstadd_front(t_command **alst, t_command *new);
 // int				ft_lstsize(t_command *lst);
 // t_command			*ft_lstlast(t_command *lst);
-void			ft_lstadd_back(t_command **alst, t_command *new);
 // void			ft_lstdelone(t_command *lst, void (*del)(void*));
 // void			ft_lstclear(t_command **lst, void (*del)(void*));
 // void			ft_lstiter(t_command *lst, void (*f)(void *));

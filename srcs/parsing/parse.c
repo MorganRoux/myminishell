@@ -26,7 +26,6 @@ t_command   *parse_commands(char **cmd_strs)
     {
         new =  ft_lstnew();
         str = *cmd_strs;
-        // ft_printf("!%s", str);
         str = check_redirs(str, new);
         str = check_args(str, new);
         str = check_exec(str, new);
