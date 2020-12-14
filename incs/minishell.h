@@ -29,6 +29,8 @@ typedef struct	        s_command
     struct s_command    *next;
 }				        t_command;
 
+char                    METACHARACTERS[]  = " \t\n|&;()<>";
+
 //Parsing
 t_command               *parse();
 t_command               *init_cmd(t_command *prev);
