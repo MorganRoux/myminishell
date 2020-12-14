@@ -137,7 +137,7 @@ t_command   *parse_commands(char **cmd_strs)
     return cmds;
 }
 
-t_command   *parse(char *line)
+t_command   *parsebkp(char *line)
 {
     char        **cmd_strs;
     t_command   *cmds;
@@ -149,5 +149,33 @@ t_command   *parse(char *line)
     if ((cmds = parse_commands(cmd_strs)) == NULL)
         return NULL;
     print_cmds(cmds);
+    return cmds;
+}
+
+char        *quoting(char *line)
+{
+    return line;
+}
+
+char        *aliasing(char *line)
+{
+    return line;
+}
+
+t_command   *parse(char *line)
+{
+    t_command   *cmds;
+    char    *tkn;
+
+    cmds = NULL;
+
+    if ((line = quoting(line)) == NULL)
+        return NULL;
+    if ((line = aliasing(line)) == NULL)
+        return NULL;
+    while  ((tkn = get_next_token(&line)) != NULL)
+    {
+        
+    }
     return cmds;
 }
