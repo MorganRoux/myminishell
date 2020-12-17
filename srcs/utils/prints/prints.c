@@ -20,16 +20,20 @@ void    print_lst_str(t_list_str *strs)
 
 void    print_cmd(t_command *cmd)
 {
-    // int i;
+    int i;
+    t_list_str  *args;
 
+    i = 0;
     if (cmd == NULL)
         return;
     ft_printf("Exec:%s:\n", cmd->exec);
-    // i = 0;
-    // while (i < cmd->argc)
-    // {
-    //     ft_printf("Arg%d:%s:\n", i, cmd->argv[i]);
-    // }
+    args = cmd->args;
+    while (args != 0)
+    {
+        ft_printf("Arg%d:%s:\n", i, args->content);
+        args = args->next;
+        i++;
+    }
 }
 
 void print_cmds(t_list_cmd *cmd)

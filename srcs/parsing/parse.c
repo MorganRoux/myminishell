@@ -138,21 +138,38 @@ t_list   *parse_commands(char **cmd_strs)
     return cmds;
 }
 
+
+
+
+t_list_str  *parse_meta(t_list_str *tkn, t_list_cmd **cur)
+{
+    if (ft_strcmp(tkn->content, " ") == 0)
+        return tkn->next;
+    // else if (ft_strcmp(tkn->content, "<") == 0)
+    //     return parse_fdin(tkn, cur);
+    // else if (ft_strcmp(tkn->content, ">") == 0)
+    //     return parse_fdout(tkn, cur);
+    // else if (ft_strcmp(tkn->content, "|") == 0)
+    //     return parse_pipe(tkn, cur);
+    (void)cur;
+    return tkn;
+}
+
 t_list_str  *parse_word(t_list_str *tkn, t_list_cmd **cur)
 {
     t_command   *cmd;
+    t_list_str  *arg;
 
     cmd = (*cur)->content;
     if (cmd->exec == NULL)
         cmd->exec = ft_strdup(tkn->content);
+    else
+    {
+        arg = ft_lstnew(ft_strdup(tkn->content));
+        ft_lstadd_back(&cmd->args, arg);
+    }
+ 
     return tkn->next;
-}
-
-t_list_str  *parse_meta(t_list_str *tkn, t_list_cmd **cur)
-{
-    (void)tkn;
-    (void)cur;
-    return tkn;
 }
 
 t_list_cmd  *parse_tokens(t_list_str *tokens)
@@ -181,12 +198,14 @@ t_list_cmd   *parse(char *line)
     cmds = NULL;
 
     tokens = split_tokens(line);
+    //print_lst_str(tokens);
+    //ft_printf("%d", ft_lstsize(tokens));
     cmds = parse_tokens(tokens);
     // while  ((tkn = get_next_token(&line)) != NULL)
     // {
         
     // }
     //print_lst_str(tokens);
-    print_cmds(cmds);
+
     return cmds;
 }

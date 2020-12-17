@@ -2,8 +2,8 @@
 
 int main()  
 {
-    char    *line;
-    t_command   *cmds;
+    char        *line;
+    t_list_cmd  *cmds;
     
     line = NULL;
     while (1) 

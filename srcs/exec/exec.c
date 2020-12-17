@@ -1,7 +1,7 @@
 #include "minishell.h"
 
-int     exec(t_command  *cmds)
+int     exec(t_list_cmd  *cmds)
 {
-    (void) cmds;
-    return (0);
+    print_cmds(cmds);
+    return 0;
 }

@@ -18,33 +18,26 @@
 # include "libftprintf.h"
 # include "get_next_line.h"
 
+typedef t_list          t_list_str;
+typedef t_list          t_list_cmd;
+
 typedef struct	        s_command
 {
 	char		        *exec;
-    int                 argc;
-	char		        **argv;
+	t_list_str		    *args;
 	int			        *fd_in;
 	int			        *fd_out;
     int                 *fd_err;
 }				        t_command;
 
-typedef t_list          t_list_str;
-typedef t_list          t_list_cmd;
+
 
 //Parsing
 t_list_cmd              *parse();
 t_list_str              *split_tokens(char *line);
 
-t_command               *init_cmd(t_command *prev);
-char                    *check_redirs(char *str, t_command *cmd);
-char                    *check_redir_in(char *str, t_command *cmd);
-char                    *check_redir_out(char *str, t_command *cmd);
-char                    *check_redir_err(char *str, t_command *cmd);
-char                    *check_args(char *str, t_command *cmd);
-
-
 //Exec
-int                     exec(t_command *cmds);
+int                     exec(t_list_cmd *cmds);
 
 //Utils
 void                    print_strs(char **strs);
