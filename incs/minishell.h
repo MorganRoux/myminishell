@@ -34,6 +34,11 @@ typedef struct	        s_command
 //Parsing
 t_list_cmd              *parse();
 t_list_str              *split_tokens(char *line);
+t_list_str              *parse_word(t_list_str *tkn, t_list_cmd **cur);
+t_list_str              *parse_meta(t_list_str *tkn, t_list_cmd **cur);
+t_list_str              *parse_pipe(t_list_str *tkn, t_list_cmd **cur);
+t_list_str              *parse_fdout(t_list_str *tkn, t_list_cmd **cur);
+t_list_str              *parse_fdin(t_list_str *tkn, t_list_cmd **cur);
 
 //Exec
 int                     exec(t_list_cmd *cmds);
