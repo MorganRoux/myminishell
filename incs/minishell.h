@@ -26,13 +26,15 @@ typedef struct	        s_command
 	int			        *fd_in;
 	int			        *fd_out;
     int                 *fd_err;
-    struct s_command    *next;
 }				        t_command;
 
-char                    METACHARACTERS[]  = " \t\n|&;()<>";
+typedef t_list          t_list_str;
+typedef t_list          t_list_cmd;
 
 //Parsing
-t_command               *parse();
+t_list_cmd              *parse();
+t_list_str              *split_tokens(char *line);
+
 t_command               *init_cmd(t_command *prev);
 char                    *check_redirs(char *str, t_command *cmd);
 char                    *check_redir_in(char *str, t_command *cmd);
@@ -40,17 +42,23 @@ char                    *check_redir_out(char *str, t_command *cmd);
 char                    *check_redir_err(char *str, t_command *cmd);
 char                    *check_args(char *str, t_command *cmd);
 
+
 //Exec
 int                     exec(t_command *cmds);
 
 //Utils
 void                    print_strs(char **strs);
+void                    print_lst_str(t_list_str *strs);
 void                    print_cmd(t_command *cmd);
-void                    print_cmds(t_command *cmd);
+void                    print_cmds(t_list_cmd *cmd);
+int                     is_meta_char(char c);
+int                     is_meta_str(char *str);
 
 //List
-t_command			*ft_lstnew();
-void			    ft_lstadd_back(t_command **alst, t_command *new);
+t_list_cmd              *ft_lstinit();
+t_list                  *ft_lstof(t_list *lst, int index);
+// t_command			*ft_lstnew();
+// void			    ft_lstadd_back(t_command **alst, t_command *new);
 // void			ft_lstadd_front(t_command **alst, t_command *new);
 // int				ft_lstsize(t_command *lst);
 // t_command			*ft_lstlast(t_command *lst);

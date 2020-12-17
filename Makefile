@@ -10,10 +10,13 @@ SRCS		=	srcs/main.c \
 				srcs/parsing/parse.c \
 				srcs/parsing/args.c \
 				srcs/parsing/redirections.c \
+				srcs/parsing/split_tokens.c \
 				srcs/exec/exec.c \
 				srcs/utils/prints/prints.c \
-				srcs/utils/list/ft_lstnew.c \
-				srcs/utils/list/ft_lstadd_back.c \
+				srcs/utils/list/ft_lstinit.c \
+				srcs/utils/list/ft_lstof.c \
+				srcs/utils/tokens/is_meta.c
+				#srcs/utils/list/ft_lstadd_back.c \
 				#srcs/utils/list/ft_lstadd_front.c \
 				srcs/utils/list/ft_lstsize.c \
 				srcs/utils/list/ft_lstlast.c \

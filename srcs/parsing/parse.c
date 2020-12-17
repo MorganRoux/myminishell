@@ -112,70 +112,81 @@ void        analyse_command(char *str, t_command *cmd)
 
 char        *check_exec(char *str, t_command *cmd)
 {
+    (void) cmd;
     return str;
 }
 
-t_command   *parse_commands(char **cmd_strs)
+t_list   *parse_commands(char **cmd_strs)
 {
     char *str;
-    t_command   *new;
-    t_command   *cmds;
+    t_list   *new;
+    t_list   *cmds;
 
     cmds = NULL;
     str = NULL;
     while (*cmd_strs != NULL)
     {
-        new =  ft_lstnew();
+        new =  ft_lstinit();
         str = *cmd_strs;
         // str = check_redirs(str, new);
         // str = check_args(str, new);
         // str = check_exec(str, new);
-        analyse_command(str, new);
+        analyse_command(str, new->content);
         ft_lstadd_back(&cmds, new);
         cmd_strs++;
     }
     return cmds;
 }
 
-t_command   *parsebkp(char *line)
+t_list_str  *parse_word(t_list_str *tkn, t_list_cmd **cur)
 {
-    char        **cmd_strs;
-    t_command   *cmds;
+    t_command   *cmd;
 
-    cmd_strs = NULL;
-    cmds = NULL;
-    if ((cmd_strs = split_commands(line)) == NULL)
-        return NULL;
-    if ((cmds = parse_commands(cmd_strs)) == NULL)
-        return NULL;
-    print_cmds(cmds);
+    cmd = (*cur)->content;
+    if (cmd->exec == NULL)
+        cmd->exec = ft_strdup(tkn->content);
+    return tkn->next;
+}
+
+t_list_str  *parse_meta(t_list_str *tkn, t_list_cmd **cur)
+{
+    (void)tkn;
+    (void)cur;
+    return tkn;
+}
+
+t_list_cmd  *parse_tokens(t_list_str *tokens)
+{
+    t_list_cmd  *cmds;
+    t_list_cmd  *cur;
+    t_list_str  *tkn;
+
+    cmds = ft_lstinit();
+    cur = cmds;
+    tkn = tokens;
+    while (tkn != 0)
+    {
+        if (is_meta_str(tkn->content))
+            tkn = parse_meta(tkn, &cur);
+        else
+            tkn = parse_word(tkn, &cur);
+    }
     return cmds;
 }
 
-char        *quoting(char *line)
+t_list_cmd   *parse(char *line)
 {
-    return line;
-}
-
-char        *aliasing(char *line)
-{
-    return line;
-}
-
-t_command   *parse(char *line)
-{
-    t_command   *cmds;
-    char    *tkn;
-
+    t_list_cmd  *cmds;
+    t_list_str  *tokens;
     cmds = NULL;
 
-    if ((line = quoting(line)) == NULL)
-        return NULL;
-    if ((line = aliasing(line)) == NULL)
-        return NULL;
-    while  ((tkn = get_next_token(&line)) != NULL)
-    {
+    tokens = split_tokens(line);
+    cmds = parse_tokens(tokens);
+    // while  ((tkn = get_next_token(&line)) != NULL)
+    // {
         
-    }
+    // }
+    //print_lst_str(tokens);
+    print_cmds(cmds);
     return cmds;
 }
