@@ -16,14 +16,6 @@ SRCS		=	srcs/main.c \
 				srcs/utils/list/ft_lstinit.c \
 				srcs/utils/list/ft_lstof.c \
 				srcs/utils/tokens/is_meta.c
-				#srcs/utils/list/ft_lstadd_back.c \
-				#srcs/utils/list/ft_lstadd_front.c \
-				srcs/utils/list/ft_lstsize.c \
-				srcs/utils/list/ft_lstlast.c \
-				srcs/utils/list/ft_lstiter.c \
-				srcs/utils/list/ft_lstmap.c \
-				srcs/utils/list/ft_lstclear.c \
-				srcs/utils/list/ft_lstdelone.c 
 
 SRCS_PG		=	playground/main.c
 
