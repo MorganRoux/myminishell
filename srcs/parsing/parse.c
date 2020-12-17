@@ -172,12 +172,16 @@ t_list_str  *parse_fdout(t_list_str *tkn, t_list_cmd **cur)
 
 t_list_str  *parse_pipe(t_list_str *tkn, t_list_cmd **cur)
 {
-    (void)tkn;
-    (void)cur;
+    t_list_cmd  *new;
+    t_command   *cmd;
+
+    new = ft_lstinit();
+    cmd = new->content;
+    cmd->pipe = (*cur)->content;
+    (*cur)->next = new;
+    *cur = new;
     return tkn->next;
 }
-
-
 
 t_list_str  *parse_meta(t_list_str *tkn, t_list_cmd **cur)
 {

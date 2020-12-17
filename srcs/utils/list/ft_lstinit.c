@@ -10,6 +10,7 @@ t_list_cmd  *ft_lstinit()
     cmd->args = NULL;
     cmd->fd_in = NULL;
     cmd->fd_out = NULL;
+    cmd->pipe = NULL;
 	list = ft_lstnew(cmd);
 	return (list);
 }

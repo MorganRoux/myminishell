@@ -27,6 +27,7 @@ typedef struct	        s_command
 	t_list_str		    *args;
 	t_list_str	        *fd_in;
 	t_list_str		    *fd_out;
+    struct s_command    *pipe;
 }				        t_command;
 
 

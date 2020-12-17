@@ -22,11 +22,10 @@ void    print_cmd(t_command *cmd)
 {
     int i;
     t_list_str  *lst;
-
+    t_command   *pipe;
     if (cmd == NULL)
         return;
     ft_printf("-----\nExec:%s:\n", cmd->exec);
-    ft_printf("\n");
     i = 0;
     lst = cmd->args;
     while (lst != 0)
@@ -35,7 +34,6 @@ void    print_cmd(t_command *cmd)
         lst = lst->next;
         i++;
     }
-    ft_printf("\n");
     i = 0;
     lst = cmd->fd_in;
     while (lst != 0)
@@ -52,6 +50,10 @@ void    print_cmd(t_command *cmd)
         lst = lst->next;
         i++;
     }
+    pipe = cmd->pipe;
+    if (pipe != 0)
+        ft_printf("Pipe to:%s:\n", pipe->exec);
+
     ft_printf("-----\n");
 }
 
