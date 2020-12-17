@@ -8,7 +8,6 @@ t_list_cmd  *ft_lstinit()
 		return (0);
     cmd->exec = NULL;
     cmd->args = NULL;
-    cmd->fd_err = NULL;
     cmd->fd_in = NULL;
     cmd->fd_out = NULL;
 	list = ft_lstnew(cmd);

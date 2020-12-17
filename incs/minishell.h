@@ -25,11 +25,9 @@ typedef struct	        s_command
 {
 	char		        *exec;
 	t_list_str		    *args;
-	int			        *fd_in;
-	int			        *fd_out;
-    int                 *fd_err;
+	t_list_str	        *fd_in;
+	t_list_str		    *fd_out;
 }				        t_command;
-
 
 
 //Parsing
@@ -46,18 +44,10 @@ void                    print_cmd(t_command *cmd);
 void                    print_cmds(t_list_cmd *cmd);
 int                     is_meta_char(char c);
 int                     is_meta_str(char *str);
+int                     is_space_str(char *str);
 
 //List
 t_list_cmd              *ft_lstinit();
 t_list                  *ft_lstof(t_list *lst, int index);
-// t_command			*ft_lstnew();
-// void			    ft_lstadd_back(t_command **alst, t_command *new);
-// void			ft_lstadd_front(t_command **alst, t_command *new);
-// int				ft_lstsize(t_command *lst);
-// t_command			*ft_lstlast(t_command *lst);
-// void			ft_lstdelone(t_command *lst, void (*del)(void*));
-// void			ft_lstclear(t_command **lst, void (*del)(void*));
-// void			ft_lstiter(t_command *lst, void (*f)(void *));
-// t_command			*ft_lstmap(t_command *lst, void *(*f)(void *),
-// 				void (*del)(void *));
+
 #endif

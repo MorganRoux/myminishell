@@ -29,3 +29,18 @@ int     is_meta_str(char *c)
     }
     return 0;
 }
+
+int     is_space_str(char *c)
+{
+    char    METACHARACTER[] = " \t";
+    int     i;
+
+    i = 0;
+    while (METACHARACTER[i] != 0)
+    {
+        if (METACHARACTER[i] == c[0])
+            return 1;
+        i++;
+    }
+    return 0;
+}

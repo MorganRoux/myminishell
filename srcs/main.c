@@ -14,6 +14,5 @@ int main()
         if ((cmds = parse(line)) == NULL)
             return (0);
         exec(cmds);
-        //ft_printf("%s", line);
     }
 }   
