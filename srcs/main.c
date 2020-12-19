@@ -6,9 +6,9 @@ int main()
 {
     char        *line;
     t_list_cmd  *cmds;
-    t_command   *mimi;
     
     line = NULL;
+    ft_bzero(&glob_command, sizeof(t_command));
     while (1) 
     {
         ft_printf("Minishell:>");
@@ -17,6 +17,6 @@ int main()
         if ((cmds = parse(line)) == NULL)
             return (0);
         //exec(cmds);
-        exec2(mimi, &line, cmds);
+        exec2(&glob_command, &line, cmds);
     }
 }   

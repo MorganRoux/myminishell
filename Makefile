@@ -11,16 +11,15 @@ SRCS		=	srcs/main.c \
 				srcs/parsing/redirections.c \
 				srcs/exec/exec.c \
 				srcs/utils/prints/prints.c \
-				srcs/utils/list/ft_lstnew.c \
-				srcs/utils/list/ft_lstadd_back.c \
-				srcs/built_ins/echo.c \
-				#srcs/utils/list/ft_lstadd_front.c \
-				srcs/utils/list/ft_lstsize.c \
-				srcs/utils/list/ft_lstlast.c \
-				srcs/utils/list/ft_lstiter.c \
-				srcs/utils/list/ft_lstmap.c \
-				srcs/utils/list/ft_lstclear.c \
-				srcs/utils/list/ft_lstdelone.c 
+				srcs/built-ins/cd.c \
+				srcs/built-ins/echo.c \
+				srcs/built-ins/env.c \
+				srcs/built-ins/env_manag.c \
+				srcs/built-ins/exit.c \
+				srcs/built-ins/export.c \
+				srcs/built-ins/pwd/c \
+				srcs/built-ins/split_mod.c \
+				srcs/built-ins/unset.c \
 
 SRCS_PG		=	playground/main.c
 

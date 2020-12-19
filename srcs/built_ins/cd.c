@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 17:01:03 by alkanaev          #+#    #+#             */
-/*   Updated: 2020/12/19 10:48:37 by alkanaev         ###   ########.fr       */
+/*   Updated: 2020/12/19 15:27:41 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	dirnow_update(t_command *mimi, char *dir_now) //update dir_now in the struc
 	mimi->dir_now = ft_strdup(dir_now);
 }
 
-char		*parh_checker(t_command *mimi, char *cmd)
+char		*path_checker(t_command *mimi, char *cmd)
 {
 	if (!cmd)
 		return (var_checker(mimi, mimi->env_arr, "HOME")); //if no name of folder given - go to home dir
@@ -53,7 +53,7 @@ void    com_cd(t_command *mimi, char **cmd)
 		cd_err_case(mimi, "Too much arguments", 1);
 		return ;
 	}
-	if (chdir(get_path_cd(mimi, cmd[1])) < 0) //change dir to written name of folder
+	if (chdir(path_checker(mimi, cmd[1])) < 0) //change dir to written name of folder
 			cd_err_case(mimi, strerror(errno), 1);
     //getcwd копирует абсолютный путь к текущему рабочему каталогу в массиве,
     //на который указывает buf, имеющий длину size. Если подавать NULL, 

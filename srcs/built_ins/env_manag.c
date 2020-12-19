@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 14:53:03 by alkanaev          #+#    #+#             */
-/*   Updated: 2020/12/19 11:54:51 by alkanaev         ###   ########.fr       */
+/*   Updated: 2020/12/19 15:42:53 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,25 @@ void	arr_cleaner(char **str)
 int			ind_of_envvar(t_command *mimi, char *var)
 {
 	int		i;
-	char	*var;
+	char	*varenv;
 	char	**sep;
     int		len;
-
-	var = ft_strdup(sep[0]);
-    sep = split_mod(var, '=');
+	
+    sep = split_mod(var, "=");
+	varenv = ft_strdup(sep[0]);
 	arr_cleaner(sep);
-	len = ft_strlen(var);
+	len = ft_strlen(varenv);
 	i = 0;
 	while (mimi->env_arr[i])
 	{
-		if (!strncmp(mimi->env_arr[i], var, len))
+		if (!strncmp(mimi->env_arr[i], varenv, len))
 		{
-			free(var);
+			free(varenv);
 			return (i);
 		}
 		i++;
 	}
-	free(var);
+	free(varenv);
 	return (-1);
 }
 
