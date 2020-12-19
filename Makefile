@@ -8,8 +8,6 @@ SRCS		=	srcs/main.c \
 				srcs/get_next_line/get_next_line.c \
 				srcs/get_next_line/get_next_line_utils.c \
 				srcs/parsing/parse.c \
-				srcs/parsing/args.c \
-				srcs/parsing/redirections.c \
 				srcs/parsing/split_tokens.c \
 				srcs/exec/exec.c \
 				srcs/utils/prints/prints.c \
