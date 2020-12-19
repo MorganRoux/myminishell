@@ -5,7 +5,8 @@ LIBFT		=	$(LIBFT_DIR)/libftprintf.a
 LIBS		=	$(LIBFT)
 
 SRCS		=	srcs/main.c \
-				srcs/new_gnl/get_next_line.c \
+				srcs/get_next_line/get_next_line.c \
+				srcs/get_next_line/get_next_line_utils.c \
 				srcs/parsing/parse.c \
 				srcs/parsing/split_tokens.c \
 				srcs/exec/exec.c \
