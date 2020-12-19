@@ -20,7 +20,7 @@ int main()
         if ((cmds = parse(line)) == NULL)
             return (0);
 
-        exec1(cmds);
-        //exec2(&glob_command, &line, cmds);
+        //exec1(cmds);
+        exec2(&glob_command, &line, cmds);
     }
 }   

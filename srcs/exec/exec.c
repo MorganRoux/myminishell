@@ -34,18 +34,9 @@ int     exec_built_ins(t_command *mimi, char **cmd)
 	return (1);
 }
 
-// int     exec(t_command  *cmds)
-// {
-//     (void) cmds;
-//     return (0);
-// }
-
-// #include "minishell.h"
-
 void     exec1(t_list_cmd  *cmds)
 {
     print_cmds(cmds);
-    //return 0;
 }
 
 void    exec2(t_command *mimi, char **cmd, t_list_cmd  *cmds)
