@@ -1,0 +1,143 @@
+[33m;(B[m
+[35m< bash       (exited with 2)(B[m
+[35m> minishell  (exited with 2)
+(B[m[94m----- STDERR -----(B[m
+1,2c1
+< minishell: -c: syntax error near unexpected token `;'
+< minishell: -c: `;'
+---
+> minishell: syntax error near unexpected token `;'
+
+
+[33m|(B[m
+[35m< bash       (exited with 2)(B[m
+[35m> minishell  (exited with 2)
+(B[m[94m----- STDERR -----(B[m
+1,2c1
+< minishell: -c: syntax error near unexpected token `|'
+< minishell: -c: `|'
+---
+> minishell: syntax error near unexpected token `|'
+
+
+[33m|b(B[m
+[35m< bash       (exited with 2)(B[m
+[35m> minishell  (exited with 2)
+(B[m[94m----- STDERR -----(B[m
+1,2c1
+< minishell: -c: syntax error near unexpected token `|'
+< minishell: -c: `|b'
+---
+> minishell: syntax error near unexpected token `|'
+
+
+[33ma|||b(B[m
+[35m< bash       (exited with 2)(B[m
+[35m> minishell  (exited with 2)
+(B[m[94m----- STDERR -----(B[m
+1,2c1
+< minishell: -c: syntax error near unexpected token `|'
+< minishell: -c: `a|||b'
+---
+> minishell: syntax error near unexpected token `|||'
+
+
+[33m> > a(B[m
+[35m< bash       (exited with 2)(B[m
+[35m> minishell  (exited with 2)
+(B[m[94m----- STDERR -----(B[m
+1,2c1
+< minishell: -c: syntax error near unexpected token `>'
+< minishell: -c: `> > a'
+---
+> minishell: syntax error near unexpected token `>'
+
+
+[33m< < a(B[m
+[35m< bash       (exited with 2)(B[m
+[35m> minishell  (exited with 2)
+(B[m[94m----- STDERR -----(B[m
+1,2c1
+< minishell: -c: syntax error near unexpected token `<'
+< minishell: -c: `< < a'
+---
+> minishell: syntax error near unexpected token `<'
+
+
+[33m< >> a(B[m
+[35m< bash       (exited with 2)(B[m
+[35m> minishell  (exited with 2)
+(B[m[94m----- STDERR -----(B[m
+1,2c1
+< minishell: -c: syntax error near unexpected token `>>'
+< minishell: -c: `< >> a'
+---
+> minishell: syntax error near unexpected token `<'
+
+
+[33m>>> a(B[m
+[35m< bash       (exited with 2)(B[m
+[35m> minishell  (exited with 2)
+(B[m[94m----- STDERR -----(B[m
+1,2c1
+< minishell: -c: syntax error near unexpected token `>'
+< minishell: -c: `>>> a'
+---
+> minishell: syntax error near unexpected token `>>>'
+
+
+[33m<<<< a(B[m
+[35m< bash       (exited with 2)(B[m
+[35m> minishell  (exited with 2)
+(B[m[94m----- STDERR -----(B[m
+1,2c1
+< minishell: -c: syntax error near unexpected token `<'
+< minishell: -c: `<<<< a'
+---
+> minishell: syntax error near unexpected token `<<<<'
+
+
+[33ma<<<<(B[m
+[35m< bash       (exited with 2)(B[m
+[35m> minishell  (exited with 2)
+(B[m[94m----- STDERR -----(B[m
+1,2c1
+< minishell: -c: syntax error near unexpected token `<'
+< minishell: -c: `a<<<<'
+---
+> minishell: syntax error near unexpected token `<<<<'
+
+
+[33mpwd >;(B[m
+[35m< bash       (exited with 2)(B[m
+[35m> minishell  (exited with 2)
+(B[m[94m----- STDERR -----(B[m
+1,2c1
+< minishell: -c: syntax error near unexpected token `;'
+< minishell: -c: `pwd >;'
+---
+> minishell: syntax error near unexpected token `>'
+
+
+[33m;pwd(B[m
+[35m< bash       (exited with 2)(B[m
+[35m> minishell  (exited with 2)
+(B[m[94m----- STDERR -----(B[m
+1,2c1
+< minishell: -c: syntax error near unexpected token `;'
+< minishell: -c: `;pwd'
+---
+> minishell: syntax error near unexpected token `;'
+
+
+[33mpwd ;;(B[m
+[35m< bash       (exited with 2)(B[m
+[35m> minishell  (exited with 2)
+(B[m[94m----- STDERR -----(B[m
+1,2c1
+< minishell: -c: syntax error near unexpected token `;;'
+< minishell: -c: `pwd ;;'
+---
+> minishell: syntax error near unexpected token `;;'
+
+
