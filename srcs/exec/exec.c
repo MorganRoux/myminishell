@@ -41,9 +41,9 @@ void     exec1(t_list_cmd  *cmds)
 
 void    exec2(t_command *mimi, char **cmd, t_list_cmd  *cmds)
 {
+    (void)cmds;
 	if (cmd[0] == 0)
 		mimi->ret = 127;
-	print_cmds(cmds);
 	exec_built_ins(mimi, cmd);
 }
 

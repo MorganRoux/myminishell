@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include "libftprintf.h"
 # include "get_next_line.h"
+
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <sys/wait.h>
@@ -56,14 +57,11 @@ t_list_str              *parse_meta(t_list_str *tkn, t_list_cmd **cur);
 t_list_str              *parse_pipe(t_list_str *tkn, t_list_cmd **cur);
 t_list_str              *parse_fdout(t_list_str *tkn, t_list_cmd **cur);
 t_list_str              *parse_fdin(t_list_str *tkn, t_list_cmd **cur);
-
+char                    **the_bridge(t_list_cmd *cmds);
 //Exec
-
-int                     exec(t_list_cmd *cmds);
 void                     exec1(t_list_cmd *cmds);
 //void    				exec2(t_command *mimi, char **cmd);
-//void    exec2(t_command *mimi, char **cmd, t_list_cmd  *cmds);
-
+void                    exec2(t_command *mimi, char **cmd, t_list_cmd  *cmds);
 
 //Utils
 void                    print_strs(char **strs);
@@ -116,5 +114,8 @@ char		*join_mod(char const *s1, const char *s2, char const *s3);
 int		env_checker(t_command *mimi, char *var);
 int     undet_err_case(t_command *mimi, char *cmd);
 void    com_unset(t_command *mimi, char **cmd);
+
+
+
 
 #endif

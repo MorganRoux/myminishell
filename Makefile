@@ -9,6 +9,7 @@ SRCS		=	srcs/main.c \
 				srcs/get_next_line/get_next_line_utils.c \
 				srcs/parsing/parse.c \
 				srcs/parsing/split_tokens.c \
+				srcs/parsing/the_bridge.c \
 				srcs/exec/exec.c \
 				srcs/utils/prints/prints.c \
 				srcs/utils/list/ft_lstinit.c \
