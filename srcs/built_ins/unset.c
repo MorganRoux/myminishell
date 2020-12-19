@@ -6,13 +6,17 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 17:02:03 by alkanaev          #+#    #+#             */
-/*   Updated: 2020/12/19 11:08:03 by alkanaev         ###   ########.fr       */
+/*   Updated: 2020/12/19 16:06:58 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
 /*
+gives an error only if an arg has =
+if there are no args - does nithing
+if there are too much args - works with each of them
+if one arg is a bad one (ex: unset blabla=), but another one is ok
 выводит ошибку только если аргумент включает =
 если без аргументов, то просто ничего не делает
 если много аргументов, то работает с каждым из них
