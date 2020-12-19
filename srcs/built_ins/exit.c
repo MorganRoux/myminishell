@@ -84,5 +84,5 @@ void	com_exit(t_command *mini, char **args)
 	}
 	exit_stat(mini, args[i]);
 	arr_cleaner(args);
-	exit_shell(mini, mini->ret);
+	//exit_shell(mini, mini->ret);
 }

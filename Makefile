@@ -7,19 +7,17 @@ LIBS		=	$(LIBFT)
 SRCS		=	srcs/main.c \
 				srcs/new_gnl/get_next_line.c \
 				srcs/parsing/parse.c \
-				srcs/parsing/args.c \
-				srcs/parsing/redirections.c \
 				srcs/exec/exec.c \
 				srcs/utils/prints/prints.c \
-				srcs/built-ins/cd.c \
-				srcs/built-ins/echo.c \
-				srcs/built-ins/env.c \
-				srcs/built-ins/env_manag.c \
-				srcs/built-ins/exit.c \
-				srcs/built-ins/export.c \
-				srcs/built-ins/pwd/c \
-				srcs/built-ins/split_mod.c \
-				srcs/built-ins/unset.c \
+				srcs/built_ins/cd.c \
+				srcs/built_ins/echo.c \
+				srcs/built_ins/env.c \
+				srcs/built_ins/exit.c \
+				srcs/built_ins/export.c \
+				srcs/built_ins/pwd.c \
+				srcs/built_ins/split_mod.c \
+				srcs/built_ins/unset.c \
+				#srcs/built_ins/env_manag.c 
 
 SRCS_PG		=	playground/main.c
 
