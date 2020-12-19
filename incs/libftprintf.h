@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mroux <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 15:40:16 by mroux             #+#    #+#             */
-/*   Updated: 2019/12/10 16:51:10 by mroux            ###   ########.fr       */
+/*   Updated: 2020/12/16 15:02:22 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@
 # define DOUBLELINE  "========"
 # define LONGLINE    "====================================="
 # define SINGLELINE  "--------"
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 30
+# endif
 
 typedef	struct	s_list
 {

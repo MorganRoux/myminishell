@@ -25,7 +25,9 @@ void    print_cmd(t_command *cmd)
     t_command   *pipe;
     if (cmd == NULL)
         return;
+
     ft_printf("\n-----\nExec:%s:\n", cmd->exec);
+
     i = 0;
     lst = cmd->args;
     while (lst != 0)

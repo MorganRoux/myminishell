@@ -5,15 +5,23 @@ LIBFT		=	$(LIBFT_DIR)/libftprintf.a
 LIBS		=	$(LIBFT)
 
 SRCS		=	srcs/main.c \
-				srcs/get_next_line/get_next_line.c \
-				srcs/get_next_line/get_next_line_utils.c \
+				srcs/new_gnl/get_next_line.c \
 				srcs/parsing/parse.c \
 				srcs/parsing/split_tokens.c \
 				srcs/exec/exec.c \
 				srcs/utils/prints/prints.c \
 				srcs/utils/list/ft_lstinit.c \
 				srcs/utils/list/ft_lstof.c \
-				srcs/utils/tokens/is_meta.c
+				srcs/utils/tokens/is_meta.c \
+				srcs/built_ins/cd.c \
+				srcs/built_ins/echo.c \
+				srcs/built_ins/env.c \
+				srcs/built_ins/exit.c \
+				srcs/built_ins/export.c \
+				srcs/built_ins/pwd.c \
+				srcs/built_ins/split_mod.c \
+				srcs/built_ins/unset.c \
+				srcs/built_ins/env_manag.c
 
 SRCS_PG		=	playground/main.c
 
