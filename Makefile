@@ -5,8 +5,7 @@ LIBFT		=	$(LIBFT_DIR)/libftprintf.a
 LIBS		=	$(LIBFT)
 
 SRCS		=	srcs/main.c \
-				srcs/get_next_line/get_next_line.c \
-				srcs/get_next_line/get_next_line_utils.c \
+				srcs/new_gnl/get_next_line.c \
 				srcs/parsing/parse.c \
 				srcs/parsing/args.c \
 				srcs/parsing/redirections.c \
@@ -14,6 +13,7 @@ SRCS		=	srcs/main.c \
 				srcs/utils/prints/prints.c \
 				srcs/utils/list/ft_lstnew.c \
 				srcs/utils/list/ft_lstadd_back.c \
+				srcs/built_ins/echo.c \
 				#srcs/utils/list/ft_lstadd_front.c \
 				srcs/utils/list/ft_lstsize.c \
 				srcs/utils/list/ft_lstlast.c \

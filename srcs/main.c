@@ -1,9 +1,12 @@
-#include "minishell.h"
+#include "../incs/minishell.h"
+
+t_command		glob_command;
 
 int main()  
 {
-    char    *line;
-    t_command   *cmds;
+    char        *line;
+    t_list_cmd  *cmds;
+    t_command   *mimi;
     
     line = NULL;
     while (1) 
@@ -13,7 +16,7 @@ int main()
             return (0);
         if ((cmds = parse(line)) == NULL)
             return (0);
-        exec(cmds);
-        //ft_printf("%s", line);
+        //exec(cmds);
+        exec2(mimi, &line, cmds);
     }
 }   
