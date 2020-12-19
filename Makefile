@@ -7,8 +7,12 @@ LIBS		=	$(LIBFT)
 SRCS		=	srcs/main.c \
 				srcs/new_gnl/get_next_line.c \
 				srcs/parsing/parse.c \
+				srcs/parsing/split_tokens.c \
 				srcs/exec/exec.c \
 				srcs/utils/prints/prints.c \
+				srcs/utils/list/ft_lstinit.c \
+				srcs/utils/list/ft_lstof.c \
+				srcs/utils/tokens/is_meta.c \
 				srcs/built_ins/cd.c \
 				srcs/built_ins/echo.c \
 				srcs/built_ins/env.c \
