@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 17:01:16 by alkanaev          #+#    #+#             */
-/*   Updated: 2020/12/19 11:11:31 by alkanaev         ###   ########.fr       */
+/*   Updated: 2020/12/19 16:27:31 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		env_valid(char *env_arr)
 		return (-4);
 	if (ft_isdigit(env_arr[0]) == 1)
 		return (-1);
-	if (env_arr[0] == "=")
+	if (env_arr[0] == '=')
 		return (-2);
 	sep = split_mod(env_arr, "=");
 	len = ft_strlen(sep[0]);
@@ -84,7 +84,7 @@ int		env_valid(char *env_arr)
 	return (1);
 }
 
-void		upd_newenv(t_command *mimi, char *env_update)
+void		upd_newenv(t_command *mimi, char *env_upd)
 {
 	char	**sep;
 	char	*var;
@@ -92,7 +92,7 @@ void		upd_newenv(t_command *mimi, char *env_update)
 	char	*new_env;
 	int		ret;
 
-	sep = split_mod(env_update, "+=");
+	sep = split_mod(env_upd, "+=");
 	var = ft_strdup(sep[0]);
 	val = ft_strdup(sep[1]);
 	arr_cleaner(sep);
@@ -101,7 +101,7 @@ void		upd_newenv(t_command *mimi, char *env_update)
 		new_env = join_mod(var, "=", val);
 	else
 		new_env = ft_strjoin(mimi->env_arr[ret], val);
-	add_env(mimi, new_env);
+	envvar_update(mimi, new_env);
 	strdel(&var);
 	strdel(&val);
 }
@@ -165,7 +165,7 @@ void			com_export(t_command *mimi, char **cmd)
 				if (val_adder(cmd[k]) > 0)
 					upd_newenv(mimi, cmd[k]);
 				else
-					add_env(mimi, ft_strdup(cmd[k]));
+					envvar_update(mimi, ft_strdup(cmd[k]));
 				k++;
 			}
 		}

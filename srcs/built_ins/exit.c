@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 17:01:12 by alkanaev          #+#    #+#             */
-/*   Updated: 2020/12/19 11:15:08 by alkanaev         ###   ########.fr       */
+/*   Updated: 2020/12/19 16:17:24 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,23 @@
         bash-3.2$ echo $?
         1
 */
+
+void	exit_shell(t_command *mimi, int stat)
+{
+	if (mimi->env_arr)
+		arr_cleaner(mimi->env_arr);
+	if (mimi->sep_cmds)
+		arr_cleaner(mimi->sep_cmds);
+	if (mimi->input)
+		free(mimi->input);
+	if (mimi->dir_now)
+		free(mimi->dir_now);
+	if (mimi)
+		mimi = NULL;
+	ft_putstr_fd("exit\n", STDERR_FILENO);
+	exit(stat);
+}
+
 
 int		arg_checker(char *str)
 {
@@ -78,7 +95,7 @@ void	com_exit(t_command *mini, char **args)
 	i = 1;
 	if (args[i] && args[i + 1])
 	{
-		ft_putstr_fd("minishell: exit: too many argument\n", STDERR_FILENO);
+		ft_putstr_fd("MINISHELL: exit: too many argument\n", STDERR_FILENO);
 		mini->ret = 1;
 		return ;
 	}

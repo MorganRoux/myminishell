@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 12:35:37 by mroux             #+#    #+#             */
-/*   Updated: 2020/12/19 14:35:23 by alkanaev         ###   ########.fr       */
+/*   Updated: 2020/12/19 16:12:13 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct	        s_command
 	//int					pipe[2]; // 1 - to write to / 2 - to read from
 	int					bad_pipe; //check if pipe is only one separated symbol
 	char				*dir_now; //dir where we are now
+	char				*input; //command
 }				        t_command;
 
 

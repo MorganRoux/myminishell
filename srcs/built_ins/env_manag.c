@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 14:53:03 by alkanaev          #+#    #+#             */
-/*   Updated: 2020/12/19 15:42:53 by alkanaev         ###   ########.fr       */
+/*   Updated: 2020/12/19 16:31:12 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,25 @@ void		envvar_sort(char **env_arr, int len)
 	}
 }
 
+char		*ft_strndup(char *str, long len)
+{
+	char *tmp;
+	long i;
+
+	i = 0;
+	tmp = NULL;
+	tmp = (char *)malloc(sizeof(char) * len + 1);
+	if (!tmp)
+		return (NULL);
+	tmp[len] = '\0';
+	while (i < len)
+	{
+		tmp[i] = str[i];
+		i++;
+	}
+	return (tmp);
+}
+
 //to manage envvar_pr_sort (part of printing)
 void		envvar_print(char *env_arr)
 {
@@ -186,18 +205,18 @@ void		envvar_pr_sort(t_command *mimi)
 	j = 0;
 	while (j < argc)
 	{
-		print_env(tmp[j]);
+		envvar_print(tmp[j]);
 		j++;
 	}
 	arr_cleaner(tmp);
 	mimi->ret = 0;
 }
 
-void	strdel(char **s)
+void	strdel(char **str)
 {
-	if (s)
+	if (str)
 	{
-		free(*s);
-		*s = NULL;
+		free(*str);
+		*str = NULL;
 	}
 }
