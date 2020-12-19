@@ -48,4 +48,7 @@ playground:	$(LIBS) $(SRCS_PG)
 			$(COMPILE) $(SRCS_PG) -o srcs/playground/minishell_pg.out
 			./srcs/playground/minishell_pg.out
 
+test:		all
+			sh ./test/test.sh
+
 .PHONY:		clean fclean all re 
