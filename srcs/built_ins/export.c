@@ -67,9 +67,9 @@ int		env_valid(char *env_arr)
 		return (-4);
 	if (ft_isdigit(env_arr[0]) == 1)
 		return (-1);
-	if (env_arr[0] == '=')
+	if (env_arr[0] == "=")
 		return (-2);
-	sep = split_mod(env_arr, '=');
+	sep = split_mod(env_arr, "=");
 	len = ft_strlen(sep[0]);
 	while (sep[0][i])
 	{
@@ -98,7 +98,7 @@ void		upd_newenv(t_command *mimi, char *env_update)
 	arr_cleaner(sep);
 	ret = ind_of_envvar(mimi, var);
 	if (ret < 0)
-		new_env = join_mod(var, '=', val);
+		new_env = join_mod(var, "=", val);
 	else
 		new_env = ft_strjoin(mimi->env_arr[ret], val);
 	add_env(mimi, new_env);
