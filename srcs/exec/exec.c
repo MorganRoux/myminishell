@@ -14,6 +14,7 @@
 
 int     exec_command(t_command *cmd, char *envp[])
 {
+
     (void)cmd;
     (void)envp;
     print_cmd(cmd);
