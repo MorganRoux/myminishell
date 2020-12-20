@@ -65,7 +65,10 @@ int         solve_dquotes(char **str,  char **content)
     {
         if (**content == 0)
             return -1;
-        if (**content == '\\')
+        if (**content == '\\' && (
+            *(*content + 1) == '$' || *(*content + 1) == '`' ||
+            *(*content + 1) == '"' || *(*content + 1) == '!'
+        ))
         {
             (*content)++;
             *(*str)++ = *(*content)++;

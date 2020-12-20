@@ -1,2 +1,6 @@
 command arg0"quote"
 command arg0"quote quote" arg2 | command2
+000"aaaa\bbb"
+000"aaa\"bbb"
+000"aaa\\bbb"
+000"aaa\$bbb"
