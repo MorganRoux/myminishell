@@ -1,4 +1,3 @@
-make
 rm -f ./test/out.a
 ./minishell < ./test/commands.test > ./test/out.a
 

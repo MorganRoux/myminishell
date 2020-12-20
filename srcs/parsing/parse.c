@@ -58,17 +58,67 @@ t_list_str  *parse_meta(t_list_str *tkn, t_list_cmd **cur)
     return tkn->next;
 }
 
+int         solve_dquotes(char **str,  char **content)
+{
+    (*content)++;
+    while (**content != '"')
+    {
+        if (**content == 0)
+            return -1;
+        if (**content == '\\')
+        {
+            (*content)++;
+            *(*str)++ = *(*content)++;
+        }
+        else
+            *(*str)++ = *(*content)++;
+    }
+    (*content)++;
+    return 0;
+}
+
+int         solve_squotes(char **str, char **content)
+{
+    (void)str;
+    (void)content;
+    return 0;
+}
+
+char        *solve_quotings(char *content)
+{
+    char    *str;
+    char    *ret;
+
+    if(!(ret = (char *)malloc(ft_strlen(content) + 1)))
+        return NULL;
+    str = ret;
+    while (*content != 0)
+    {
+        if (*content == '"')
+            solve_dquotes(&str, &content);
+        else if (*content == '\'')
+            solve_squotes(&str, &content);
+        else
+            *str++ = *content++;
+    }
+    *str = 0;
+
+    return ret;
+}
+
 t_list_str  *parse_word(t_list_str *tkn, t_list_cmd **cur)
 {
     t_command   *cmd;
     t_list_str  *arg;
+    char        *str;
 
+    str  = solve_quotings(tkn->content);
     cmd = (*cur)->content;
     if (cmd->exec == NULL)
-        cmd->exec = ft_strdup(tkn->content);
+        cmd->exec = ft_strdup(str);
     else
     {
-        arg = ft_lstnew(ft_strdup(tkn->content));
+        arg = ft_lstnew(ft_strdup(str));
         ft_lstadd_back(&cmd->args, arg);
     }
  

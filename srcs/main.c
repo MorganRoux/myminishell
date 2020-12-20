@@ -12,7 +12,8 @@ int main()
     line = NULL;
     i = 1;
     ft_bzero(&glob_command, sizeof(t_command));
-    while (1) 
+
+    while (i != 0) 
     {
         ft_printf("Minishell:>");
         if ((i = get_next_line(0, &line)) == -1)
@@ -20,7 +21,7 @@ int main()
         if ((cmds = parse(line)) == NULL)
             return (0);
         cmd = the_bridge(cmds);
-        //exec1(cmds);
-        exec2(&glob_command, cmd, cmds);
+        exec1(cmds);
+        //exec2(&glob_command, cmd, cmds);
     }
 }   

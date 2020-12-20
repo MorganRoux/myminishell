@@ -1,12 +1,12 @@
 Minishell:>
 -----
 Exec:command:
-Arg0:arg0"quote":
+Arg0:arg0quote:
 -----
 Minishell:>
 -----
 Exec:command:
-Arg0:arg0"quote quote":
+Arg0:arg0quote quote:
 Arg1:arg2:
 -----
 

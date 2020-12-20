@@ -8,8 +8,9 @@ int             pass_quoting(char *s, char c)
     s++;
     while (*s != 0)
     {
-        if(*s++ == c)
-            return s - str;
+        if(*s == c && *(s - 1) != '\\')
+            return ++s - str;
+        s++;
     }
     return -1;
 }
