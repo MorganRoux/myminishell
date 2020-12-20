@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int             pass_quoting(char *s, char c)
+int             pass_dquotes(char *s)
 {
     char *str;
 
@@ -8,7 +8,22 @@ int             pass_quoting(char *s, char c)
     s++;
     while (*s != 0)
     {
-        if(*s == c && *(s - 1) != '\\')
+        if(*s =='"' && *(s - 1) != '\\')
+            return ++s - str;
+        s++;
+    }
+    return -1;
+}
+
+int             pass_squotes(char *s)
+{
+    char *str;
+
+    str = s;
+    s++;
+    while (*s != 0)
+    {
+        if(*s =='\'')
             return ++s - str;
         s++;
     }
@@ -23,9 +38,10 @@ int             word_len(char *s)
     len = 0;
     while (*s != 0 && !is_meta_char(*s))
     {
-        if (*s == '"' || *s == '\'')
-            l = pass_quoting(s, *s);
-
+        if (*s == '"')
+            l = pass_dquotes(s);
+        else if (*s == '\'')
+            l = pass_squotes(s);
         else
             l = 1;
         if (l == -1)

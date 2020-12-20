@@ -16,6 +16,10 @@ Pipe to:command:
 -----
 Minishell:>
 -----
+Exec:aaabbb:
+-----
+Minishell:>
+-----
 Exec:000aaaa\bbb:
 -----
 Minishell:>
@@ -29,4 +33,19 @@ Exec:000aaa\\bbb:
 Minishell:>
 -----
 Exec:000aaa$bbb:
+-----
+Minishell:>
+-----
+Exec:aaabbb:
+-----
+Minishell:>
+-----
+Exec:aaabbb"\ccc""ddd:
+-----
+Minishell:>
+-----
+Exec:aaaabbbccc:
+Arg0:eeefff"ggg hhh:
+Fdin0:000aaa$bbb:
+Fdout0:aaabbb:
 -----
