@@ -18,5 +18,5 @@ char    **the_bridge(t_list_cmd *cmds)
         strs[count++] = args->content;
         args = args->next;
     }
-    return strs;
+    return (strs);
 }

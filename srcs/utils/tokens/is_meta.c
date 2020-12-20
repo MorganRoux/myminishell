@@ -9,10 +9,10 @@ int     is_meta_char(char c)
     while (METACHARACTER[i] != 0)
     {
         if (METACHARACTER[i] == c)
-            return 1;
+            return(1);
         i++;
     }
-    return 0;
+    return (0);
 }
 
 int     is_meta_str(char *c)
@@ -24,10 +24,10 @@ int     is_meta_str(char *c)
     while (METACHARACTER[i] != 0)
     {
         if (METACHARACTER[i] == c[0])
-            return 1;
+            return (1);
         i++;
     }
-    return 0;
+    return (0);
 }
 
 int     is_space_str(char *c)
@@ -39,8 +39,8 @@ int     is_space_str(char *c)
     while (METACHARACTER[i] != 0)
     {
         if (METACHARACTER[i] == c[0])
-            return 1;
+            return (1);
         i++;
     }
-    return 0;
+    return (0);
 }

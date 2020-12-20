@@ -2,7 +2,7 @@
 
 t_command		glob_command;
 
-int main()  
+int main(int argc, char *argv[], char *const envp[])  
 {
     char        *line;
     t_list_cmd  *cmds;
@@ -21,7 +21,7 @@ int main()
         if ((cmds = parse(line)) == NULL)
             return (0);
         cmd = the_bridge(cmds);
-        exec1(cmds);
+        exec1(cmds, envp);
         //exec2(&glob_command, cmd, cmds);
     }
 }   

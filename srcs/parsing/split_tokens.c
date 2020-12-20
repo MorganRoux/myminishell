@@ -9,10 +9,10 @@ int             pass_dquotes(char *s)
     while (*s != 0)
     {
         if(*s =='"' && *(s - 1) != '\\')
-            return ++s - str;
+            return (++s - str);
         s++;
     }
-    return -1;
+    return (-1);
 }
 
 int             pass_squotes(char *s)
@@ -24,10 +24,10 @@ int             pass_squotes(char *s)
     while (*s != 0)
     {
         if(*s =='\'')
-            return ++s - str;
+            return (++s - str);
         s++;
     }
-    return -1;
+    return (-1);
 }
 
 int             word_len(char *s)
@@ -49,11 +49,11 @@ int             word_len(char *s)
         else
             escape = 0;
         if (l == -1)
-            return -1;
+            return (-1);
         len += l;
         s += l;
     }
-    return len;
+    return (len);
 }
 
 t_list			*split_tokens(char *s)
@@ -71,11 +71,11 @@ t_list			*split_tokens(char *s)
         else
             len = word_len(s);
         if (len == -1)
-            return NULL;
+            return (NULL);
         str = ft_substr(s,0,len);
         new = ft_lstnew(str);
         ft_lstadd_back(&ret, new);
         s = s + len;
     }
-    return ret;
+    return (ret);
 }

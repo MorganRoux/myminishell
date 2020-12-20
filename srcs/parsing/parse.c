@@ -6,7 +6,7 @@ int         solve_dquotes(char **str,  char **content)
     while (**content != '"')
     {
         if (**content == 0)
-            return -1;
+            return (-1);
         if (**content == '\\' && (
             *(*content + 1) == '$' || *(*content + 1) == '`' ||
             *(*content + 1) == '"' || *(*content + 1) == '!'
@@ -19,7 +19,7 @@ int         solve_dquotes(char **str,  char **content)
             *(*str)++ = *(*content)++;
     }
     (*content)++;
-    return 0;
+    return (0);
 }
 
 int         solve_squotes(char **str, char **content)
@@ -28,24 +28,24 @@ int         solve_squotes(char **str, char **content)
     while (**content !='\'')
     {
         if (**content == 0)
-            return -1;
+            return (-1);
         *(*str)++ = *(*content)++;
     }
     (*content)++;
-    return 0;
+    return (0);
 }
 
 int         solve_escape(char **str, char **content)
 {
     (void)str;
     (*content)++;
-    return 1;
+    return (1);
 }
 
 int         solve_word(char **str, char **content)
 {
     *(*str)++ = *(*content)++;
-    return 0;
+    return (0);
 }
 
 char        *solve_quotings(char *content)
@@ -55,7 +55,7 @@ char        *solve_quotings(char *content)
     char    *ret;
 
     if(!(ret = (char *)malloc(ft_strlen(content) + 1)))
-        return NULL;
+        return (NULL);
     str = ret;
     while (*content != 0)
     {
@@ -69,7 +69,7 @@ char        *solve_quotings(char *content)
             escape = solve_word(&str, &content);
     }
     *str = 0;
-    return ret;
+    return (ret);
 }
 
 t_list_str  *parse_fdin(t_list_str *tkn, t_list_cmd **cur)
@@ -82,10 +82,10 @@ t_list_str  *parse_fdin(t_list_str *tkn, t_list_cmd **cur)
     while (tkn != 0 && is_space_str(tkn->content))
         tkn = tkn->next;
     if (tkn == 0 || is_meta_str(tkn->content))
-        return NULL;
+        return(NULL);
     new = ft_lstnew(solve_quotings(tkn->content));
     ft_lstadd_back(&cmd->fd_in, new);
-    return tkn->next;
+    return (tkn->next);
 }
 
 t_list_str  *parse_fdout(t_list_str *tkn, t_list_cmd **cur)
@@ -98,10 +98,10 @@ t_list_str  *parse_fdout(t_list_str *tkn, t_list_cmd **cur)
     while (tkn != 0 && is_space_str(tkn->content))
         tkn = tkn->next;
     if (tkn == 0 || is_meta_str(tkn->content))
-        return NULL;
+        return (NULL);
     new = ft_lstnew(solve_quotings(tkn->content));
     ft_lstadd_back(&cmd->fd_out, new);
-    return tkn->next;
+    return (tkn->next);
 }
 
 t_list_str  *parse_pipe(t_list_str *tkn, t_list_cmd **cur)
@@ -114,20 +114,20 @@ t_list_str  *parse_pipe(t_list_str *tkn, t_list_cmd **cur)
     cmd->pipe = (*cur)->content;
     (*cur)->next = new;
     *cur = new;
-    return tkn->next;
+    return (tkn->next);
 }
 
 t_list_str  *parse_meta(t_list_str *tkn, t_list_cmd **cur)
 {
     if (ft_strcmp(tkn->content, " ") == 0)
-        return tkn->next;
+        return (tkn->next);
     else if (ft_strcmp(tkn->content, "<") == 0)
-        return parse_fdin(tkn, cur);
+        return (parse_fdin(tkn, cur));
     else if (ft_strcmp(tkn->content, ">") == 0)
-        return parse_fdout(tkn, cur);
+        return (parse_fdout(tkn, cur));
     else if (ft_strcmp(tkn->content, "|") == 0)
-        return parse_pipe(tkn, cur);
-    return tkn->next;
+        return (parse_pipe(tkn, cur));
+    return (tkn->next);
 }
 
 t_list_str  *parse_word(t_list_str *tkn, t_list_cmd **cur)
@@ -146,7 +146,7 @@ t_list_str  *parse_word(t_list_str *tkn, t_list_cmd **cur)
         ft_lstadd_back(&cmd->args, arg);
     }
  
-    return tkn->next;
+    return (tkn->next);
 }
 
 t_list_cmd  *parse_tokens(t_list_str *tokens)
@@ -165,7 +165,7 @@ t_list_cmd  *parse_tokens(t_list_str *tokens)
         else
             tkn = parse_word(tkn, &cur);
     }
-    return cmds;
+    return (cmds);
 }
 
 t_list_cmd   *parse(char *line)
@@ -176,5 +176,5 @@ t_list_cmd   *parse(char *line)
 
     tokens = split_tokens(line);
     cmds = parse_tokens(tokens);
-    return cmds;
+    return (cmds);
 }
