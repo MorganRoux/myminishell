@@ -14,10 +14,11 @@
 
 int     exec_command(t_command *cmd, char *envp[])
 {
-
-    (void)cmd;
+    char    **params;
     (void)envp;
-    print_cmd(cmd);
+    
+    params = cmd2char(cmd);
+    execve(params[0], params, envp);
     return (1);
 }
 
