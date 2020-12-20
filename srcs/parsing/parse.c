@@ -35,8 +35,22 @@ int         solve_squotes(char **str, char **content)
     return 0;
 }
 
+int         solve_escape(char **str, char **content)
+{
+    (void)str;
+    (*content)++;
+    return 1;
+}
+
+int         solve_word(char **str, char **content)
+{
+    *(*str)++ = *(*content)++;
+    return 0;
+}
+
 char        *solve_quotings(char *content)
 {
+    static  int escape = 0;
     char    *str;
     char    *ret;
 
@@ -45,15 +59,16 @@ char        *solve_quotings(char *content)
     str = ret;
     while (*content != 0)
     {
-        if (*content == '"')
+        if (*content == '"' && escape == 0)
             solve_dquotes(&str, &content);
-        else if (*content == '\'')
+        else if (*content == '\'' && escape == 0)
             solve_squotes(&str, &content);
+        else if (*content == '\\' && escape == 0)
+            escape = solve_escape(&str, &content);
         else
-            *str++ = *content++;
+            escape = solve_word(&str, &content);
     }
     *str = 0;
-
     return ret;
 }
 

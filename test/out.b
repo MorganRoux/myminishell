@@ -20,6 +20,16 @@ Exec:aaabbb:
 -----
 Minishell:>
 -----
+Exec:echo:
+Arg0:hell"o:
+-----
+Minishell:>
+-----
+Exec:echo:
+Arg0:hel\ooo:
+-----
+Minishell:>
+-----
 Exec:000aaaa\bbb:
 -----
 Minishell:>

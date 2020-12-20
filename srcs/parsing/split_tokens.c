@@ -34,16 +34,20 @@ int             word_len(char *s)
 {
     int len;
     int l;
+    static int escape = 0;
 
     len = 0;
     while (*s != 0 && !is_meta_char(*s))
     {
-        if (*s == '"')
+        l = 1;
+        if (*s == '"' && escape == 0)
             l = pass_dquotes(s);
-        else if (*s == '\'')
+        else if (*s == '\'' && escape == 0)
             l = pass_squotes(s);
+        else if (*s == '\\' && escape == 0)
+            escape = 1;
         else
-            l = 1;
+            escape = 0;
         if (l == -1)
             return -1;
         len += l;
