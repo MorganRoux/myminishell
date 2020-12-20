@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-char    **the_bridge(t_list_cmd *cmds)
+char    **list2char(t_list_cmd *cmds)
 {
     char        **strs;
     t_command   *cmd;

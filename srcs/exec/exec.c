@@ -12,8 +12,11 @@
 
 #include "minishell.h"
 
-int     exec_cmd(t_command *cmd, char *envp[])
+int     exec_command(t_command *cmd, char *envp[])
 {
+    (void)cmd;
+    (void)envp;
+    print_cmd(cmd);
     return (1);
 }
 
@@ -38,18 +41,17 @@ int     exec_built_ins(t_command *mimi, char **cmd)
 	return (1);
 }
 
-void     exec1(t_list_cmd  *cmds, char *envp[])
+void     exec1(t_list_cmd  *cmds)
 {
     print_cmds(cmds);
 }
 
 void    exec2(t_command *mimi, char **cmd, t_list_cmd  *cmds, char *envp[])
 {
-    (void)cmds;
 	if (cmd[0] == 0)
 		mimi->ret = 127;
 	if (exec_built_ins(mimi, cmd))
         return;
-    exec_command(cmds, envp);
+    exec_command(cmds->content, envp);
 }
 

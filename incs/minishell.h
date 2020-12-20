@@ -57,9 +57,9 @@ t_list_str              *parse_meta(t_list_str *tkn, t_list_cmd **cur);
 t_list_str              *parse_pipe(t_list_str *tkn, t_list_cmd **cur);
 t_list_str              *parse_fdout(t_list_str *tkn, t_list_cmd **cur);
 t_list_str              *parse_fdin(t_list_str *tkn, t_list_cmd **cur);
-char                    **the_bridge(t_list_cmd *cmds);
+char                    **list2char(t_list_cmd *cmds);
 //Exec
-void                     exec1(t_list_cmd *cmds, char *envp[]);
+void                     exec1(t_list_cmd *cmds);
 //void    				exec2(t_command *mimi, char **cmd);
 void                    exec2(t_command *mimi, char **cmd, t_list_cmd  *cmds, char *envp[]);
 
