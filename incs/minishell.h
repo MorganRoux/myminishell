@@ -60,7 +60,8 @@ t_list_str              *parse_fdin(t_list_str *tkn, t_list_cmd **cur);
 //Exec
 void                     exec1(t_list_cmd *cmds);
 //void    				exec2(t_command *mimi, char **cmd);
-void                    exec2(t_command *mimi, char **cmd, t_list_cmd  *cmds, char *envp[]);
+// void                    exec2(t_command *mimi, char **cmd, t_list_cmd  *cmds, char *envp[]);
+void                    exec2(t_command *mimi, t_list_cmd  *cmds, char *envp[]);
 
 //Utils
 void                    print_strs(char **strs);

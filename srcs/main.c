@@ -6,10 +6,10 @@ int main(int argc, char *argv[], char *envp[])
 {
     (void)argc;
     (void)argv;
+    (void)envp;
     char        *line;
     t_list_cmd  *cmds;
     int         i;
-    char        **cmd;
 
     line = NULL;
     i = 1;
@@ -22,8 +22,7 @@ int main(int argc, char *argv[], char *envp[])
             return (0);
         if ((cmds = parse(line)) == NULL)
             return (0);
-        cmd = list2char(cmds);
-        //exec1(cmds, envp);
-        exec2(&glob_command, cmd, cmds, envp);
+        //exec1(cmds);
+        exec2(&glob_command, cmds, envp);
     }
 }   

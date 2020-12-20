@@ -117,6 +117,16 @@ t_list_str  *parse_pipe(t_list_str *tkn, t_list_cmd **cur)
     return (tkn->next);
 }
 
+t_list_str  *parse_coma(t_list_str *tkn, t_list_cmd **cur)
+{
+    t_list_cmd  *new;
+
+    new = ft_lstinit();
+    (*cur)->next = new;
+    *cur = new;
+    return (tkn->next);
+}
+
 t_list_str  *parse_meta(t_list_str *tkn, t_list_cmd **cur)
 {
     if (ft_strcmp(tkn->content, " ") == 0)
@@ -127,6 +137,8 @@ t_list_str  *parse_meta(t_list_str *tkn, t_list_cmd **cur)
         return (parse_fdout(tkn, cur));
     else if (ft_strcmp(tkn->content, "|") == 0)
         return (parse_pipe(tkn, cur));
+    else if (ft_strcmp(tkn->content, ";") == 0)
+        return (parse_coma(tkn, cur));
     return (tkn->next);
 }
 

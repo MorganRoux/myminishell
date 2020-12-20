@@ -48,12 +48,20 @@ void     exec1(t_list_cmd  *cmds)
     print_cmds(cmds);
 }
 
-void    exec2(t_command *mimi, char **cmd, t_list_cmd  *cmds, char *envp[])
+void    exec2(t_command *mimi, t_list_cmd  *commands, char *envp[])
 {
-	if (cmd[0] == 0)
-		mimi->ret = 127;
-	if (exec_built_ins(mimi, cmd))
-        return;
-    exec_command(cmds->content, envp);
+    t_list_cmd  *cmds;
+    char        **cmd;
+
+    cmds = commands;
+    while (cmds != NULL)
+    {
+        cmd = cmd2char(cmds->content);
+        if (cmd[0] == 0)
+		    mimi->ret = 127;
+	    if (exec_built_ins(mimi, cmd) != 1)
+            exec_command(cmds->content, envp);
+        cmds = cmds->next;
+    }
 }
 
