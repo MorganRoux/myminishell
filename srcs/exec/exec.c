@@ -16,18 +16,20 @@ char    *find_bin(char *bin, char *envp[])
 {
     char    *full_bin;
     char    **paths;
+    int     i;
 
+    i = 0;
     paths = get_paths(envp);
-    full_bin = ft_strjoin(*paths, bin);
+    full_bin = ft_strjoin(paths[0], bin);
     while( open(full_bin, O_RDONLY) == -1)
     {
         free(full_bin);
-        if (*(++paths) == 0)
+        if (paths[++i] == 0)
             return ft_strdup(bin);
-        full_bin = ft_strjoin(*paths, bin);
+        full_bin = ft_strjoin(paths[i], bin);
     }
     free_strs(paths);
-    //free(paths);      //TODO: raise error when freeing ???
+    free(paths);
     return full_bin;
 }
 
