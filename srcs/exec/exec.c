@@ -12,24 +12,45 @@
 
 #include "minishell.h"
 
+char    *find_bin(char *bin, char *envp[])
+{
+    char    *full_bin;
+    char    **paths;
+
+    paths = get_paths(envp);
+    full_bin = ft_strjoin(*paths, bin);
+    while( open(full_bin, O_RDONLY) == -1)
+    {
+        free(full_bin);
+        if (*(++paths) == 0)
+            return ft_strdup(bin);
+        full_bin = ft_strjoin(*paths, bin);
+    }
+    free_strs(paths);
+    //free(paths);      //TODO: raise error when freeing ???
+    return full_bin;
+}
+
 int     exec_command(t_command *cmd, char *envp[])
 {
     char    **params;
-    (void)envp;
+    char    *bin;
     int     pid;
     int     status;
-    
+
+    if (cmd->exec == NULL)
+        return (1);
+    bin = find_bin(cmd->exec, envp);
     params = cmd2char(cmd);
     pid = fork();
     if (pid == 0)
     {
-        execve(params[0], params, envp);
+        execve(bin, params, envp);
         return (0);
     }
     else
-    {
         waitpid(pid, &status, 0);
-    }
+    free(bin);
     return (1);
 }
 

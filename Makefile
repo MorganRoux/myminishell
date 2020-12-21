@@ -11,7 +11,10 @@ SRCS		=	srcs/main.c \
 				srcs/parsing/split_tokens.c \
 				srcs/utils/transform/list2char.c \
 				srcs/exec/exec.c \
+				srcs/env/env.c \
 				srcs/utils/prints/prints.c \
+				srcs/utils/free/frees.c \
+				srcs/utils/path/path.c \
 				srcs/utils/list/ft_lstinit.c \
 				srcs/utils/list/ft_lstof.c \
 				srcs/utils/tokens/is_meta.c \
