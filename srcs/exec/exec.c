@@ -28,7 +28,7 @@ int     exec_command(t_command *cmd, char *envp[])
     }
     else
     {
-        wait(&status);
+        waitpid(pid, &status, 0);
     }
     return (1);
 }
