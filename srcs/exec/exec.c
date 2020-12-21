@@ -16,9 +16,22 @@ int     exec_command(t_command *cmd, char *envp[])
 {
     char    **params;
     (void)envp;
+    int     pid;
+    int     status;
     
     params = cmd2char(cmd);
-    execve(params[0], params, envp);
+    pid = fork();
+    if (pid == 0)
+    {
+        execve(params[0], params, envp);
+        return 0;
+    }
+    else
+    {
+        wait(&status);
+    }
+    
+    ft_printf("pid %d - status %d", pid, status);
     return (1);
 }
 
