@@ -37,7 +37,7 @@ void    print_cmd(t_command *cmd)
         i++;
     }
     i = 0;
-    lst = cmd->fd_in;
+    lst = cmd->files_in;
     while (lst != 0)
     {
         ft_printf("Fdin%d:%s:\n", i, lst->content);
@@ -45,7 +45,7 @@ void    print_cmd(t_command *cmd)
         i++;
     }
     i = 0;
-    lst = cmd->fd_out;
+    lst = cmd->files_out;
     while (lst != 0)
     {
         ft_printf("Fdout%d:%s:\n", i, lst->content);

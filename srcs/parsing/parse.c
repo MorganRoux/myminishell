@@ -84,7 +84,7 @@ t_list_str  *parse_fdin(t_list_str *tkn, t_list_cmd **cur)
     if (tkn == 0 || is_meta_str(tkn->content))
         return(NULL);
     new = ft_lstnew(solve_quotings(tkn->content));
-    ft_lstadd_back(&cmd->fd_in, new);
+    ft_lstadd_back(&cmd->files_in, new);
     return (tkn->next);
 }
 
@@ -100,7 +100,7 @@ t_list_str  *parse_fdout(t_list_str *tkn, t_list_cmd **cur)
     if (tkn == 0 || is_meta_str(tkn->content))
         return (NULL);
     new = ft_lstnew(solve_quotings(tkn->content));
-    ft_lstadd_back(&cmd->fd_out, new);
+    ft_lstadd_back(&cmd->files_out, new);
     return (tkn->next);
 }
 

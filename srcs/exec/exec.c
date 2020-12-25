@@ -77,24 +77,64 @@ int     exec_built_ins(t_command *mimi, char **cmd)
 	return (1);
 }
 
-void     exec1(t_list_cmd  *cmds)
+int     *convert_path_to_fd(t_list_str *files, char  *flag)
+{
+    (void)files;
+    (void)flag;
+    return NULL;
+}
+
+int     open_redirections(t_list_cmd *cmd)
+{
+    t_command   *content;
+
+    content = cmd->content;
+    content->fd_in = convert_path_to_fd(content->files_in, "RDONLY");
+    content->fd_out = convert_path_to_fd(content->files_out, "RDWRITE");
+
+    return (0);
+}
+
+int     close_redirections(t_list_cmd *cmd)
+{
+    (void)cmd;
+    return (0);
+}
+
+int     open_pipe(t_list_cmd *cmd)
+{
+    (void)cmd;
+    return (0);
+}
+
+int     close_pipe(t_list_cmd *cmd)
+{
+    (void)cmd;
+    return (0);
+}
+
+void    exec1(t_list_cmd  *cmds)
 {
     print_cmds(cmds);
 }
 
-void    exec2(t_command *mimi, t_list_cmd  *commands, char *envp[])
+void    exec2(t_command *mimi, t_list_cmd  *cmds, char *envp[])
 {
-    t_list_cmd  *cmds;
     char        **cmd;
 
-    cmds = commands;
     while (cmds != NULL)
     {
         cmd = cmd2char(cmds->content);
         if (cmd[0] == 0)
 		    mimi->ret = 127;
+        if(open_redirections(cmds) == -1)
+            return;
+        if(open_pipe(cmds) == -1)
+            return;
 	    if (exec_built_ins(mimi, cmd) != 1)
             exec_command(cmds->content, envp);
+        close_pipe(cmds);
+        close_redirections(cmds);
         cmds = cmds->next;
     }
 }

@@ -34,8 +34,10 @@ typedef struct	        s_command
 {
 	char		        *exec;
 	t_list_str		    *args;
-	t_list_str	        *fd_in;
-	t_list_str		    *fd_out;
+	t_list_str	        *files_in;
+	t_list_str		    *files_out;
+    int                 *fd_in;
+    int                 *fd_out;
     struct s_command    *pipe;
 	char				**env_arr; //env
 	int					ret; //echo $? - return value of previous command
