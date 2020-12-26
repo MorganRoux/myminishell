@@ -11,6 +11,9 @@ SRCS		=	srcs/main.c \
 				srcs/parsing/split_tokens.c \
 				srcs/utils/transform/list2char.c \
 				srcs/exec/exec.c \
+				srcs/exec/commands.c \
+				srcs/exec/redirections.c \
+				srcs/exec/pipes.c \
 				srcs/env/env.c \
 				srcs/utils/prints/prints.c \
 				srcs/utils/free/frees.c \

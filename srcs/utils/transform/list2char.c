@@ -22,22 +22,46 @@ char    **list2char(t_list_cmd *cmds)
     return (strs);
 }
 
+char   **extract_exec(char **strs, t_command *cmd)
+{
+    *strs = cmd->exec;
+    strs++;
+    return strs;
+}
+
+char    **extract_args(char **strs, t_command *cmd)
+{
+    t_list_str  *args;
+
+    args = cmd->args;
+    while (args != 0)
+    {
+        *strs++ = args->content;
+        args = args->next;
+    }
+    return strs;
+}
+
+// char    *extract_fdin(t_command *cmd)
+// {
+
+// }
+
+// char    **extract_pipe(t_command *cmd)
+// {
+
+// }
+
 char    **cmd2char(t_command *cmd)
 {
     char        **strs;
     int         count;
-    t_list_str  *args;
 
     count = ft_lstsize(cmd->args) + 1;
     strs = malloc((count + 1) * sizeof(char *));
-    strs[0] = cmd->exec;
-    args = cmd->args;
-    count = 1;
-    while (args != 0)
-    {
-        strs[count++] = args->content;
-        args = args->next;
-    }
-    strs[count] = 0;
+    strs = extract_exec(strs, cmd);
+    strs = extract_args(strs, cmd);
+    *strs = 0;
+    strs = strs - count;
     return (strs);
 }

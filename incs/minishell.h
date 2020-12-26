@@ -61,10 +61,16 @@ t_list_str              *parse_fdout(t_list_str *tkn, t_list_cmd **cur);
 t_list_str              *parse_fdin(t_list_str *tkn, t_list_cmd **cur);
 
 //Exec
-void                     exec1(t_list_cmd *cmds);
-//void    				exec2(t_command *mimi, char **cmd);
-// void                    exec2(t_command *mimi, char **cmd, t_list_cmd  *cmds, char *envp[]);
+void                    exec1(t_list_cmd *cmds);
 void                    exec2(t_command *mimi, t_list_cmd  *cmds, char *envp[]);
+int                     *open_fds(t_list_str *files, int  flag);
+int                     open_redirections(t_list_cmd *cmd);
+int                     close_fds(int *fds, int size);
+int                     close_redirections(t_list_cmd *cmd);
+int                     open_pipe(t_list_cmd *cmd);
+int                     close_pipe(t_list_cmd *cmd);
+char                    *find_bin(char *bin, char *envp[]);
+int                     exec_command(t_command *cmd, char *envp[]);
 
 //Env
 char                    *get_var(char *envp[], char *var);
