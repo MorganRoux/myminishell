@@ -27,31 +27,32 @@
 # include <signal.h>
 # include <limits.h>
 
-typedef t_list          t_list_str;
-typedef t_list          t_list_cmd;
+typedef t_list          t_list_str;         // t_list with content pointing to a (char *)
+typedef t_list          t_list_cmd;         // t_list with content pointing to a (t_command *)
 
-typedef struct	        s_command
+typedef struct	        s_command           // This describes ONE command
 {
-	char		        *exec;
-	t_list_str		    *args;
-	t_list_str	        *files_in;
-	t_list_str		    *files_out;
-    int                 *fd_in;
-    int                 *fd_out;
-    struct s_command    *pipe;
-	char				**env_arr; //env
-	int					ret; //echo $? - return value of previous command
-	char				*given; //given input
-	char				**sep_cmds; //commands to split the input on ;
-	int					check_pipe; //pipe + -
+	char		        *exec;              // name of the command
+	t_list_str		    *args;              // arguments (without redirections)
+	t_list_str	        *files_in;          // files to redirect towards stdin
+	t_list_str		    *files_out;         // files to redirect from stdout
+    int                 *fd_in;             // fd of all the files_in
+    int                 *fd_out;            // fd of all the files_out
+    struct s_command    *pipe;              // for testing only for now
+
+	char				**env_arr;          // env
+	int					ret;                // echo $? - return value of previous command
+	char				*given;             // given input
+	char				**sep_cmds;         // commands to split the input on ;
+	int					check_pipe;         // pipe + -
 	//int					pipe[2]; // 1 - to write to / 2 - to read from
-	int					bad_pipe; //check if pipe is only one separated symbol
-	char				*dir_now; //dir where we are now
-	char				*input; //command
+	int					bad_pipe;           // check if pipe is only one separated symbol
+	char				*dir_now;           // dir where we are now
+	char				*input;             // command
 }				        t_command;
 
 
-//Parsing
+// Parsing
 t_list_cmd              *parse();
 t_list_str              *split_tokens(char *line);
 t_list_str              *parse_word(t_list_str *tkn, t_list_cmd **cur);
@@ -60,17 +61,22 @@ t_list_str              *parse_pipe(t_list_str *tkn, t_list_cmd **cur);
 t_list_str              *parse_fdout(t_list_str *tkn, t_list_cmd **cur);
 t_list_str              *parse_fdin(t_list_str *tkn, t_list_cmd **cur);
 
-//Exec
+// Exec
 void                    exec1(t_list_cmd *cmds);
 void                    exec2(t_command *mimi, t_list_cmd  *cmds, char *envp[]);
+char                    *find_bin(char *bin, char *envp[]);
+int                     exec_command(t_command *cmd, char *envp[]);
+
+// Redirection
 int                     *open_fds(t_list_str *files, int  flag);
 int                     open_redirections(t_list_cmd *cmd);
 int                     close_fds(int *fds, int size);
 int                     close_redirections(t_list_cmd *cmd);
+int                     apply_redirections_in(t_command *cmd);
+
+//Piping
 int                     open_pipe(t_list_cmd *cmd);
 int                     close_pipe(t_list_cmd *cmd);
-char                    *find_bin(char *bin, char *envp[]);
-int                     exec_command(t_command *cmd, char *envp[]);
 
 //Env
 char                    *get_var(char *envp[], char *var);
@@ -84,7 +90,7 @@ int                     is_meta_char(char c);
 int                     is_meta_str(char *str);
 int                     is_space_str(char *str);
 char                    **list2char(t_list_cmd *cmds);
-char                    **cmd2char(t_command *cmd);
+char                    **extract_command_and_args(t_command *cmd);
 void                    free_strs(char **strs);
 char                    **get_paths(char  *envp[]);
 

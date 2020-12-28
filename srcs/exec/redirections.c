@@ -57,3 +57,14 @@ int     close_redirections(t_list_cmd *cmd)
     close_fds(content->fd_out, ft_lstsize(content->files_out));
     return (0);
 }
+
+int     apply_redirections_in(t_command *cmd)
+{
+    // test for just one file
+    if (ft_lstsize(cmd->files_in) == 1)
+    {
+        dup2(cmd->fd_in[0], STDIN_FILENO);
+        //close(cmd->fd_in[0]);
+    }
+    return (1);
+}

@@ -1,5 +1,11 @@
 #include "minishell.h"
 
+/**
+ * find_bin()
+ * Search the command in all the paths from the PATH env variable.
+ * If not found, return the command
+ * If found, return the whole path of the command
+ * */
 char    *find_bin(char *bin, char *envp[])
 {
     char    *full_bin;
@@ -31,19 +37,19 @@ int     exec_command(t_command *cmd, char *envp[])
     if (cmd->exec == NULL)
         return (1);
     bin = find_bin(cmd->exec, envp);
-    params = cmd2char(cmd);
+    params = extract_command_and_args(cmd);
 
+    // Run command
     if ((pid = fork()) < 0) 
         return -1;
     else if (pid == 0)
     {
-        dup2(cmd->fd_in[0], STDIN_FILENO);
-        close(cmd->fd_in[0]);
+        apply_redirections_in(cmd);
         execve(bin, params, envp);
         return -1;
     }
-    close(cmd->fd_in[0]);
     waitpid(pid, &status, 0);
+    close(cmd->fd_in[0]);
     free(bin);
     return (1);
 }

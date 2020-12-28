@@ -44,7 +44,7 @@ void    exec2(t_command *mimi, t_list_cmd  *cmds, char *envp[])
 
     while (cmds != NULL)
     {
-        cmd = cmd2char(cmds->content);
+        cmd = extract_command_and_args(cmds->content);
         if (cmd[0] == 0)
 		    mimi->ret = 127;
         if(open_redirections(cmds) == -1)
