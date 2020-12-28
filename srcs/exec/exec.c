@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 14:23:44 by alkanaev          #+#    #+#             */
-/*   Updated: 2020/12/19 14:35:15 by alkanaev         ###   ########.fr       */
+/*   Updated: 2020/12/28 16:40:13 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,16 @@ void    exec1(t_list_cmd  *cmds)
 void    exec2(t_command *mimi, t_list_cmd  *cmds, char *envp[])
 {
     char        **cmd;
+	int x=0;
 
     while (cmds != NULL)
     {
         cmd = extract_command_and_args(cmds->content);
+		while (cmd[x])
+		{
+			printf("cmd %s", cmd[x]);
+			x++;
+		}
         if (cmd[0] == 0)
 		    mimi->ret = 127;
         if(open_redirections(cmds) == -1)
