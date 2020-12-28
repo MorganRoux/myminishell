@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 13:47:03 by alkanaev          #+#    #+#             */
-/*   Updated: 2020/12/19 11:09:29 by alkanaev         ###   ########.fr       */
+/*   Updated: 2020/12/28 17:26:16 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,24 +58,31 @@ void		com_echo(t_command *mimi, char **cmds)
 		while (cmds[k] && check_nl(cmds[k]) > 0)
 			k++; //cnt ammount of -n in line
 		i += k; //can be even more then 1 - we don't give a shit
-		if (k >= 1)
+		if (k == 1)
 		{
             while (cmds[i]) //here we take a message after all the -n
             {
                 ft_putstr_fd(cmds[i], 1);
                 if (i < argc && cmds[i + 1]) //if there is still any arg to read - we put spc
-                    ft_putstr_fd(" ", STDOUT_FILENO); 
-                    // STDERR_FILENO
-                    // File number of stderr; 2.
-                    // STDIN_FILENO
-                    // File number of stdin; 0.
-                    // STDOUT_FILENO
-                    // File number of stdout; 1.
+                    ft_putstr_fd(" ", STDOUT_FILENO);
+                // STDERR_FILENO
+                // File number of stderr; 2.
+                // STDIN_FILENO
+                // File number of stdin; 0.
+                // STDOUT_FILENO
+                // File number of stdout; 1.
                 i++;
             }
+			ft_putstr_fd("\n", STDOUT_FILENO);
 		}
 		else
-			ft_putstr_fd("\n", STDOUT_FILENO);
+			while (cmds[i]) //here we take a message after all the -n
+            {
+				ft_putstr_fd(cmds[i], 1);
+				if (i < argc && cmds[i + 1]) //if there is still any arg to read - we put spc
+                	ft_putstr_fd(" ", STDOUT_FILENO);
+				i++;
+			}
 	}
 	else
 		ft_putstr_fd("\n", STDOUT_FILENO);
