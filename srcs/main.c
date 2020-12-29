@@ -22,7 +22,6 @@ int main(int argc, char *argv[], char *envp[])
             return (0);
         if ((cmds = parse(line)) == NULL)
             return (0);
-        //exec1(cmds);
-        exec2(&glob_command, cmds, envp);
+        exec(&glob_command, cmds, envp);
     }
 }   

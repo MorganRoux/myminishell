@@ -33,24 +33,13 @@ int     exec_built_ins(t_command *mimi, char **cmd)
 	return (1);
 }
 
-void    exec1(t_list_cmd  *cmds)
-{
-    print_cmds(cmds);
-}
-
-void    exec2(t_command *mimi, t_list_cmd  *cmds, char *envp[])
+void    exec(t_command *mimi, t_list_cmd  *cmds, char *envp[])
 {
     char        **cmd;
-	//int x=0;
 
     while (cmds != NULL)
     {
         cmd = extract_command_and_args(cmds->content);
-		// while (cmd[x] != 0)
-        // {
-        //     ft_printf("cmd %s", cmd[x]);
-        //     x++;
-        // }
         if (cmd[0] == 0)
 		    mimi->ret = 127;
         if(open_redirections(cmds) == -1)

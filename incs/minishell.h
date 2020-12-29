@@ -62,8 +62,7 @@ t_list_str              *parse_fdout(t_list_str *tkn, t_list_cmd **cur);
 t_list_str              *parse_fdin(t_list_str *tkn, t_list_cmd **cur);
 
 // Exec
-void                    exec1(t_list_cmd *cmds);
-void                    exec2(t_command *mimi, t_list_cmd  *cmds, char *envp[]);
+void                    exec(t_command *mimi, t_list_cmd  *cmds, char *envp[]);
 char                    *find_bin(char *bin, char *envp[]);
 int                     exec_command(t_command *cmd, char *envp[]);
 
