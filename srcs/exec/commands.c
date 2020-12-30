@@ -49,7 +49,6 @@ int     exec_command(t_command *cmd, char *envp[])
         return -1;
     }
     waitpid(pid, &status, 0);
-    close(cmd->fd_in[0]);
     free(bin);
     return (1);
 }

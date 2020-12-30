@@ -64,7 +64,7 @@ int     apply_redirections_in(t_command *cmd)
     if (ft_lstsize(cmd->files_in) == 1)
     {
         dup2(cmd->fd_in[0], STDIN_FILENO);
-        //close(cmd->fd_in[0]);
+        close(cmd->fd_in[0]);
     }
     return (1);
 }
