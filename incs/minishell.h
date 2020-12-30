@@ -80,8 +80,8 @@ int                     apply_redirections_out(t_command *cmd);
 int                     open_pipe(t_list_cmd *cmd);
 int                     close_pipe(t_list_cmd *cmd);
 int                     apply_pipes(t_command *cmd);
-int                     apply_pipes_in(t_command *cmd);
-int                     apply_pipes_out(t_command *cmd);
+int                     apply_pipe_in(t_command *cmd);
+int                     apply_pipe_out(t_command *cmd);
 
 //Env
 char                    *get_var(char *envp[], char *var);

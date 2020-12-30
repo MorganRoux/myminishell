@@ -67,10 +67,14 @@ int     apply_redirections(t_command *cmd)
 
 int     apply_redirections_in(t_command *cmd)
 {
+    char buf;
+
     // test for just one file
     if (ft_lstsize(cmd->files_in) == 1)
     {
-        dup2(cmd->fd_in[0], STDIN_FILENO);
+        while(read(cmd->fd_in[0], &buf, 1) > 0)
+            write(STDIN_FILENO, &buf, 1);
+        //dup2(cmd->fd_in[0], STDIN_FILENO);
         close(cmd->fd_in[0]);
     }
     return (1);

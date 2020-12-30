@@ -27,6 +27,19 @@ char    *find_bin(char *bin, char *envp[])
     return full_bin;
 }
 
+void    exec_child(t_command *cmd, char *envp[], char *bin, char **params)
+{
+    apply_redirections(cmd);
+    apply_pipes(cmd);
+    execve(bin, params, envp);
+}
+
+void    exec_parent(int pid, char *bin, int *status)
+{
+    waitpid(pid, status, 0);
+    free(bin);
+}
+
 int     exec_command(t_command *cmd, char *envp[])
 {
     char    **params;
@@ -41,15 +54,7 @@ int     exec_command(t_command *cmd, char *envp[])
     if ((pid = fork()) < 0) 
         return -1;
     else if (pid == 0)
-    {
-        apply_redirections(cmd);
-        apply_pipes(cmd);
-        execve(bin, params, envp);
-        return -1;
-    }
-    if (cmd->pipe != NULL)
-        close(cmd->pipe[1]);
-    waitpid(pid, &status, 0);
-    free(bin);
+        exec_child(cmd, envp, bin, params);
+    exec_parent(pid, bin, &status);
     return (1);
 }
