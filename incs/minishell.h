@@ -72,6 +72,7 @@ int                     open_redirections(t_list_cmd *cmd);
 int                     close_fds(int *fds, int size);
 int                     close_redirections(t_list_cmd *cmd);
 int                     apply_redirections_in(t_command *cmd);
+int                     apply_redirections_out(t_command *cmd);
 
 //Piping
 int                     open_pipe(t_list_cmd *cmd);

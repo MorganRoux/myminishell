@@ -38,13 +38,12 @@ int     exec_command(t_command *cmd, char *envp[])
         return (1);
     bin = find_bin(cmd->exec, envp);
     params = extract_command_and_args(cmd);
-
-    // Run command
     if ((pid = fork()) < 0) 
         return -1;
     else if (pid == 0)
     {
         apply_redirections_in(cmd);
+        apply_redirections_out(cmd);
         execve(bin, params, envp);
         return -1;
     }

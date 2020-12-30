@@ -12,7 +12,7 @@ int     *open_fds(t_list_str *files, int  flag)
     while (files != NULL)
     {
         path = files->content;
-        fd[i] = open(path, flag);
+        fd[i] = open(path, flag, S_IRWXU);
         if (fd[i] < 0)
             return NULL;
         files = files->next;
@@ -28,7 +28,7 @@ int     open_redirections(t_list_cmd *cmd)
     content = cmd->content;
     if (
         (content->fd_in = open_fds(content->files_in, O_RDONLY)) == NULL ||
-        (content->fd_out = open_fds(content->files_out, O_WRONLY)) == NULL
+        (content->fd_out = open_fds(content->files_out, O_WRONLY | O_CREAT)) == NULL
     )
         return -1;
 
@@ -65,6 +65,17 @@ int     apply_redirections_in(t_command *cmd)
     {
         dup2(cmd->fd_in[0], STDIN_FILENO);
         close(cmd->fd_in[0]);
+    }
+    return (1);
+}
+
+int     apply_redirections_out(t_command *cmd)
+{
+    // test for just one file
+    if (ft_lstsize(cmd->files_out) == 1)
+    {
+        dup2(cmd->fd_out[0], STDOUT_FILENO);
+        close(cmd->fd_out[0]);
     }
     return (1);
 }
