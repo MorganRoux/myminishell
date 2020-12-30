@@ -58,6 +58,13 @@ int     close_redirections(t_list_cmd *cmd)
     return (0);
 }
 
+int     apply_redirections(t_command *cmd)
+{
+    apply_redirections_in(cmd);
+    apply_redirections_out(cmd);
+    return (1);
+}
+
 int     apply_redirections_in(t_command *cmd)
 {
     // test for just one file

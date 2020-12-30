@@ -104,16 +104,35 @@ t_list_str  *parse_fdout(t_list_str *tkn, t_list_cmd **cur)
     return (tkn->next);
 }
 
-t_list_str  *parse_pipe(t_list_str *tkn, t_list_cmd **cur)
+int         setup_pipe(t_list_cmd **cur)
 {
-    t_list_cmd  *new;
     t_command   *cmd;
 
+    cmd = (*cur)->content;
+    if (!(cmd->pipe = malloc(2 * sizeof(int))))
+        return (-1);
+    pipe(cmd->pipe);
+    return (0);
+}
+
+int         create_piped_command(t_list_cmd **cur)
+{
+    t_list_cmd  *new;
+    t_command   *new_cmd;
+
     new = ft_lstinit();
-    cmd = new->content;
-    cmd->pipe = (*cur)->content;
+    new_cmd = new->content;
+    new_cmd->prev = (*cur)->content;
     (*cur)->next = new;
     *cur = new;
+    return (0);
+}
+
+t_list_str  *parse_pipe(t_list_str *tkn, t_list_cmd **cur)
+{
+    if (setup_pipe(cur) == -1)
+        return (NULL);
+    create_piped_command(cur);
     return (tkn->next);
 }
 

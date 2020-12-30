@@ -11,6 +11,7 @@ t_list_cmd  *ft_lstinit()
     cmd->files_in = NULL;
     cmd->files_out = NULL;
     cmd->pipe = NULL;
+    cmd->prev = NULL;
 	list = ft_lstnew(cmd);
 	return (list);
 }

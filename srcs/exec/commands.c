@@ -42,11 +42,13 @@ int     exec_command(t_command *cmd, char *envp[])
         return -1;
     else if (pid == 0)
     {
-        apply_redirections_in(cmd);
-        apply_redirections_out(cmd);
+        apply_redirections(cmd);
+        apply_pipes(cmd);
         execve(bin, params, envp);
         return -1;
     }
+    if (cmd->pipe != NULL)
+        close(cmd->pipe[1]);
     waitpid(pid, &status, 0);
     free(bin);
     return (1);

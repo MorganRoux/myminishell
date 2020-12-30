@@ -38,7 +38,8 @@ typedef struct	        s_command           // This describes ONE command
 	t_list_str		    *files_out;         // files to redirect from stdout
     int                 *fd_in;             // fd of all the files_in
     int                 *fd_out;            // fd of all the files_out
-    struct s_command    *pipe;              // for testing only for now
+    int                 *pipe;              // int[2] != NULL if pipe to ->
+    struct s_command    *prev;              // !=NULL if pipe from  <-
 
 	char				**env_arr;          // env
 	int					ret;                // echo $? - return value of previous command
@@ -71,12 +72,16 @@ int                     *open_fds(t_list_str *files, int  flag);
 int                     open_redirections(t_list_cmd *cmd);
 int                     close_fds(int *fds, int size);
 int                     close_redirections(t_list_cmd *cmd);
+int                     apply_redirections(t_command *cmd);
 int                     apply_redirections_in(t_command *cmd);
 int                     apply_redirections_out(t_command *cmd);
 
 //Piping
 int                     open_pipe(t_list_cmd *cmd);
 int                     close_pipe(t_list_cmd *cmd);
+int                     apply_pipes(t_command *cmd);
+int                     apply_pipes_in(t_command *cmd);
+int                     apply_pipes_out(t_command *cmd);
 
 //Env
 char                    *get_var(char *envp[], char *var);

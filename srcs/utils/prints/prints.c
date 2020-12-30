@@ -22,7 +22,6 @@ void    print_cmd(t_command *cmd)
 {
     int i;
     t_list_str  *lst;
-    t_command   *pipe;
     if (cmd == NULL)
         return;
 
@@ -52,9 +51,8 @@ void    print_cmd(t_command *cmd)
         lst = lst->next;
         i++;
     }
-    pipe = cmd->pipe;
-    if (pipe != 0)
-        ft_printf("Pipe to:%s:\n", pipe->exec);
+    if (cmd->pipe != 0)
+        ft_printf("Pipe\n");
 
     ft_printf("-----\n");
 }
