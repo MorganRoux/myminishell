@@ -84,24 +84,40 @@ int     apply_redirections_in(t_command *cmd)
 int     apply_redirections_out(t_command *cmd)
 {
     char    buf;
+    int     i;
+
     // test for just one file
     if (is_redirection_out(cmd))
     {
         while(read(cmd->flux_out[0], &buf, 1) > 0)
-            write(cmd->fd_out[0], &buf, 1);
+        {
+            i = 0;
+            while (i < number_of_redirection_out(cmd))
+                write(cmd->fd_out[i++], &buf, 1);
+        }
         //dup2(cmd->fd_out[0], STDOUT_FILENO);
-        close(cmd->fd_out[0]);
+        close_fds(cmd->fd_out, number_of_redirection_out(cmd));
         close(cmd->flux_out[0]);
     }
     return (1);
 }
 
+int     number_of_redirection_out(t_command *cmd)
+{
+    return (ft_lstsize(cmd->files_out));
+}
+
+int     number_of_redirection_in(t_command *cmd)
+{
+    return (ft_lstsize(cmd->files_in));
+}
+
 int     is_redirection_in(t_command *cmd)
 {
-    return (ft_lstsize(cmd->files_in) == 0 ? 0 : 1);
+    return (number_of_redirection_in(cmd) == 0 ? 0 : 1);
 }
 
 int     is_redirection_out(t_command *cmd)
 {
-    return (ft_lstsize(cmd->files_out) == 0 ? 0 : 1);
+    return (number_of_redirection_out(cmd) == 0 ? 0 : 1);
 }

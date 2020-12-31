@@ -89,6 +89,8 @@ int                     apply_redirections_in(t_command *cmd);
 int                     apply_redirections_out(t_command *cmd);
 int                     is_redirection_in(t_command *cmd);
 int                     is_redirection_out(t_command *cmd);
+int                     number_of_redirection_in(t_command *cmd);
+int                     number_of_redirection_out(t_command *cmd);
 
 //Piping
 int                     open_pipe(t_list_cmd *cmd);
