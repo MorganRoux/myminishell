@@ -44,8 +44,8 @@ void    exec(t_command *mimi, t_list_cmd  *cmds, char *envp[])
 		    mimi->ret = 127;
         if(open_redirections(cmds) == -1)
             return;
-        if(open_pipe(cmds) == -1)
-            return;
+        // if(open_pipe(cmds) == -1)
+        //     return;
 	    if (exec_built_ins(mimi, cmd) != 1)
             exec_command(cmds->content, envp);
         //close_pipe(cmds);

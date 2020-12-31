@@ -30,7 +30,7 @@ char    *find_bin(char *bin, char *envp[])
 void    exec_child(t_command *cmd, char *envp[], char *bin, char **params)
 {
     
-    
+    apply_pipes(cmd);
     dup2(cmd->flux_in[0], STDIN_FILENO);
     close(cmd->flux_in[0]);
     close(cmd->flux_in[1]);
@@ -59,7 +59,7 @@ int     exec_command(t_command *cmd, char *envp[])
     bin = find_bin(cmd->exec, envp);
     params = extract_command_and_args(cmd);
     apply_redirections(cmd);
-    apply_pipes(cmd);
+    
     if ((pid = fork()) < 0) 
         return -1;
     else if (pid == 0)
