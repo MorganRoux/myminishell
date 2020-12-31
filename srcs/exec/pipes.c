@@ -38,11 +38,21 @@ int     apply_pipe_out(t_command *cmd)
     return (0);
 }
 
+int     is_pipe_out(t_command *cmd)
+{
+    return (cmd->pipe == NULL ? 0 : 1);  
+}
+
+int     is_pipe_in(t_command *cmd)
+{
+    return (cmd->prev == NULL ? 0 : 1);
+}
+
 int     apply_pipes(t_command *cmd)
 {
-    if (cmd->pipe != NULL)
+    if (is_pipe_out(cmd))
         apply_pipe_out(cmd);
-    if (cmd->prev != NULL)
+    if (is_pipe_in(cmd))
         apply_pipe_in(cmd);
     return (1);
 }
