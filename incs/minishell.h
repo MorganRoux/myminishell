@@ -30,6 +30,15 @@
 typedef t_list          t_list_str;         // t_list with content pointing to a (char *)
 typedef t_list          t_list_cmd;         // t_list with content pointing to a (t_command *)
 
+
+/**
+ * PIPES lOGIC
+ *             _________________
+ * STDOUT  --> _____flux_out____ -> fd_out, next command(pipe_in)
+ *                                    ______________________
+ * prev command (pipe_out), fd_in ->  _________flux_in______ -> STDIN           
+ * 
+ * */
 typedef struct	        s_command           // This describes ONE command
 {
 	char		        *exec;              // name of the command
@@ -38,8 +47,11 @@ typedef struct	        s_command           // This describes ONE command
 	t_list_str		    *files_out;         // files to redirect from stdout
     int                 *fd_in;             // fd of all the files_in
     int                 *fd_out;            // fd of all the files_out
-    int                 *pipe;              // int[2] != NULL if pipe to ->
+    int                 *pipe;
+    int                 flux_in[2];          
+    int                 flux_out[2];
     struct s_command    *prev;              // !=NULL if pipe from  <-
+    int                 status;
 
 	char				**env_arr;          // env
 	int					ret;                // echo $? - return value of previous command
