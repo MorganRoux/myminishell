@@ -25,16 +25,19 @@ int     apply_pipe_in(t_command *cmd)
     t_command  *prev = cmd->prev;
     char        buf;
 
+    if (!is_pipe_in(cmd))
+        return (0);
     close(prev->pipe[1]);
-    // dup2(prev->pipe[0], STDIN_FILENO);
     while(read(prev->pipe[0], &buf, 1) > 0)
-            write(cmd->flux_in[1], &buf, 1);
+        write(cmd->flux_in[1], &buf, 1);    
     close(prev->pipe[0]);
     return (0);
 }
 
 int     apply_pipe_out(t_command *cmd)
 {
+    if (!is_pipe_out(cmd))
+        return (0);
     close(cmd->pipe[0]);
     dup2(cmd->pipe[1], STDOUT_FILENO);
     close(cmd->pipe[1]);

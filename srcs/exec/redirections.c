@@ -77,10 +77,10 @@ int     apply_redirections_in(t_command *cmd)
         {
             while(read(cmd->fd_in[i], &buf, 1) > 0)
                 write(cmd->flux_in[1], &buf, 1);
-            // dup2(cmd->fd_in[0], cmd->pipe_in[1]);
             close(cmd->fd_in[i]);
             i++;
         }
+        close_fds(cmd->fd_in, number_of_redirection_in(cmd));
         close(cmd->flux_in[1]);
     }
     return (1);
@@ -90,17 +90,21 @@ int     apply_redirections_out(t_command *cmd)
 {
     char    buf;
     int     i;
-
-    if (is_redirection_out(cmd))
+    
+    if (is_redirection_out(cmd) || is_pipe_out(cmd))
     {
         while(read(cmd->flux_out[0], &buf, 1) > 0)
         {
             i = 0;
             while (i < number_of_redirection_out(cmd))
                 write(cmd->fd_out[i++], &buf, 1);
+            if (is_pipe_out(cmd))
+                write(cmd->pipe[1], &buf, 1);
         }
         close_fds(cmd->fd_out, number_of_redirection_out(cmd));
         close(cmd->flux_out[0]);
+        //close(cmd->pipe[0]);
+        close(cmd->pipe[1]);
     }
     return (1);
 }

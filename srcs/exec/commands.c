@@ -62,7 +62,7 @@ int     exec_command(t_command *cmd, char *envp[])
     bin = find_bin(cmd->exec, envp);
     params = extract_command_and_args(cmd);
     apply_redirections_in(cmd);
-    apply_pipes(cmd);
+    apply_pipe_in(cmd);
     if ((pid = fork()) < 0) 
         return -1;
     else if (pid == 0)
