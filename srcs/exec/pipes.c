@@ -23,9 +23,12 @@ int     close_pipe(t_list_cmd *cmd)
 int     apply_pipe_in(t_command *cmd)
 {
     t_command  *prev = cmd->prev;
+    char        buf;
 
     close(prev->pipe[1]);
-    dup2(prev->pipe[0], STDIN_FILENO);
+    // dup2(prev->pipe[0], STDIN_FILENO);
+    while(read(prev->pipe[0], &buf, 1) > 0)
+            write(cmd->flux_in[1], &buf, 1);
     close(prev->pipe[0]);
     return (0);
 }

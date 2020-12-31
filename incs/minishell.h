@@ -87,6 +87,8 @@ int                     close_redirections(t_list_cmd *cmd);
 int                     apply_redirections(t_command *cmd);
 int                     apply_redirections_in(t_command *cmd);
 int                     apply_redirections_out(t_command *cmd);
+int                     is_redirection_in(t_command *cmd);
+int                     is_redirection_out(t_command *cmd);
 
 //Piping
 int                     open_pipe(t_list_cmd *cmd);
@@ -94,6 +96,8 @@ int                     close_pipe(t_list_cmd *cmd);
 int                     apply_pipes(t_command *cmd);
 int                     apply_pipe_in(t_command *cmd);
 int                     apply_pipe_out(t_command *cmd);
+int                     is_pipe_in(t_command *cmd);
+int                     is_pipe_out(t_command *cmd);
 
 //Env
 char                    *get_var(char *envp[], char *var);
