@@ -67,15 +67,20 @@ int     apply_redirections(t_command *cmd)
 
 int     apply_redirections_in(t_command *cmd)
 {
-    char buf;
+    char    buf;
+    int     i;
 
-    // test for just one file
+    i = 0;
     if (is_redirection_in(cmd))
     {
-        while(read(cmd->fd_in[0], &buf, 1) > 0)
-            write(cmd->flux_in[1], &buf, 1);
-        // dup2(cmd->fd_in[0], cmd->pipe_in[1]);
-        close(cmd->fd_in[0]);
+        while (i < number_of_redirection_in(cmd))
+        {
+            while(read(cmd->fd_in[i], &buf, 1) > 0)
+                write(cmd->flux_in[1], &buf, 1);
+            // dup2(cmd->fd_in[0], cmd->pipe_in[1]);
+            close(cmd->fd_in[i]);
+            i++;
+        }
         close(cmd->flux_in[1]);
     }
     return (1);
@@ -86,7 +91,6 @@ int     apply_redirections_out(t_command *cmd)
     char    buf;
     int     i;
 
-    // test for just one file
     if (is_redirection_out(cmd))
     {
         while(read(cmd->flux_out[0], &buf, 1) > 0)
@@ -95,7 +99,6 @@ int     apply_redirections_out(t_command *cmd)
             while (i < number_of_redirection_out(cmd))
                 write(cmd->fd_out[i++], &buf, 1);
         }
-        //dup2(cmd->fd_out[0], STDOUT_FILENO);
         close_fds(cmd->fd_out, number_of_redirection_out(cmd));
         close(cmd->flux_out[0]);
     }
