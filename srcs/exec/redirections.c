@@ -99,13 +99,12 @@ int     apply_redirections_out(t_command *cmd)
             while (i < number_of_redirection_out(cmd))
                 write(cmd->fd_out[i++], &buf, 1);
             if (is_pipe_out(cmd))
-            {
                 write(cmd->pipe[1], &buf, 1);
-                close(cmd->pipe[1]);
-            }
         }
         close_fds(cmd->fd_out, number_of_redirection_out(cmd));
         close(cmd->flux_out[0]);
+        if (is_pipe_out(cmd))
+            close(cmd->pipe[1]);
     }
     return (1);
 }
