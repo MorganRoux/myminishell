@@ -106,7 +106,6 @@ int     apply_redirections_out(t_command *cmd)
         }
         close_fds(cmd->fd_out, number_of_redirection_out(cmd));
         close(cmd->flux_out[0]);
-        //close(cmd->pipe[0]);
     }
     return (1);
 }
