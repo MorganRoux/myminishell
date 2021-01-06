@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 12:35:37 by mroux             #+#    #+#             */
-/*   Updated: 2020/12/19 16:12:13 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/06 18:26:29 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ typedef struct	        s_command           // This describes ONE command
 
 	char				**env_arr;          // env
 	int					ret;                // echo $? - return value of previous command
-	char				*given;             // given input
-	char				**sep_cmds;         // commands to split the input on ;
+	//char				*given;             // given input
+	//char				**sep_cmds;         // commands to split the input on ;
 	int					check_pipe;         // pipe + -
 	//int					pipe[2]; // 1 - to write to / 2 - to read from
 	int					bad_pipe;           // check if pipe is only one separated symbol
 	char				*dir_now;           // dir where we are now
-	char				*input;             // command
+	//char				*input;             // command
 }				        t_command;
 
 
@@ -137,11 +137,12 @@ void		envvar_sort(char **env_arr, int len);
 void		envvar_print(char *env_arr);
 void		envvar_pr_sort(t_command *mimi);
 void	strdel(char **s);
+void		env_filling(char **envp);
 void		com_env(t_command *mimi);
 int     exec_built_ins(t_command *mimi, char **cmd);
 int		arg_checker(char *str);
-void	exit_stat(t_command *mini, char *str);
-void	com_exit(t_command *mini, char **args);
+void	exit_stat(t_command *mimi, char *str);
+void	com_exit(t_command *mimi, char **args);
 int		space_checker(char *str);
 int		env_valid(char *env_arr);
 void		upd_newenv(t_command *mimi, char *env_update);
@@ -149,7 +150,7 @@ int		exp_err_case(t_command *mimi, char *cmd);
 int		val_adder(char *var);
 void			com_export(t_command *mimi, char **cmd);
 int	get_char_pos(char *str, char c);
-char	*var_checker(t_command *mini, char **env_arr, char *var);
+char	*var_checker(t_command *mimi, char **env_arr, char *var);
 void	com_pwd(t_command *mimi);
 int		check_pres(char ch, char *str);
 int		wrd_cnt(char *str, char *charset);
@@ -159,6 +160,7 @@ char		*join_mod(char const *s1, const char *s2, char const *s3);
 int		env_checker(t_command *mimi, char *var);
 int     undet_err_case(t_command *mimi, char *cmd);
 void    com_unset(t_command *mimi, char **cmd);
+void	quit(t_command *mimi, int ret);
 
 
 

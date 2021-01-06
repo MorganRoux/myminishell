@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 17:01:54 by alkanaev          #+#    #+#             */
-/*   Updated: 2020/12/19 11:08:03 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/06 17:46:44 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int	get_char_pos(char *str, char c) // we are looking for an index of the char n
 }
 
 // here we check that size of written var is equal to env's var
-char	*var_checker(t_command *mini, char **env_arr, char *var)
+char	*var_checker(t_command *mimi, char **env_arr, char *var)
 {
 	int	i;
 	int lenth_checker;
 
-	(void)mini;
+	(void)mimi;
 	i = 0;
 	if (!env_arr)
 		return (NULL);

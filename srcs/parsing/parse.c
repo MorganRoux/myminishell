@@ -1,5 +1,10 @@
 #include "minishell.h"
 
+//____________________________________________________
+//handling ? / num / replacement
+
+//____________________________________________________
+
 int         solve_dquotes(char **str,  char **content)
 {
     (*content)++;
