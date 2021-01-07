@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 12:35:37 by mroux             #+#    #+#             */
-/*   Updated: 2021/01/06 18:26:29 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/07 12:42:33 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ char		*join_mod(char const *s1, const char *s2, char const *s3);
 int		env_checker(t_command *mimi, char *var);
 int     undet_err_case(t_command *mimi, char *cmd);
 void    com_unset(t_command *mimi, char **cmd);
-void	quit(t_command *mimi, int ret);
+void	close_mimi(t_command *mimi, int ret);
 
 
 

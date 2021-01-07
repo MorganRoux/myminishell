@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 17:01:12 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/06 18:25:51 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/07 12:59:00 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
         1
 */
 
-void	quit(t_command *mimi, int ret)
+void	close_mimi(t_command *mimi, int ret)
 {
 	if (mimi->env_arr)
 		arr_cleaner(mimi->env_arr);
@@ -64,16 +64,12 @@ void	exit_stat(t_command *mimi, char *str) // to set status of exit-command
 	if (str)
 	{
 		ft_putnbr_fd(ft_atoi(str), 2);
-		if ((arg_checker(str) && ft_strlen(str) < 19))
-		{
+		if ((arg_checker(str) && ft_strlen(str) < 19)) //<19 - max len of exit code to handle the overflow 
 			mimi->ret = ft_atoi(str);
-		}
-		else if ((arg_checker(str) && ft_strlen(str) >= 19)
+		else if ((arg_checker(str) && ft_strlen(str) >= 19) //>= 19 with neg - to handle the overflow 
 			&& ((str[0] != '-' && ft_atoi(str) < 0)
 			|| (str[0] == '-' && ft_atoi(str) >= 0)))
-		{
 			mimi->ret = ft_atoi(str);
-		}
 		else
 		{
 			ft_putstr_fd("MINISHELL: exit: ", STDERR_FILENO);
@@ -97,5 +93,5 @@ void	com_exit(t_command *mimi, char **args)
 	}
 	exit_stat(mimi, args[i]);
 	arr_cleaner(args);
-	quit(mimi, mimi->ret);
+	close_mimi(mimi, mimi->ret);
 }
