@@ -66,10 +66,10 @@ typedef struct	        s_command           // This describes ONE command
 
 
 // Parsing
-t_list_cmd              *parse();
+t_list_cmd              *parse(char *line, char **env);
 t_list_str              *split_tokens(char *line);
 t_list_str              *parse_word(t_list_str *tkn, t_list_cmd **cur);
-t_list_str              *parse_meta(t_list_str *tkn, t_list_cmd **cur);
+t_list_str              *parse_meta(t_list_str *tkn, t_list_cmd **cur, char **env);
 t_list_str              *parse_pipe(t_list_str *tkn, t_list_cmd **cur);
 t_list_str              *parse_fdout(t_list_str *tkn, t_list_cmd **cur);
 t_list_str              *parse_fdin(t_list_str *tkn, t_list_cmd **cur);
@@ -137,7 +137,7 @@ void		envvar_sort(char **env_arr, int len);
 void		envvar_print(char *env_arr);
 void		envvar_pr_sort(t_command *mimi);
 void	strdel(char **s);
-void		env_filling(char **envp);
+void		env_filling(char **envp, t_command *glob_command);
 void		com_env(t_command *mimi);
 int     exec_built_ins(t_command *mimi, char **cmd);
 int		arg_checker(char *str);

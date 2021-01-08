@@ -2,13 +2,16 @@
 
 char    *get_var(char *envp[], char *text)
 {
-    char *var;
+    char    *res;
+    char    *var;
 
-    while(!(var = ft_strnstr(*envp, text, ft_strlen(text))))
+    var = ft_strjoin(text, "=");
+    while(!(res = ft_strnstr(*envp, var, ft_strlen(var))))
     {
         if(*(++envp) == 0)
             return NULL;
     }
-    var = ft_substr(var, ft_strlen(text), ft_strlen(var));
-    return var;
+    res = ft_substr(res, ft_strlen(var), ft_strlen(res));
+    free(var);
+    return res;
 }

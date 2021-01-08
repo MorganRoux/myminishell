@@ -12,42 +12,42 @@
 
 #include "minishell.h"
 
-int     exec_built_ins(t_command *mimi, char **cmd)
+int     exec_built_ins(t_command *global_cmd, char **cmd)
 {
     if (!ft_strcmp(cmd[0], "echo"))
-		com_echo(mimi, cmd);
+		com_echo(global_cmd, cmd);
 	else if (!ft_strcmp(cmd[0], "cd"))
-	 	com_cd(mimi, cmd);
+	 	com_cd(global_cmd, cmd);
 	else if (!ft_strcmp(cmd[0], "env"))
-	 	com_env(mimi);
+	 	com_env(global_cmd);
 	else if (!ft_strcmp(cmd[0], "pwd"))
-	 	com_pwd(mimi);
+	 	com_pwd(global_cmd);
 	else if (!ft_strcmp(cmd[0], "exit"))
-	 	com_exit(mimi, cmd);
+	 	com_exit(global_cmd, cmd);
 	else if (!ft_strcmp(cmd[0], "unset"))
-	 	com_unset(mimi, cmd);
+	 	com_unset(global_cmd, cmd);
 	else if (!ft_strcmp(cmd[0], "export"))
-	 	com_export(mimi, cmd);
+	 	com_export(global_cmd, cmd);
 	else
 		return (0);
 	return (1);
 }
 
-void    exec(t_command *mimi, t_list_cmd  *cmds, char *envp[])
+void    exec(t_command *global_cmd, t_list_cmd  *cmds, char *envp[])
 {
     char        **cmd;
-
+    (void)envp;
     while (cmds != NULL)
     {
         cmd = extract_command_and_args(cmds->content);
         if (cmd[0] == 0)
-		    mimi->ret = 127;
+		    global_cmd->ret = 127;
         if(open_redirections(cmds) == -1)
             return;
         // if(open_pipe(cmds) == -1)
         //     return;
-	    if (exec_built_ins(mimi, cmd) != 1)
-            exec_command(cmds->content, envp);
+	    if (exec_built_ins(global_cmd, cmd) != 1)
+            exec_command(cmds->content, global_cmd->env_arr);
         //close_pipe(cmds);
         // close_redirections(cmds);
         cmds = cmds->next;

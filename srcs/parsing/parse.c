@@ -170,19 +170,20 @@ t_list_str  *parse_coma(t_list_str *tkn, t_list_cmd **cur)
 }
 
 
-t_list_str  *parse_dollard(t_list_str *tkn, t_list_cmd **cur)
+t_list_str  *parse_dollard(t_list_str *tkn, t_list_cmd **cur, char **env)
 {
     char        *word;
     t_command   *cmd;
 
     cmd = (*cur)->content;
     tkn = tkn->next;
-    word = get_var(cmd->env_arr, tkn->content);
+    if ((word = get_var(env, tkn->content)) == NULL)
+        return (tkn->next);
     insert_word(cur, word);
     return (tkn->next);
 }
 
-t_list_str  *parse_meta(t_list_str *tkn, t_list_cmd **cur)
+t_list_str  *parse_meta(t_list_str *tkn, t_list_cmd **cur, char **env)
 {
     if (ft_strcmp(tkn->content, " ") == 0)
         return (tkn->next);
@@ -195,7 +196,7 @@ t_list_str  *parse_meta(t_list_str *tkn, t_list_cmd **cur)
     else if (ft_strcmp(tkn->content, ";") == 0)
         return (parse_coma(tkn, cur));
     else if (ft_strcmp(tkn->content, "$") == 0)
-        return (parse_dollard(tkn, cur));
+        return (parse_dollard(tkn, cur, env));
     return (tkn->next);
 }
 
@@ -205,7 +206,7 @@ t_list_str  *parse_word(t_list_str *tkn, t_list_cmd **cur)
     return (tkn->next);
 }
 
-t_list_cmd  *parse_tokens(t_list_str *tokens)
+t_list_cmd  *parse_tokens(t_list_str *tokens, char **env)
 {
     t_list_cmd  *cmds;
     t_list_cmd  *cur;
@@ -217,20 +218,20 @@ t_list_cmd  *parse_tokens(t_list_str *tokens)
     while (tkn != 0)
     {
         if (is_meta_str(tkn->content))
-            tkn = parse_meta(tkn, &cur);
+            tkn = parse_meta(tkn, &cur, env);
         else
             tkn = parse_word(tkn, &cur);
     }
     return (cmds);
 }
 
-t_list_cmd   *parse(char *line)
+t_list_cmd   *parse(char *line, char **env)
 {
     t_list_cmd  *cmds;
     t_list_str  *tokens;
     cmds = NULL;
 
     tokens = split_tokens(line);
-    cmds = parse_tokens(tokens);
+    cmds = parse_tokens(tokens, env);
     return (cmds);
 }
