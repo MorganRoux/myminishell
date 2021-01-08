@@ -170,20 +170,22 @@ t_list_str  *parse_coma(t_list_str *tkn, t_list_cmd **cur)
 }
 
 
-t_list_str  *parse_dollard(t_list_str *tkn, t_list_cmd **cur, char **env)
+t_list_str  *parse_dollard(t_list_str *tkn, t_list_cmd **cur, t_command *global_command)
 {
     char        *word;
     t_command   *cmd;
 
     cmd = (*cur)->content;
     tkn = tkn->next;
-    if ((word = get_var(env, tkn->content)) == NULL)
+    if(ft_strcmp(tkn->content, "?") == 0)
+        word = ft_itoa(global_command->ret);
+    else if ((word = get_var(global_command->env_arr, tkn->content)) == NULL)
         return (tkn->next);
     insert_word(cur, word);
     return (tkn->next);
 }
 
-t_list_str  *parse_meta(t_list_str *tkn, t_list_cmd **cur, char **env)
+t_list_str  *parse_meta(t_list_str *tkn, t_list_cmd **cur, t_command *global_command)
 {
     if (ft_strcmp(tkn->content, " ") == 0)
         return (tkn->next);
@@ -196,7 +198,7 @@ t_list_str  *parse_meta(t_list_str *tkn, t_list_cmd **cur, char **env)
     else if (ft_strcmp(tkn->content, ";") == 0)
         return (parse_coma(tkn, cur));
     else if (ft_strcmp(tkn->content, "$") == 0)
-        return (parse_dollard(tkn, cur, env));
+        return (parse_dollard(tkn, cur, global_command));
     return (tkn->next);
 }
 
@@ -206,7 +208,7 @@ t_list_str  *parse_word(t_list_str *tkn, t_list_cmd **cur)
     return (tkn->next);
 }
 
-t_list_cmd  *parse_tokens(t_list_str *tokens, char **env)
+t_list_cmd  *parse_tokens(t_list_str *tokens, t_command *global_command)
 {
     t_list_cmd  *cmds;
     t_list_cmd  *cur;
@@ -218,20 +220,20 @@ t_list_cmd  *parse_tokens(t_list_str *tokens, char **env)
     while (tkn != 0)
     {
         if (is_meta_str(tkn->content))
-            tkn = parse_meta(tkn, &cur, env);
+            tkn = parse_meta(tkn, &cur, global_command);
         else
             tkn = parse_word(tkn, &cur);
     }
     return (cmds);
 }
 
-t_list_cmd   *parse(char *line, char **env)
+t_list_cmd   *parse(char *line, t_command *global_command)
 {
     t_list_cmd  *cmds;
     t_list_str  *tokens;
     cmds = NULL;
 
     tokens = split_tokens(line);
-    cmds = parse_tokens(tokens, env);
+    cmds = parse_tokens(tokens, global_command);
     return (cmds);
 }

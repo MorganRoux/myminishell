@@ -46,7 +46,7 @@ void    exec(t_command *global_cmd, t_list_cmd  *cmds)
         // if(open_pipe(cmds) == -1)
         //     return;
 	    if (exec_built_ins(global_cmd, cmd) != 1)
-            exec_command(cmds->content, global_cmd->env_arr);
+            exec_command(cmds->content, global_cmd);
         //close_pipe(cmds);
         // close_redirections(cmds);
         cmds = cmds->next;

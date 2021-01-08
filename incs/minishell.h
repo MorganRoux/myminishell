@@ -66,10 +66,10 @@ typedef struct	        s_command           // This describes ONE command
 
 
 // Parsing
-t_list_cmd              *parse(char *line, char **env);
+t_list_cmd              *parse(char *line, t_command *global_command);
 t_list_str              *split_tokens(char *line);
 t_list_str              *parse_word(t_list_str *tkn, t_list_cmd **cur);
-t_list_str              *parse_meta(t_list_str *tkn, t_list_cmd **cur, char **env);
+t_list_str              *parse_meta(t_list_str *tkn, t_list_cmd **cur, t_command *global_command);
 t_list_str              *parse_pipe(t_list_str *tkn, t_list_cmd **cur);
 t_list_str              *parse_fdout(t_list_str *tkn, t_list_cmd **cur);
 t_list_str              *parse_fdin(t_list_str *tkn, t_list_cmd **cur);
@@ -77,7 +77,7 @@ t_list_str              *parse_fdin(t_list_str *tkn, t_list_cmd **cur);
 // Exec
 void                    exec(t_command *mimi, t_list_cmd  *cmds);
 char                    *find_bin(char *bin, char *envp[]);
-int                     exec_command(t_command *cmd, char *envp[]);
+int                     exec_command(t_command *cmd, t_command *global);
 
 // Redirection
 int                     *open_fds(t_list_str *files, int  flag);

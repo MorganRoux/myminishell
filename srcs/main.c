@@ -37,7 +37,7 @@ int main(int argc, char *argv[], char *envp[]/*, char **env*/)
         ft_printf("Minishell:>");
         if ((i = get_next_line(0, &line)) == -1)
             return (0);
-        if ((cmds = parse(line, glob_command.env_arr)) == NULL)
+        if ((cmds = parse(line, &glob_command)) == NULL)
             return (0);
         exec(&glob_command, cmds);
     }
