@@ -5,6 +5,7 @@
 
 //____________________________________________________
 
+
 int         solve_dquotes(char **str,  char **content)
 {
     (*content)++;
@@ -75,6 +76,23 @@ char        *solve_quotings(char *content)
     }
     *str = 0;
     return (ret);
+}
+
+void        insert_word(t_list_cmd **cur, char *word)
+{
+    char        *str;
+    t_command   *cmd;
+    t_list_str  *arg;
+    
+    str  = solve_quotings(word);
+    cmd = (*cur)->content;
+    if (cmd->exec == NULL)
+        cmd->exec = str;
+    else
+    {
+        arg = ft_lstnew(str);
+        ft_lstadd_back(&cmd->args, arg);
+    }
 }
 
 t_list_str  *parse_fdin(t_list_str *tkn, t_list_cmd **cur)
@@ -151,6 +169,19 @@ t_list_str  *parse_coma(t_list_str *tkn, t_list_cmd **cur)
     return (tkn->next);
 }
 
+
+t_list_str  *parse_dollard(t_list_str *tkn, t_list_cmd **cur)
+{
+    char        *word;
+    t_command   *cmd;
+
+    cmd = (*cur)->content;
+    tkn = tkn->next;
+    word = get_var(cmd->env_arr, tkn->content);
+    insert_word(cur, word);
+    return (tkn->next);
+}
+
 t_list_str  *parse_meta(t_list_str *tkn, t_list_cmd **cur)
 {
     if (ft_strcmp(tkn->content, " ") == 0)
@@ -163,25 +194,14 @@ t_list_str  *parse_meta(t_list_str *tkn, t_list_cmd **cur)
         return (parse_pipe(tkn, cur));
     else if (ft_strcmp(tkn->content, ";") == 0)
         return (parse_coma(tkn, cur));
+    else if (ft_strcmp(tkn->content, "$") == 0)
+        return (parse_dollard(tkn, cur));
     return (tkn->next);
 }
 
 t_list_str  *parse_word(t_list_str *tkn, t_list_cmd **cur)
 {
-    t_command   *cmd;
-    t_list_str  *arg;
-    char        *str;
-
-    str  = solve_quotings(tkn->content);
-    cmd = (*cur)->content;
-    if (cmd->exec == NULL)
-        cmd->exec = str;
-    else
-    {
-        arg = ft_lstnew(str);
-        ft_lstadd_back(&cmd->args, arg);
-    }
- 
+    insert_word(cur, tkn->content);
     return (tkn->next);
 }
 
