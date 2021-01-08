@@ -33,10 +33,9 @@ int     exec_built_ins(t_command *global_cmd, char **cmd)
 	return (1);
 }
 
-void    exec(t_command *global_cmd, t_list_cmd  *cmds, char *envp[])
+void    exec(t_command *global_cmd, t_list_cmd  *cmds)
 {
     char        **cmd;
-    (void)envp;
     while (cmds != NULL)
     {
         cmd = extract_command_and_args(cmds->content);

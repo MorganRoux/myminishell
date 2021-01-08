@@ -21,14 +21,13 @@ void		env_filling(char **envp, t_command *glob_command) //ADD SAFE FUNC
 
 int main(int argc, char *argv[], char *envp[]/*, char **env*/)  
 {
-    (void)argc;
-    (void)argv;
-    (void)envp;
     char        *line;
     t_list_cmd  *cmds;
     int         i;
     t_command	glob_command;
 
+    (void)argc;
+    (void)argv;
     line = NULL;
     i = 1;
     ft_bzero(&glob_command, sizeof(t_command));
@@ -40,6 +39,6 @@ int main(int argc, char *argv[], char *envp[]/*, char **env*/)
             return (0);
         if ((cmds = parse(line, glob_command.env_arr)) == NULL)
             return (0);
-        exec(&glob_command, cmds, envp);
+        exec(&glob_command, cmds);
     }
 }   
