@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 14:23:44 by alkanaev          #+#    #+#             */
-/*   Updated: 2020/12/28 17:22:16 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/13 15:19:02 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int     exec_built_ins(t_command *global_cmd, char **cmd)
 		return (0);
 	return (1);
 }
+
 
 void    exec(t_command *global_cmd, t_list_cmd  *cmds)
 {

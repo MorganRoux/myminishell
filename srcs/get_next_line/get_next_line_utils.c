@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mroux <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:19:41 by mroux             #+#    #+#             */
-/*   Updated: 2019/11/19 09:51:35 by mroux            ###   ########.fr       */
+/*   Updated: 2021/01/13 14:54:22 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+//#include "get_next_line.h"
+#include "minishell.h"
+#include <stdio.h>
 
 size_t	ft_strlen(const char *str)
 {
