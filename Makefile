@@ -27,10 +27,11 @@ SRCS		=	srcs/main.c \
 				srcs/built_ins/exit.c \
 				srcs/built_ins/export.c \
 				srcs/built_ins/pwd.c \
-				srcs/built_ins/split_mod.c \
+				srcs/built_ins/split_join_mod.c \
 				srcs/built_ins/unset.c \
 				srcs/built_ins/sig.c \
-				srcs/built_ins/env_manag.c
+				srcs/built_ins/env_manag.c \
+				srcs/built_ins/env_manage2.c
 
 SRCS_PG		=	playground/main.c
 

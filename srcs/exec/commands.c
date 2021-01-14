@@ -1,13 +1,13 @@
 #include "minishell.h"
 
 /*
- * find_bin()
- * Search the command in all the paths from the PATH env variable.
- * If not found, return the command
- * If found, return the whole path of the command
- */
+** find_bin()
+** Search the command in all the paths from the PATH env variable.
+** If not found, return the command
+** If found, return the whole path of the command
+*/
 
-int		err_msg(char *com, int err)
+int     err_msg(char *com, int err)
 {
 	int		ret;
 
@@ -24,7 +24,7 @@ int		err_msg(char *com, int err)
 		ft_putstr_fd(": command not found\n", STDERR_FILENO);
 		ret = 127;
 	}
-	else if (err == 13)
+	else
 	{
 		ft_putstr_fd("minishell: ", STDERR_FILENO);
 		ft_putstr_fd(com, STDERR_FILENO);
@@ -72,7 +72,7 @@ void    exec_child(t_command *cmd, char *envp[], char *bin, char **params)
 	}
 }
 
-int    exec_parent(char *bin, t_command *cmd)
+int     exec_parent(char *bin, t_command *cmd)
 {
     close(cmd->flux_in[0]);
     close(cmd->flux_in[1]);

@@ -1,6 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split_join_mod.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/14 18:08:27 by alkanaev          #+#    #+#             */
+/*   Updated: 2021/01/14 18:08:29 by alkanaev         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incs/minishell.h"
 
-int		check_pres(char ch, char *str) // check if char is in the str
+/*
+**  check if char is in the str
+*/
+
+int		check_pres(char ch, char *str)
 {
 	int	k;
 
@@ -14,7 +30,7 @@ int		check_pres(char ch, char *str) // check if char is in the str
 	return (0);
 }
 
-int		wrd_cnt(char *str, char *charset) // count words
+int		wrd_cnt(char *str, char *charset)
 {
 	int	i;
 	int	num;
@@ -37,7 +53,11 @@ int		wrd_cnt(char *str, char *charset) // count words
 	return (num);
 }
 
-char	*cutter(char *str, char *charset, int *i) // to cut words in the str
+/*
+** to vut words in str
+*/
+
+char	*cutter(char *str, char *charset, int *i)
 {
 	int		j;
 	int		len;
@@ -82,7 +102,7 @@ char	**split_mod(char *str, char *charset)
 	return (dest);
 }
 
-char		*join_mod(char const *s1, const char *s2, char const *s3)
+char	*join_mod(char const *s1, const char *s2, char const *s3)
 {
 	char	*temp;
 	char	*res;

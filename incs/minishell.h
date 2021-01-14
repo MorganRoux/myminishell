@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 12:35:37 by mroux             #+#    #+#             */
-/*   Updated: 2021/01/14 16:58:12 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/14 18:21:09 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,7 @@ void					env_filling(char **envp, t_command *g_globstruct);
 void					com_env(t_command *mimi);
 int     				exec_built_ins(t_command *mimi, char **cmd);
 int						arg_checker(char *str);
-void					exit_stat(t_command *mimi, char *str);
+void					com_exit_sup(t_command *mimi, char *str);
 void					com_exit(t_command *mimi, char **args);
 int						space_checker(char *str);
 int						env_valid(char *env_arr);
@@ -214,6 +214,7 @@ char					**split_mod(char *str, char *charset);
 char					*join_mod(char const *s1, const char *s2, char const *s3);
 int						env_checker(t_command *mimi, char *var);
 int     				undet_err_case(t_command *mimi, char *cmd);
+void					com_unset_sup(int i, int argc, t_command *mimi, char **cmd);
 void    				com_unset(t_command *mimi, char **cmd);
 void					close_mimi(t_command *mimi, int ret);
 

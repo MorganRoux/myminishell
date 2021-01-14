@@ -6,55 +6,44 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 17:01:16 by alkanaev          #+#    #+#             */
-/*   Updated: 2020/12/19 16:27:31 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/14 17:56:50 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
 /*
-** export без аргументов, то он просто выводит список всех переменных окружения, 
-**        с приставкой declare -x, а еще он сортирует список в алфавитном порядке, например
-```bash
-declare -x COLORFGBG="15"
-declare -x COLORTERM="truecolor"
-declare -x COMMAND_MODE="unix2003"
-declare -x HOME="/Users/annaleonova"
-```
-
+** export без аргументов, то он просто выводит список всех переменных
+**		окружения, с приставкой declare -x, а еще он сортирует список
+**		в алфавитном порядке, например:
+** ```bash
+** declare -x COLORFGBG="15"
+** declare -x COLORTERM="truecolor"
+** declare -x COMMAND_MODE="unix2003"
+** declare -x HOME="/Users/annaleonova"
+** ```
+**
 ** export с аргументом без '=', то он просто печатает ее
-** export без ключа, но со знаком = добавляет переменную в переменные окружения! 
-**        при этом после знака = буду двойные кавычки. например, x= будет в списке.
+** export без ключа, но со знаком = добавляет переменную в переменные
+**		окружения! при этом после знака = буду двойные кавычки.
+**		например, x= будет в списке.
 ** export по ключу, который уже существует, меняет значение этого ключа.
-** если export аргумент (без равно), то он не добавляет это в переменные окружения 
-**        (то есть в env_arr этой переменной нет), но при этом 
-
+** если export аргумент (без равно), то он не добавляет это в переменные
+**		окружения (то есть в env_arr этой переменной нет), но при этом
+**
 ** export ZSH=/Users/dbliss/.oh-my-zsh
 ** export USER=dbliss
 ** export PWD=
-** export OLDPWD (вот это не должно заноситься в env_arr, либо в конце ее удалить надо 
-**        (или лучше просто не отображать в функции env_arr! типо распечатал и удалил из массива.)
-```bash
-declare -x ZSH="/Users/dbliss/.oh-my-zsh"
-declare -x USER="dbliss"
-declare -x PWD=""
-declare -x OLDPWD
-```
+** export OLDPWD (вот это не должно заноситься в env_arr, либо в конце ее
+** удалить надо (или лучше просто не отображать в функции env_arr!
+**		типо распечатал и удалил из массива.)
+** ```bash
+** declare -x ZSH="/Users/dbliss/.oh-my-zsh"
+** declare -x USER="dbliss"
+** declare -x PWD=""
+** declare -x OLDPWD
+** ```
 */
-
-int		space_checker(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i] == ' ' || str[i] == '\t'
-        || str[i] == '\n' || str[i] == '\r'
-        || str[i] == '\v' || str[i] == '\f')
-		i++;
-	if (str[i] == '\0')
-		return (1);
-	return (0);
-}
 
 int		env_valid(char *env_arr)
 {
@@ -84,7 +73,7 @@ int		env_valid(char *env_arr)
 	return (1);
 }
 
-void		upd_newenv(t_command *mimi, char *env_upd)
+void	upd_newenv(t_command *mimi, char *env_upd)
 {
 	char	**sep;
 	char	*var;
@@ -106,7 +95,7 @@ void		upd_newenv(t_command *mimi, char *env_upd)
 	strdel(&val);
 }
 
-int		exp_err_case(t_command *mimi, char *cmd)
+int	exp_err_case(t_command *mimi, char *cmd)
 {
 	int		ret;
 
@@ -123,13 +112,14 @@ int		exp_err_case(t_command *mimi, char *cmd)
 }
 
 /*
-// in case of export of "addition value" 
-ex:
-bash-3.2$ export ok=v1
-bash-3.2$ export ok+=v2
-bash-3.2$ echo $ok
-SO HERE IN THE END OUR ok = v1v2
+** in case of export of "addition value"
+** ex:
+** bash-3.2$ export ok=v1
+** bash-3.2$ export ok+=v2
+** bash-3.2$ echo $ok
+** SO HERE IN THE END OUR ok = v1v2
 */
+
 int		val_adder(char *var) 
 {
 	int		i;
@@ -144,7 +134,7 @@ int		val_adder(char *var)
 	return (0);
 }
 
-void			com_export(t_command *mimi, char **cmd)
+void		com_export(t_command *mimi, char **cmd)
 {
 	int		k;
 	int		argc;
