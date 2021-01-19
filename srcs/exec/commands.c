@@ -60,7 +60,7 @@ void    exec_child(t_command *cmd, char *envp[], char *bin, char **params)
     if (is_redirection_in(cmd) || is_pipe_in(cmd))
         dup2(cmd->flux_in[0], STDIN_FILENO);
     if (is_redirection_out(cmd) || is_pipe_out(cmd))
-    dup2(cmd->flux_out[1], STDOUT_FILENO);
+        dup2(cmd->flux_out[1], STDOUT_FILENO);
     close(cmd->flux_in[0]);
     close(cmd->flux_in[1]);
     close(cmd->flux_out[0]);
