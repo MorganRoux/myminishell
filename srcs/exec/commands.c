@@ -72,12 +72,12 @@ void    exec_child(t_command *cmd, char *envp[], char *bin, char **params)
 	}
 }
 
-int     exec_parent(char *bin, t_command *cmd)
+int     exec_parent(pid_t pid, char *bin, t_command *cmd)
 {
     close(cmd->flux_in[0]);
     close(cmd->flux_in[1]);
     close(cmd->flux_out[1]);
-    waitpid(cmd->pid, &(cmd->status), 0);
+    waitpid(pid, &(cmd->status), 0);
     free(bin);
     return (cmd->status);    
 }
@@ -101,7 +101,7 @@ int     exec_command(t_command *cmd, t_command *global_command)
         return -1;
     else if (global_command->pid == 0)
         exec_child(cmd, global_command->env_arr, bin, params);
-    global_command->ret = exec_parent(bin, cmd);
+    global_command->ret = exec_parent(global_command->pid, bin, cmd);
     apply_redirections_out(cmd);
     return (1);
 }
