@@ -1,5 +1,6 @@
 #include "minishell.h"
 
+t_command	g_globstruct;
 //____________________________________________________
 //handling ? / num / replacement
 
@@ -85,6 +86,7 @@ void        insert_word(t_list_cmd **cur, char *word)
     t_list_str  *arg;
     
     str  = solve_quotings(word);
+    //printf("\nstr  = solve_quotings(word) [[%s]]\n", str);
     cmd = (*cur)->content;
     if (cmd->exec == NULL)
         cmd->exec = str;
@@ -178,9 +180,13 @@ t_list_str  *parse_dollard(t_list_str *tkn, t_list_cmd **cur, t_command *global_
     cmd = (*cur)->content;
     tkn = tkn->next;
     if(ft_strcmp(tkn->content, "?") == 0)
+    {
         word = ft_itoa(global_command->ret);
+    }
     else if ((word = get_var(global_command->env_arr, tkn->content)) == NULL)
+    {
         return (tkn->next);
+    }
     insert_word(cur, word);
     return (tkn->next);
 }
@@ -189,6 +195,8 @@ t_list_str  *parse_meta(t_list_str *tkn, t_list_cmd **cur, t_command *global_com
 {
     if (ft_strcmp(tkn->content, " ") == 0)
         return (tkn->next);
+    //else if (ft_strcmp(tkn->content, "=$") != 0)
+    //    return (parse_dollard(tkn, cur, global_command));
     else if (ft_strcmp(tkn->content, "<") == 0)
         return (parse_fdin(tkn, cur));
     else if (ft_strcmp(tkn->content, ">") == 0)
@@ -231,8 +239,8 @@ t_list_cmd   *parse(char *line, t_command *global_command)
 {
     t_list_cmd  *cmds;
     t_list_str  *tokens;
-    cmds = NULL;
 
+    cmds = NULL;
     tokens = split_tokens(line);
     cmds = parse_tokens(tokens, global_command);
     return (cmds);

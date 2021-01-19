@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 12:35:37 by mroux             #+#    #+#             */
-/*   Updated: 2021/01/14 18:21:09 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/19 14:40:47 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct	        s_command
 	int					bad_pipe;
 	char				*dir_now;
 	pid_t				pid;
-
+	int 				ch;
 }				        t_command;
 
 /*
@@ -175,6 +175,8 @@ t_list                  *ft_lstof(t_list *lst, int index);
 /*
 ** buit-ins, signals and stuff around
 */
+
+void	upd_newenv2(t_command *mimi, char *env_upd);
 
 void					dirnow_update(t_command *mimi, char *dir_now);
 char					*parh_checker(t_command *mimi, char *cmd);

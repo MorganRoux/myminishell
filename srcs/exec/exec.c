@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 14:23:44 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/13 15:19:02 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/18 19:19:12 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void    exec(t_command *global_cmd, t_list_cmd  *cmds)
     while (cmds != NULL)
     {
         cmd = extract_command_and_args(cmds->content);
+		//printf("\nCMD[0] EXEC [[%s]]\n", cmd[0]);
+		//printf("\nCMD[1] EXEC [[%s]]\n", cmd[1]);
         if (cmd[0] == 0)
 		    global_cmd->ret = 127;
         if(open_redirections(cmds) == -1)

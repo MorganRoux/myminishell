@@ -1,5 +1,7 @@
 #include "minishell.h"
 
+t_command	g_globstruct;
+
 int     is_meta_char(char c)
 {
     char    METACHARACTER[] = " \t\n|&;()<>$";
@@ -21,6 +23,7 @@ int     is_meta_str(char *c)
     int     i;
 
     i = 0;
+    //printf("\nc - [[%s]]\n", c);
     while (METACHARACTER[i] != 0)
     {
         if (METACHARACTER[i] == c[0])

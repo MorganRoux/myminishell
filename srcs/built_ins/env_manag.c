@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 14:53:03 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/14 17:38:27 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/19 14:40:43 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	envvar_update(t_command *mimi, char *var)
 	int		i;
 	int		j;
 	int		len;
+	//char *str;
 
     i = 0;
 	j = 0;
