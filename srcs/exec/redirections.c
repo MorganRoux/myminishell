@@ -90,7 +90,7 @@ int     apply_redirections_out(t_command *cmd)
 {
     char    buf;
     int     i;
-    
+
     if (is_redirection_out(cmd) || is_pipe_out(cmd))
     {
         while(read(cmd->flux_out[0], &buf, 1) > 0)

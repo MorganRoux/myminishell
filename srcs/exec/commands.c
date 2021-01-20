@@ -76,6 +76,7 @@ int     exec_parent(pid_t pid, char *bin, t_command *cmd)
 {
     close(cmd->flux_in[0]);
     close(cmd->flux_in[1]);
+    //close(cmd->flux_out[0]);
     close(cmd->flux_out[1]);
     waitpid(pid, &(cmd->status), 0);
     free(bin);

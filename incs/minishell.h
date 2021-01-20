@@ -43,9 +43,9 @@ typedef t_list          t_list_cmd;
 
 /*
 * PIPES lOGIC
-** _________________
+**             _________________
 ** STDOUT  --> _____flux_out____ -> fd_out, next command(pipe_in)
-** _________________
+**                                    ______________________
 ** prev command (pipe_out), fd_in ->  _________flux_in______ -> STDIN     
 */
 
@@ -196,7 +196,7 @@ void					envvar_pr_sort(t_command *mimi);
 void					strdel(char **s);
 void					env_filling(char **envp, t_command *g_globstruct);
 void					com_env(t_command *mimi);
-int     				exec_built_ins(t_command *mimi, char **cmd);
+int     				exec_built_ins(t_command *mimi, char **cmd, t_command *cur_cmd);
 int						arg_checker(char *str);
 void					com_exit_sup(t_command *mimi, char *str);
 void					com_exit(t_command *mimi, char **args);
