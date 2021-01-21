@@ -12,17 +12,8 @@
 
 #include "minishell.h"
 
-void    exec_child_built_ins(t_command *global_cmd, char **cmd, t_command *cur_cmd)
+int    do_built_ins(t_command *global_cmd, char **cmd)
 {
-    if (is_redirection_in(cur_cmd) || is_pipe_in(cur_cmd))
-        dup2(cur_cmd->flux_in[0], STDIN_FILENO);
-    if (is_redirection_out(cur_cmd) || is_pipe_out(cur_cmd))
-        dup2(cur_cmd->flux_out[1], STDOUT_FILENO);
-    close(cur_cmd->flux_in[0]);
-    close(cur_cmd->flux_in[1]);
-    close(cur_cmd->flux_out[0]);
-    close(cur_cmd->flux_out[1]);
-
     if (!ft_strcmp(cmd[0], "echo"))
 		com_echo(global_cmd, cmd);
 	else if (!ft_strcmp(cmd[0], "cd"))
@@ -38,31 +29,29 @@ void    exec_child_built_ins(t_command *global_cmd, char **cmd, t_command *cur_c
 	else if (!ft_strcmp(cmd[0], "export"))
 	 	com_export(global_cmd, cmd);
 	else
-		exit(0);
-	exit(1);
-}
-
-int     exec_parent_built_ins(pid_t pid, t_command *cmd)
-{
-    close(cmd->flux_in[0]);
-    close(cmd->flux_in[1]);
-    //close(cmd->flux_out[0]);
-    close(cmd->flux_out[1]);
-    waitpid(pid, &(cmd->status), 0);
-    return (cmd->status);    
+		return(0);
+	return(1);
 }
 
 int     exec_built_ins(t_command *global_cmd, char **cmd, t_command *cur_cmd)
 {
+    int     saved_stdin;
+    int     saved_stdout;
+
     apply_redirections_in(cur_cmd);
     apply_pipe_in(cur_cmd);
-    if ((global_cmd->pid = fork()) < 0) 
-        return -1;
-    else if (global_cmd->pid == 0)
-        exec_child_built_ins(global_cmd, cmd, cur_cmd);  //cmd, global_command->env_arr, bin, params);
-    global_cmd->ret = exec_parent_built_ins(global_cmd->pid, cur_cmd);
+    saved_stdin = dup(STDIN_FILENO);
+    saved_stdout = dup(STDOUT_FILENO);
+    if (is_redirection_in(cur_cmd) || is_pipe_in(cur_cmd))
+        dup2(cur_cmd->flux_in[0], STDIN_FILENO);
+    if (is_redirection_out(cur_cmd) || is_pipe_out(cur_cmd))
+        dup2(cur_cmd->flux_out[1], STDOUT_FILENO);
+    global_cmd->ret = do_built_ins(global_cmd, cmd);
+    dup2(saved_stdin, STDIN_FILENO);
+    dup2(saved_stdout, STDOUT_FILENO);
+    close(cur_cmd->flux_out[1]);
+    close(cur_cmd->flux_in[0]);
     apply_redirections_out(cur_cmd);
-
     return (1);
 }
 
