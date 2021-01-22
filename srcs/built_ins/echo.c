@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 13:47:03 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/14 17:02:23 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/22 12:40:18 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ int		cnt_com_parts(char **str)
 	return (i);
 }
 
-int		check_nl(char *cmds) //chen if -n in cmds
+/*
+** check if -n in cmds
+*/
+
+int		check_nl(char *cmds)
 {
 	int		i;
 	int		nl;
@@ -53,7 +57,7 @@ int		check_nl(char *cmds) //chen if -n in cmds
 **
 ** while (cmds[i]) - here we take a message after all the -n
 **
-** if (i < argc && cmds[i + 1]) - 
+** if (i < argc && cmds[i + 1]) -
 ** if there is still any arg to read - we put spc
 **
 ** STDERR_FILENO
@@ -85,7 +89,7 @@ void	com_echo_sup(int k, int i, int argc, char **cmds)
 		{
 			ft_putstr_fd(cmds[i], 1);
 			if (i < argc && cmds[i + 1])
-                ft_putstr_fd(" ", STDOUT_FILENO);
+				ft_putstr_fd(" ", STDOUT_FILENO);
 			i++;
 		}
 	}

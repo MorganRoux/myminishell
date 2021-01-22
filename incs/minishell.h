@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 12:35:37 by mroux             #+#    #+#             */
-/*   Updated: 2021/01/19 14:40:47 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/22 13:11:14 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,11 @@ t_list                  *ft_lstof(t_list *lst, int index);
 ** buit-ins, signals and stuff around
 */
 
-void	upd_newenv2(t_command *mimi, char *env_upd);
+void					upd_newenv2(t_command *mimi, char *env_upd);
+void					upd_newenv2_sup(t_command *mimi, char **tmp, int j);
+void					c_exp_sup(t_command *mimi, char **cmd, int k, int len);
+int						ft_itsokay(int c);
+int						c_exp_sup2(t_command *mimi, char **cmd, int k);
 
 void					dirnow_update(t_command *mimi, char *dir_now);
 char					*parh_checker(t_command *mimi, char *cmd);

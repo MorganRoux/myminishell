@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/04 12:30:00 by mroux             #+#    #+#             */
-/*   Updated: 2021/01/22 12:21:28 by alkanaev         ###   ########.fr       */
+/*   Created: 2021/01/22 12:22:41 by alkanaev          #+#    #+#             */
+/*   Updated: 2021/01/22 12:23:34 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../incs/minishell.h"
 
-int	ft_isalnum(int c)
+int	ft_itsokay(int c)
 {
-	return (ft_isdigit(c) || ft_isalpha(c));
+	if ((ft_isdigit(c) || ft_isalpha(c))
+		&& (c == '-' || c == '_' || c == ':' || c == '/'))
+		return (0);
+	return (1);
 }

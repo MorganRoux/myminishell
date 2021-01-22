@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 17:02:03 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/14 18:13:39 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/22 12:18:44 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		undet_err_case(t_command *mimi, char *cmd)
 	ret = env_valid(cmd);
 	if (ret < 0)
 	{
-		ft_putstr_fd("MINISHELL: unset: \" ", STDERR_FILENO);
+		ft_putstr_fd("minishell: unset: \" ", STDERR_FILENO);
 		ft_putstr_fd(cmd, STDERR_FILENO);
 		ft_putstr_fd(" \" : not a valid identifier\n", STDERR_FILENO);
 		mimi->ret = 1;
@@ -64,7 +64,9 @@ void	com_unset_sup(int i, int argc, t_command *mimi, char **cmd)
 	while (i < argc)
 	{
 		if (undet_err_case(mimi, cmd[i]) == 1)
+		{
 			i++;
+		}
 		else
 		{
 			if (env_checker(mimi, cmd[i]) == 1)

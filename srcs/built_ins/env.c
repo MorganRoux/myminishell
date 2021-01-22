@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 17:41:04 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/19 12:27:56 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/22 12:41:30 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@
 **       задействованы переменные окружения!!!!
 */
 
-void    com_env(t_command *mimi)
+void	com_env(t_command *mimi)
 {
-    int     i;
+	int	i;
 
 	i = 0;
 	while (mimi->env_arr[i])

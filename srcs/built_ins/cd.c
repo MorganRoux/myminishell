@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 17:01:03 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/14 15:57:38 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/22 12:39:08 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	cd_err_case(t_command *mimi, char *str, int err_code)
 ** envvar_update(mimi, ft_strjoin("PWD=", dir_now));
 ** update variables from env
 ** if it's ok - write new path to PWD var inside mimi -> env
-** 
+**
 ** dirnow_update(mimi, var_checker(mimi, mimi->env_arr, "PWD"));
 ** if it's ok - write new path to PWD var inside mimi -> curr_dir
 */
@@ -75,14 +75,14 @@ void	com_cd(t_command *mimi, char **cmd)
 
 	dir_now = NULL;
 	argc = cnt_com_parts(cmd);
-	mimi->ret = 0; 
-    if (argc > 2)
+	mimi->ret = 0;
+	if (argc > 2)
 	{
 		cd_err_case(mimi, "Too much arguments", 1);
 		return ;
 	}
 	if (chdir(path_checker(mimi, cmd[1])) < 0)
-			cd_err_case(mimi, strerror(errno), 1);
+		cd_err_case(mimi, strerror(errno), 1);
 	if (!(dir_now = getcwd(NULL, 0)))
 	{
 		cd_err_case(mimi, "error retrieving current directory: getcwd: "
