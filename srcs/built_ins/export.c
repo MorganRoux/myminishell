@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 17:01:16 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/22 14:03:07 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/22 16:44:51 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,13 +179,9 @@ int		val_adder(char *var)
 	while (var[i])
 	{
 		if (i != 0 && var[i - 1] == '+' && var[i] == '=')
-		{
-			printf("ADDER RETURNS OK\n");
 			return (1);
-		}
 		i++;
 	}
-	printf("VAR - [[%s]]\n", var);
 	return (0);
 }
 
@@ -203,7 +199,10 @@ int		c_exp_sup2(t_command *mimi, char **cmd, int k)
 void	c_exp_sup(t_command *mimi, char **cmd, int k, int len)
 {
 	int		argc;
+	int i;
+	char *tmp;
 
+	i = 0;
 	argc = cnt_com_parts(cmd);
 	while (k < argc)
 	{
@@ -213,24 +212,34 @@ void	c_exp_sup(t_command *mimi, char **cmd, int k, int len)
 		{
 			if (val_adder(cmd[k]) > 0)
 			{
-				printf("ADDER\n");
-				printf("mimi->ch - %d\n", mimi->ch);
-				upd_newenv(mimi, cmd[k]);
+				len = ft_strlen(cmd[k]);
+				tmp = cmd[k];
+				if (cmd[k][len-1] == '=')
+				{
+					while (cmd[k][i])
+					{
+						if (cmd[k][i - 1] == '+' && cmd[k][i] == '=')
+							k++;
+						i++;
+					}
+					tmp = ft_strjoin(tmp, cmd[k]);
+					mimi->ch = 3;
+				}
+				if (mimi->ch == 3)
+				{
+					upd_newenv(mimi, tmp);
+					mimi->ch = 0;
+				}
+				else
+					upd_newenv(mimi, cmd[k]);
 			}
 			else
 			{
-				// if (mimi->ch == 1)
-				// {
-				// 	upd_newenv2(mimi, cmd[k]);
-				// 	mimi->ch = 0;
-				// }
 				if (c_exp_sup2(mimi, cmd, k) == 0)
 				{
 					if (mimi->ch != 2)
 						envvar_update(mimi, ft_strdup(cmd[k]));
 				}
-				// else if (mimi->ch != 2)
-				// 	envvar_update(mimi, ft_strdup(cmd[k]));
 				len = ft_strlen(cmd[k]);
 				if (cmd[k][len - 1] == '=')
 					mimi->ch = 1;
