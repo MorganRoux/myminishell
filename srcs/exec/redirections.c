@@ -1,21 +1,58 @@
 #include "minishell.h"
 
-int     *open_fds(t_list_str *files, int  flag)
+int     *open_fds_in(t_command *content)
 {
     char    *path;
     int     i;
     int     *fd;
+    t_list_str  *files;
 
+    files = content->files_in;
     i = 0;
     if(!(fd = malloc(sizeof(int) * ft_lstsize(files))))
         return NULL;
     while (files != NULL)
     {
         path = files->content;
-        fd[i] = open(path, flag, S_IRWXU);
+        fd[i] = open(path, O_RDONLY, S_IRWXU);
         if (fd[i] < 0)
             return NULL;
         files = files->next;
+        i++;
+    }
+    return fd;
+}
+
+int     *open_fds_out(t_command *content)
+{
+    char    *path;
+    int     i;
+    int     *fd;
+    t_list_str *files_out; 
+    t_list_str *files_append;
+
+    files_out = content->files_out;
+    files_append = content->files_append;
+
+    i = 0;
+    if(!(fd = malloc(sizeof(int) * (ft_lstsize(files_out) + ft_lstsize(files_append)))))
+        return NULL;
+    while (files_out != NULL)
+    {
+        path = files_out->content;
+        fd[i] = open(path, O_WRONLY | O_CREAT, S_IRWXU);
+        if (fd[i] < 0)
+            return NULL;
+        files_out = files_out->next;
+        i++;
+    }
+    while (files_append != NULL)
+    {
+        path = files_append->content;
+        fd[i] = open(path, O_WRONLY | O_CREAT | O_APPEND, S_IRWXU);
+        if (fd[i] < 0)
+            return NULL;
+        files_append = files_append->next;
         i++;
     }
     return fd;
@@ -27,10 +64,10 @@ int     open_redirections(t_list_cmd *cmd)
 
     content = cmd->content;
     if (
-        (content->fd_in = open_fds(content->files_in, O_RDONLY)) == NULL ||
-        (content->fd_out = open_fds(content->files_out, O_WRONLY | O_CREAT)) == NULL
+        (content->fd_in = open_fds_in(content)) == NULL ||
+        (content->fd_out = open_fds_out(content)) == NULL
     )
-        return -1;
+        return (-1);
 
     return (0);
 }
@@ -111,7 +148,7 @@ int     apply_redirections_out(t_command *cmd)
 
 int     number_of_redirection_out(t_command *cmd)
 {
-    return (ft_lstsize(cmd->files_out));
+    return (ft_lstsize(cmd->files_out) + ft_lstsize(cmd->files_append));
 }
 
 int     number_of_redirection_in(t_command *cmd)
