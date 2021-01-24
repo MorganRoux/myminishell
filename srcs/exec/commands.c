@@ -51,7 +51,6 @@ char    *find_bin(char *bin, char *envp[])
         full_bin = ft_strjoin(paths[i], bin);
     }
     free_strs(paths);
-    free(paths);
     return full_bin;
 }
 
@@ -104,5 +103,7 @@ int     exec_command(t_command *cmd, t_command *global_command)
         exec_child(cmd, global_command->env_arr, bin, params);
     global_command->ret = exec_parent(global_command->pid, bin, cmd);
     apply_redirections_out(cmd);
+    free_strs(params);
+    //free(bin);    #TODO: why free is not working ?
     return (1);
 }

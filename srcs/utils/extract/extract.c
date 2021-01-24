@@ -24,7 +24,7 @@ char    **list2char(t_list_cmd *cmds)
 
 char   **extract_command(char **strs, t_command *cmd)
 {
-    *strs = cmd->exec;
+    *strs = ft_strdup(cmd->exec);
     strs++;
     return strs;
 }
@@ -36,7 +36,7 @@ char    **extract_args(char **strs, t_command *cmd)
     args = cmd->args;
     while (args != 0)
     {
-        *strs++ = args->content;
+        *strs++ = ft_strdup(args->content);
         args = args->next;
     }
     return strs;

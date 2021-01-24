@@ -75,6 +75,7 @@ void    exec(t_command *global_cmd, t_list_cmd  *cmds)
     while (cmds != NULL)
     {
         cmd = extract_command_and_args(cmds->content);
+        
 		//printf("\nCMD[0] EXEC [[%s]]\n", cmd[0]);
 		//printf("\nCMD[1] EXEC [[%s]]\n", cmd[1]);
         if (cmd[0] == 0)
@@ -87,9 +88,11 @@ void    exec(t_command *global_cmd, t_list_cmd  *cmds)
             exec_built_ins(global_cmd, cmd, cmds->content);
         else
             exec_command(cmds->content, global_cmd);
+
         //close_pipe(cmds);
         // close_redirections(cmds);
         cmds = cmds->next;
+        free_strs(cmd);
     }
 }
 

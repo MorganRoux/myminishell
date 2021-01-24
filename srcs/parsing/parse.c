@@ -295,10 +295,19 @@ t_list_cmd  *parse_tokens(t_list_str *tokens, t_command *global_command)
             tkn = parse_meta(tkn, &cur, global_command);
         else
             tkn = parse_word(tkn, &cur, global_command);
+        
     }
     return (cmds);
 }
 
+void    testfree(void *param)
+{
+    printf("%s", param);
+    getchar();
+    free(param);
+    printf("del");
+    getchar();
+}
 t_list_cmd   *parse(char *line, t_command *global_command)
 {
     t_list_cmd  *cmds;
@@ -307,5 +316,8 @@ t_list_cmd   *parse(char *line, t_command *global_command)
     cmds = NULL;
     tokens = split_tokens(line);
     cmds = parse_tokens(tokens, global_command);
+    ft_lstclear(&tokens, &testfree);
+    print_lst_str(tokens);
+    getchar();
     return (cmds);
 }

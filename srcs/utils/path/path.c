@@ -19,6 +19,5 @@ char    **get_paths(char  *envp[])
     ret[len] = 0;
     free(var);
     free_strs(paths);
-    free(paths);
     return ret;
 }

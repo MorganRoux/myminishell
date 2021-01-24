@@ -165,6 +165,8 @@ int                     is_space_str(char *str);
 char                    **list2char(t_list_cmd *cmds);
 char                    **extract_command_and_args(t_command *cmd);
 void                    free_strs(char **strs);
+void                    free_cmds(t_list_cmd *cmds);
+void                    free_cmd(void *param);
 char                    **get_paths(char  *envp[]);
 
 /*
