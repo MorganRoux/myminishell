@@ -56,18 +56,26 @@ int             word_len(char *s)
     return (len);
 }
 
-t_list			*split_tokens(char *s)
+int     meta_len(char *str)
 {
-	t_list  *ret;
-    t_list  *new;
-    char    *str;
-    int     len;
+    if (*str == '>' && *(str + 1) == '>')
+        return (2);
+    else
+        return (1);
+}
+
+t_list_str			*split_tokens(char *s)
+{
+	t_list_str  *ret;
+    t_list_str  *new;
+    char        *str;
+    int         len;
 
     ret = NULL;
     while (*s != 0)
     {
         if (is_meta_char(*s))
-            len = 1;
+            len = meta_len(s);
         else
             len = word_len(s);
         if (len == -1)

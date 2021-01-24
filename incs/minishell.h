@@ -70,6 +70,7 @@ typedef struct	        s_command
 	t_list_str		    *args;
 	t_list_str	        *files_in;
 	t_list_str		    *files_out;
+    t_list_str          *files_append;
     int                 *fd_in;
     int                 *fd_out;
     int                 *pipe;

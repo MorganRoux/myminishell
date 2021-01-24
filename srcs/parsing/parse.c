@@ -199,7 +199,9 @@ t_list_str  *parse_fdout(t_list_str *tkn, t_list_cmd **cur)
 {
     t_command   *cmd;
     t_list_str  *new;
+    char        *redir;
 
+    redir = tkn->content;
     cmd = (*cur)->content;
     tkn = tkn->next;
     while (tkn != 0 && is_space_str(tkn->content))
@@ -207,7 +209,10 @@ t_list_str  *parse_fdout(t_list_str *tkn, t_list_cmd **cur)
     if (tkn == 0 || is_meta_str(tkn->content))
         return (NULL);
     new = ft_lstnew(solve_quotings(tkn->content));
-    ft_lstadd_back(&cmd->files_out, new);
+    if (ft_strcmp(redir, ">") == 0)
+        ft_lstadd_back(&cmd->files_out, new);
+    else
+        ft_lstadd_back(&cmd->files_append, new);
     return (tkn->next);
 }
 
@@ -260,7 +265,7 @@ t_list_str  *parse_meta(t_list_str *tkn, t_list_cmd **cur, t_command *global_com
         return (tkn->next);
     else if (ft_strcmp(tkn->content, "<") == 0)
         return (parse_fdin(tkn, cur));
-    else if (ft_strcmp(tkn->content, ">") == 0)
+    else if (ft_strcmp(tkn->content, ">") == 0 || ft_strcmp(tkn->content, ">>") == 0)
         return (parse_fdout(tkn, cur));
     else if (ft_strcmp(tkn->content, "|") == 0)
         return (parse_pipe(tkn, cur));

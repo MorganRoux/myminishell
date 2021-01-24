@@ -51,6 +51,14 @@ void    print_cmd(t_command *cmd)
         lst = lst->next;
         i++;
     }
+    i = 0;
+    lst = cmd->files_append;
+    while (lst != 0)
+    {
+        ft_printf("Fdappend%d:%s:\n", i, lst->content);
+        lst = lst->next;
+        i++;
+    }
     if (cmd->pipe != 0)
         ft_printf("Pipe\n");
 
