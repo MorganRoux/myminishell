@@ -104,7 +104,7 @@ typedef struct			s_fl
 
 t_list_cmd              *parse(char *line, t_command *global_command);
 t_list_str              *split_tokens(char *line);
-t_list_str              *parse_word(t_list_str *tkn, t_list_cmd **cur);
+t_list_str              *parse_word(t_list_str *tkn, t_list_cmd **cur, t_command *global_command);
 t_list_str              *parse_meta(t_list_str *tkn, t_list_cmd **cur, t_command *global_command);
 t_list_str              *parse_pipe(t_list_str *tkn, t_list_cmd **cur);
 t_list_str              *parse_fdout(t_list_str *tkn, t_list_cmd **cur);

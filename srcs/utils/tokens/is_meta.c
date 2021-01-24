@@ -4,7 +4,7 @@ t_command	g_globstruct;
 
 int     is_meta_char(char c)
 {
-    char    METACHARACTER[] = " \t\n|&;()<>$";
+    char    METACHARACTER[] = " \t\n|&;()<>";
     int     i;
 
     i = 0;
@@ -19,7 +19,7 @@ int     is_meta_char(char c)
 
 int     is_meta_str(char *c)
 {
-    char    METACHARACTER[] = " \t\n|&;()<>$";
+    char    METACHARACTER[] = " \t\n|&;()<>";
     int     i;
 
     i = 0;
