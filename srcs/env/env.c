@@ -21,7 +21,11 @@ char    *get_var(char *envp[], char *text)
     while(!(res = ft_strnstr(*envp, var, ft_strlen(var))))
     {
         if(*(++envp) == 0)
-            return NULL;
+        {
+            res = malloc(1);
+            res[0] = '\0';
+            return res;
+        }
     }
     res = ft_substr(res, ft_strlen(var), ft_strlen(res));
     free(var);
