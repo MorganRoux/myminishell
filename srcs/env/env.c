@@ -22,6 +22,7 @@ char    *get_var(char *envp[], char *text)
     {
         if(*(++envp) == 0)
         {
+            free(var);
             res = malloc(1);
             res[0] = '\0';
             return res;

@@ -53,7 +53,9 @@ char        *solve_quotings(char *content)
     static  int escape = 0;
     char    *str;
     char    *ret;
+    char    *start;
 
+    start = content;
     if(!(ret = (char *)malloc(ft_strlen(content) + 1)))
         return (NULL);
     str = ret;
@@ -69,6 +71,7 @@ char        *solve_quotings(char *content)
             escape = solve_word(&str, &content);
     }
     *str = 0;
+    free(start);
     return (ret);
 }
 
@@ -167,7 +170,8 @@ void        insert_word(t_list_cmd **cur, char *word, t_command *global_command)
     t_command   *cmd;
     t_list_str  *arg;
 
-    str = solve_dollards(word, global_command);
+    str = ft_strdup(word);
+    str = solve_dollards(str, global_command);
     str = solve_quotings(str);
     cmd = (*cur)->content;
     if (cmd->exec == NULL)
@@ -183,14 +187,17 @@ t_list_str  *parse_fdin(t_list_str *tkn, t_list_cmd **cur)
 {
     t_command   *cmd;
     t_list_str  *new;
+    char        *str;
 
     cmd = (*cur)->content;
     tkn = tkn->next;
+    
     while (tkn != 0 && is_space_str(tkn->content))
         tkn = tkn->next;
     if (tkn == 0 || is_meta_str(tkn->content))
         return(NULL);
-    new = ft_lstnew(solve_quotings(tkn->content));
+    str = ft_strdup(tkn->content);
+    new = ft_lstnew(solve_quotings(str));
     ft_lstadd_back(&cmd->files_in, new);
     return (tkn->next);
 }
@@ -200,6 +207,7 @@ t_list_str  *parse_fdout(t_list_str *tkn, t_list_cmd **cur)
     t_command   *cmd;
     t_list_str  *new;
     char        *redir;
+    char        *str;
 
     redir = tkn->content;
     cmd = (*cur)->content;
@@ -208,7 +216,8 @@ t_list_str  *parse_fdout(t_list_str *tkn, t_list_cmd **cur)
         tkn = tkn->next;
     if (tkn == 0 || is_meta_str(tkn->content))
         return (NULL);
-    new = ft_lstnew(solve_quotings(tkn->content));
+    str = ft_strdup(tkn->content);
+    new = ft_lstnew(solve_quotings(str));
     if (ft_strcmp(redir, ">") == 0)
         ft_lstadd_back(&cmd->files_out, new);
     else
@@ -295,7 +304,6 @@ t_list_cmd  *parse_tokens(t_list_str *tokens, t_command *global_command)
             tkn = parse_meta(tkn, &cur, global_command);
         else
             tkn = parse_word(tkn, &cur, global_command);
-        
     }
     return (cmds);
 }
@@ -308,6 +316,7 @@ void    testfree(void *param)
     printf("del");
     getchar();
 }
+
 t_list_cmd   *parse(char *line, t_command *global_command)
 {
     t_list_cmd  *cmds;
@@ -316,8 +325,6 @@ t_list_cmd   *parse(char *line, t_command *global_command)
     cmds = NULL;
     tokens = split_tokens(line);
     cmds = parse_tokens(tokens, global_command);
-    ft_lstclear(&tokens, &testfree);
-    print_lst_str(tokens);
-    getchar();
+    ft_lstclear(&tokens, free);
     return (cmds);
 }
