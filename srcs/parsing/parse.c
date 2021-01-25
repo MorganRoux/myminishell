@@ -9,7 +9,8 @@ int         solve_dquotes(char **str,  char **content)
             return (-1);
         if (**content == '\\' && (
             *(*content + 1) == '$' || *(*content + 1) == '`' ||
-            *(*content + 1) == '"' || *(*content + 1) == '!'
+            *(*content + 1) == '"' || *(*content + 1) == '!' ||
+            *(*content + 1) == '\\'
         ))
         {
             (*content)++;

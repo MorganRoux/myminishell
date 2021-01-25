@@ -37,7 +37,7 @@ int             word_len(char *s)
     static int escape = 0;
 
     len = 0;
-    while (*s != 0 && !is_meta_char(*s))
+    while (*s != 0 && (!is_meta_char(*s) || escape == 1))
     {
         l = 1;
         if (*s == '"' && escape == 0)
