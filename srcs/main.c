@@ -92,7 +92,7 @@ int		main(int argc, char *argv[], char *envp[])
 		if ((i = get_next_line(0, &line, &g_globstruct)) == -1)
 			break;
 		if ((cmds = parse(line, &g_globstruct)) == NULL)
-			break;
+			continue;
 		exec(&g_globstruct, cmds);
         free_cmds(cmds);
         free(line);

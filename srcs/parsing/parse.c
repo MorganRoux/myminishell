@@ -318,14 +318,74 @@ void    testfree(void *param)
     getchar();
 }
 
-t_list_cmd   *parse(char *line, t_command *global_command)
+int         display_error(char *err)
+{
+    ft_printf("error near: %s\n", err);
+    return (1);
+}
+
+int         is_blank(char *str)
+{
+    return (
+        ft_strcmp(str, " ") == 0 ||
+        ft_strcmp(str, "\t") == 0
+    );
+}
+
+int         is_token_error(t_list_str  *tokens)
+{
+    t_list_str  *prev_token;
+
+    prev_token = tokens;
+    tokens = tokens->next;
+    while (tokens != NULL && is_blank(tokens->content) )
+        tokens = tokens->next;
+    while (tokens != NULL)
+    {
+        if (is_meta_str(prev_token->content) && is_meta_str(tokens->content))
+            return (display_error((char *)tokens->content));
+        prev_token = tokens;
+        tokens = tokens->next;
+        while (tokens != NULL &&is_blank(tokens->content) )
+            tokens = tokens->next;
+    }
+    if (is_meta_str(prev_token->content) && ft_strcmp(prev_token->content, ";") != 0 )
+        return (display_error((char *)prev_token->content));
+    return (0);
+}
+
+int         is_first_error(t_list_str  *tokens)
+{
+    if (tokens == NULL)
+        return (0);
+    if (((char *)tokens->content)[0] == '|')
+    {
+        display_error((char *)tokens->content);
+        return (1);
+    }
+    return (0);
+}
+
+int         is_syntax_error(t_list_str  *tokens)
+{
+    if (is_first_error(tokens))
+        return (1);
+    if (is_token_error(tokens))
+        return (1);
+    
+    return (0);
+}
+t_list_cmd  *parse(char *line, t_command *global_command)
 {
     t_list_cmd  *cmds;
     t_list_str  *tokens;
 
     cmds = NULL;
     tokens = split_tokens(line);
-    cmds = parse_tokens(tokens, global_command);
+    if (!is_syntax_error(tokens))
+        cmds = parse_tokens(tokens, global_command);
+    else
+        cmds = NULL;
     ft_lstclear(&tokens, free);
     return (cmds);
 }
