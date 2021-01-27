@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 14:23:44 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/18 19:19:12 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/27 13:56:11 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int    do_built_ins(t_command *global_cmd, char **cmd)
 	else if (!ft_strcmp(cmd[0], "export"))
 	 	com_export(global_cmd, cmd);
 	else
-		return(0);
-	return(1);
+		return(1);
+	return(0);
 }
 
 int     exec_built_ins(t_command *global_cmd, char **cmd, t_command *cur_cmd)
