@@ -381,7 +381,8 @@ t_list_cmd  *parse(char *line, t_command *global_command)
     t_list_str  *tokens;
 
     cmds = NULL;
-    tokens = split_tokens(line);
+    if(!(tokens = split_tokens(line)))
+        return (NULL);
     if (!is_syntax_error(tokens))
         cmds = parse_tokens(tokens, global_command);
     else
