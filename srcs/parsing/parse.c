@@ -368,11 +368,9 @@ int         is_first_error(t_list_str  *tokens)
 
 int         is_syntax_error(t_list_str  *tokens)
 {
-    if (is_first_error(tokens))
-        return (1);
-    if (is_token_error(tokens))
-        return (1);
-    
+    if (is_first_error(tokens) ||
+        is_token_error(tokens))
+        return (1);    
     return (0);
 }
 t_list_cmd  *parse(char *line, t_command *global_command)
@@ -381,12 +379,11 @@ t_list_cmd  *parse(char *line, t_command *global_command)
     t_list_str  *tokens;
 
     cmds = NULL;
-    if(!(tokens = split_tokens(line)))
-        return (NULL);
-    if (!is_syntax_error(tokens))
-        cmds = parse_tokens(tokens, global_command);
-    else
-        cmds = NULL;
+    if((tokens = split_tokens(line)))
+    {
+        if (!is_syntax_error(tokens))
+            cmds = parse_tokens(tokens, global_command);
+    }
     ft_lstclear(&tokens, free);
     return (cmds);
 }

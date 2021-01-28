@@ -79,7 +79,13 @@ t_list_str			*split_tokens(char *s)
         else
             len = word_len(s);
         if (len == -1)
+        {
+            print_lst_str(ret);
+            ft_lstclear(&ret, free);
+            print_lst_str(ret);
             return (NULL);
+        }
+            
         str = ft_substr(s,0,len);
         new = ft_lstnew(str);
         ft_lstadd_back(&ret, new);

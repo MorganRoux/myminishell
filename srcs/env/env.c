@@ -18,7 +18,7 @@ char    *get_var(char *envp[], char *text)
     char    *var;
 
     var = ft_strjoin(text, "=");
-    while(!(res = ft_strnstr(*envp, var, ft_strlen(var))))
+    while((res = ft_strnstr(*envp, var, ft_strlen(var))) == NULL)
     {
         if(*(++envp) == 0)
         {

@@ -47,7 +47,11 @@ char    *find_bin(char *bin, char *envp[])
     {
         free(full_bin);
         if (paths[++i] == 0)
+        {
+            free_strs(paths);
             return ft_strdup(bin);
+        }
+            
         full_bin = ft_strjoin(paths[i], bin);
     }
     free_strs(paths);
