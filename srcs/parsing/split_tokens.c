@@ -80,9 +80,8 @@ t_list_str			*split_tokens(char *s)
             len = word_len(s);
         if (len == -1)
         {
-            print_lst_str(ret);
+            ft_printf("error near %c\n", *s);
             ft_lstclear(&ret, free);
-            print_lst_str(ret);
             return (NULL);
         }
             
