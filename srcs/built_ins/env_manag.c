@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 14:53:03 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/19 14:40:43 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/29 13:10:00 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int		ind_of_envvar(t_command *mimi, char *var)
 	int		i;
 	char	*varenv;
 	char	**sep;
-    int		len;
-	
-    sep = split_mod(var, "=");
+	int		len;
+
+	sep = split_mod(var, "=");
 	varenv = ft_strdup(sep[0]);
 	arr_cleaner(sep);
 	len = ft_strlen(varenv);
@@ -76,7 +76,7 @@ void	del_envvar(t_command *mimi, char *var)
 
 	i = 0;
 	j = 0;
-    ind = ind_of_envvar(mimi, var);
+	ind = ind_of_envvar(mimi, var);
 	if (ind == -1)
 		return ;
 	len = cnt_com_parts(mimi->env_arr);
@@ -105,9 +105,8 @@ void	envvar_update(t_command *mimi, char *var)
 	int		i;
 	int		j;
 	int		len;
-	//char *str;
 
-    i = 0;
+	i = 0;
 	j = 0;
 	del_envvar(mimi, var);
 	len = cnt_com_parts(mimi->env_arr);

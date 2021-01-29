@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 17:29:50 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/14 17:56:27 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/29 13:12:13 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 ** to manage envvar_pr_sort (part of sorting)
 */
 
-void    envvar_sort(char **env_arr, int len)
+void	envvar_sort(char **env_arr, int len)
 {
 	int		k;
 	char	*tmp;
-    int		sort;
+	int		sort;
 
 	sort = 0;
 	while (env_arr && sort == 0)
@@ -42,7 +42,7 @@ void    envvar_sort(char **env_arr, int len)
 	}
 }
 
-char    *ft_strndup(char *str, long len)
+char	*ft_strndup(char *str, long len)
 {
 	char *tmp;
 	long i;
@@ -65,14 +65,14 @@ char    *ft_strndup(char *str, long len)
 ** to manage envvar_pr_sort (part of printing)
 */
 
-void    envvar_print(char *env_arr)
+void	envvar_print(char *env_arr)
 {
 	char	*var;
 	char	*val;
 	int		i;
 
 	i = 0;
-    val = NULL;
+	val = NULL;
 	while (env_arr[i] && env_arr[i] != '=')
 		i++;
 	var = ft_strndup(env_arr, i);
@@ -91,16 +91,16 @@ void    envvar_print(char *env_arr)
 	strdel(&var);
 }
 
-void		envvar_pr_sort(t_command *mimi)
+void	envvar_pr_sort(t_command *mimi)
 {
 	int		argc;
 	char	**tmp;
-    int		i;
+	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-    argc = cnt_com_parts(mimi->env_arr);
+	argc = cnt_com_parts(mimi->env_arr);
 	tmp = (char **)ft_calloc(sizeof(char *), argc + 1);
 	while (i < argc)
 	{
@@ -129,8 +129,8 @@ int		space_checker(char *str)
 
 	i = 0;
 	while (str[i] == ' ' || str[i] == '\t'
-        || str[i] == '\n' || str[i] == '\r'
-        || str[i] == '\v' || str[i] == '\f')
+		|| str[i] == '\n' || str[i] == '\r'
+		|| str[i] == '\v' || str[i] == '\f')
 		i++;
 	if (str[i] == '\0')
 		return (1);

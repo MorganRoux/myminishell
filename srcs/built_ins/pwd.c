@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 17:01:54 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/14 18:05:51 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/29 13:37:54 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		get_char_pos(char *str, char c)
 /*
 ** here we check that size of written var is equal to env's var
 **
-** len_checker = (get_char_pos(env_arr[i], '=') == (int)ft_strlen(var)); 
+** len_checker = (get_char_pos(env_arr[i], '=') == (int)ft_strlen(var));
 ** 		get len of arg after $ and compare len==ind - so we get 1 or 0
 **
 ** if (len_checker &&
@@ -68,7 +68,7 @@ char	*var_checker(t_command *mimi, char **env_arr, char *var)
 ** ret = 0 if no err
 */
 
-void	com_pwd(t_command *mimi) 
+void	com_pwd(t_command *mimi)
 {
 	char	*cur_dir;
 

@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 17:01:12 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/14 17:50:04 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/29 13:13:12 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	close_mimi(t_command *mimi, int ret)
 	ft_putstr_fd("exit\n", STDERR_FILENO);
 	exit(ret);
 }
-
 
 int		arg_checker(char *str)
 {
