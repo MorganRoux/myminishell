@@ -6,11 +6,10 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 11:06:08 by mroux             #+#    #+#             */
-/*   Updated: 2021/01/29 12:36:38 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/29 14:43:34 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "get_next_line.h"
 #include "minishell.h"
 #include <stdio.h>
 

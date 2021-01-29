@@ -14,6 +14,8 @@ SRCS		=	srcs/main.c \
 				srcs/exec/commands.c \
 				srcs/exec/redirections.c \
 				srcs/exec/pipes.c \
+				srcs/exec/pipe_redir_sup.c \
+				srcs/exec/pipes_redir_sup2.c \
 				srcs/env/env.c \
 				srcs/utils/prints/prints.c \
 				srcs/utils/free/frees.c \
