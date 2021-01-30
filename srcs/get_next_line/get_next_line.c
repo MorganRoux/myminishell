@@ -6,21 +6,22 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 11:06:08 by mroux             #+#    #+#             */
-/*   Updated: 2021/01/29 14:43:34 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/30 09:23:49 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
 
-int     get_next_line_loop(t_fl *fl, t_command *mimi, char **line)
+int		get_next_line_loop(t_fl *fl, t_command *mimi, char **line)
 {
-    int ln;
+	int	ln;
 
-    ln = 0;
-    while ((ln = find_line(fl)) == -1)
+	ln = 0;
+	while ((ln = find_line(fl)) == -1)
 	{
-		*line = ft_strnjoin(*line, fl->buffer + fl->pos, fl->bytes_read - fl->pos);
+		*line = ft_strnjoin(*line, fl->buffer + fl->pos,
+						fl->bytes_read - fl->pos);
 		fl->pos = 0;
 		if ((fl->bytes_read = read(fl->fd, fl->buffer, BUFFER_SIZE)) < 0)
 		{

@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 16:48:33 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/14 16:00:23 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/01/30 10:29:42 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	prompt(t_command *mimi)
 }
 
 /*
-** Salut! Ca va ?:)  
+** Salut! Ca va ?:)
 ** I delete initialisation of t_command g_globstruct variable from main
 ** because it creates a conflictst with the eponymous variable
 ** in the beginnign of the file. I need it exactly here - otherwise
@@ -71,7 +71,7 @@ void	prompt(t_command *mimi)
 ** Have a great day !
 */
 
-int		main(int argc, char *argv[], char *envp[])  
+int		main(int argc, char *argv[], char *envp[])
 {
 	char		*line;
 	t_list_cmd	*cmds;
@@ -90,11 +90,11 @@ int		main(int argc, char *argv[], char *envp[])
 		sig_manag();
 		prompt(&g_globstruct);
 		if ((i = get_next_line(0, &line, &g_globstruct)) == -1)
-			break;
+			break ;
 		if (!((cmds = parse(line, &g_globstruct)) == NULL))
-		    exec(&g_globstruct, cmds);
-        free_cmds(cmds);
-        free(line);
+			exec(&g_globstruct, cmds);
+		free_cmds(cmds);
+		free(line);
 	}
-    return (0);
+	return (0);
 }
