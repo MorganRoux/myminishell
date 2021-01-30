@@ -52,7 +52,7 @@ int		*open_fds_out(t_command *content)
 	while (files_out != NULL)
 	{
 		path = files_out->content;
-		fd[i] = open(path, O_WRONLY | O_CREAT, S_IRWXU);
+		fd[i] = open(path, O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
 		if (fd[i] < 0)
 			return (NULL);
 		files_out = files_out->next;
