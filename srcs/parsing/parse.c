@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 09:58:09 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/30 10:14:29 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/02/01 08:32:00 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -335,7 +335,7 @@ void		testfree(void *param)
 
 int			display_error(char *err)
 {
-	ft_printf("error near: %s\n", err);
+	ft_printf("parse error near '%s'\n", err);
 	return (1);
 }
 
