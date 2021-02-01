@@ -93,6 +93,8 @@ int		exec_parent(pid_t pid, char *bin, t_command *cmd)
 	close(cmd->flux_out[1]);
 	waitpid(pid, &(cmd->status), 0);
 	free(bin);
+    if (WEXITSTATUS(cmd->status))
+			cmd->status = WEXITSTATUS(cmd->status);
 	return (cmd->status);
 }
 
@@ -113,13 +115,6 @@ int		exec_command(t_command *cmd, t_command *global_command)
 	apply_pipe_in(cmd);
 	if ((global_command->pid = fork()) < 0)
 		return (-1);
-	else if (global_command->pid > 0)
-	{
-		waitpid(global_command->pid, &global_command->ret, 0);
-		kill(global_command->pid, SIGTERM);
-		if (WEXITSTATUS(global_command->ret))
-			global_command->ret = WEXITSTATUS(global_command->ret);
-	}
 	else if (global_command->pid == 0)
 		exec_child(cmd, global_command->env_arr, bin, params);
 	global_command->ret = exec_parent(global_command->pid, bin, cmd);
