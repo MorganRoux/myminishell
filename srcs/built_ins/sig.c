@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:58:37 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/29 13:39:20 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/02/01 12:20:24 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void		sig_ctrlc(int signal)
 	if (!(g_globstruct.pid))
 		prompt(&g_globstruct);
 	else
+	{
+		prompt(&g_globstruct);
 		kill(g_globstruct.pid, signal);
+	}
 	g_globstruct.ret = 130;
 }
 

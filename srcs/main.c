@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 16:48:33 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/30 10:29:42 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/02/01 12:04:47 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ int		main(int argc, char *argv[], char *envp[])
 	ft_printf("Minishell (alkanaev & mroux). Welcome ! :>\n");
 	while (i != 0)
 	{
-		sig_manag();
 		prompt(&g_globstruct);
+		sig_manag();
 		if ((i = get_next_line(0, &line, &g_globstruct)) == -1)
 			break ;
 		if (!((cmds = parse(line, &g_globstruct)) == NULL))
