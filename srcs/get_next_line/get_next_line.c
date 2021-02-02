@@ -39,9 +39,7 @@ int		get_next_line_loop(t_fl *fl, t_command *mimi, char **line)
 int		get_next_line(int fd, char **line, t_command *mimi)
 {
 	static t_fl		fl;
-	int				ln;
 
-	ln = 0;
 	if (init(&fl, fd, line) == 0)
 		return (-1);
 	if (fl.pos == 0 &&

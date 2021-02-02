@@ -326,7 +326,7 @@ t_list_cmd	*parse_tokens(t_list_str *tokens, t_command *global_command)
 
 void		testfree(void *param)
 {
-	printf("%s", param);
+	printf("%s", (char *)param);
 	getchar();
 	free(param);
 	printf("del");

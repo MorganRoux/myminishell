@@ -51,7 +51,7 @@ COMPILE		=	$(CC) $(FLAGS) $(INC_PATH) -L$(LIBFT_DIR) -lftprintf
 all:		$(NAME)
 
 $(NAME):	$(LIBS) ${OBJS}
-			$(COMPILE) $(OBJS) -o $(NAME)
+			$(COMPILE) $(OBJS) $(LIBS) -o $(NAME)
 $(LIBFT):	
 			make -C $(LIBFT_DIR)
 
