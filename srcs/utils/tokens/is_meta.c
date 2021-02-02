@@ -16,29 +16,40 @@ t_command	g_globstruct;
 
 int		is_meta_char(char c)
 {
-	char	METACHARACTER[] = " \t\n|&;()<>";
+	char	*metacharacter;
 	int		i;
 
+	metacharacter = ft_strdup(" \t\n|&;()<>");
 	i = 0;
-	while (METACHARACTER[i] != 0)
+	while (metacharacter[i] != 0)
 	{
-		if (METACHARACTER[i] == c)
+		if (metacharacter
+[i] == c)
+		{
+			free(metacharacter);
 			return (1);
+		}
 		i++;
 	}
+	free(metacharacter);
 	return (0);
 }
 
 int		is_meta_str(char *c)
 {
-	char	METACHARACTER[] = " \t\n|&;()<>";
+	char	*metacharacter;
 	int		i;
 
 	i = 0;
-	while (METACHARACTER[i] != 0)
+	metacharacter = ft_strdup(" \t\n|&;()<>");
+	while (metacharacter[i] != 0)
 	{
-		if (METACHARACTER[i] == c[0])
+		if (metacharacter
+[i] == c[0])
+		{
+			free(metacharacter);
 			return (1);
+		}
 		i++;
 	}
 	return (0);
@@ -46,14 +57,19 @@ int		is_meta_str(char *c)
 
 int		is_space_str(char *c)
 {
-	char	METACHARACTER[] = " \t";
+	char	*metacharacter;
 	int		i;
 
 	i = 0;
-	while (METACHARACTER[i] != 0)
+	metacharacter = ft_strdup(" \t");
+	while (metacharacter[i] != 0)
 	{
-		if (METACHARACTER[i] == c[0])
+		if (metacharacter
+[i] == c[0])
+		{
+			free(metacharacter);
 			return (1);
+		}
 		i++;
 	}
 	return (0);

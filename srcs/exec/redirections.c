@@ -35,9 +35,24 @@ int		*open_fds_in(t_command *content)
 	return (fd);
 }
 
-int		*open_fds_out(t_command *content)
+int		load_files(t_list_str *files, int flags, int *fd, int *i)
 {
 	char		*path;
+
+	while (files != NULL)
+	{
+		path = files->content;
+		fd[*i] = open(path, flags, S_IRWXU);
+		if (fd[*i] < 0)
+			return (-1);
+		files = files->next;
+		(*i)++;
+	}
+	return (0);
+}
+
+int		*open_fds_out(t_command *content)
+{
 	int			i;
 	int			*fd;
 	t_list_str	*files_out;
@@ -49,24 +64,10 @@ int		*open_fds_out(t_command *content)
 	if (!(fd = malloc(sizeof(int) *
 		(ft_lstsize(files_out) + ft_lstsize(files_append)))))
 		return (NULL);
-	while (files_out != NULL)
-	{
-		path = files_out->content;
-		fd[i] = open(path, O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
-		if (fd[i] < 0)
-			return (NULL);
-		files_out = files_out->next;
-		i++;
-	}
-	while (files_append != NULL)
-	{
-		path = files_append->content;
-		fd[i] = open(path, O_WRONLY | O_CREAT | O_APPEND, S_IRWXU);
-		if (fd[i] < 0)
-			return (NULL);
-		files_append = files_append->next;
-		i++;
-	}
+	if (load_files(files_out, O_WRONLY | O_CREAT | O_TRUNC, fd, &i) == -1)
+		return (NULL);
+	if (load_files(files_append, O_WRONLY | O_CREAT | O_APPEND, fd, &i) == -1)
+		return (NULL);
 	return (fd);
 }
 

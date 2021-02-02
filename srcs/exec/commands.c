@@ -93,8 +93,8 @@ int		exec_parent(pid_t pid, char *bin, t_command *cmd)
 	close(cmd->flux_out[1]);
 	waitpid(pid, &(cmd->status), 0);
 	free(bin);
-    if (WEXITSTATUS(cmd->status))
-			cmd->status = WEXITSTATUS(cmd->status);
+	if (WEXITSTATUS(cmd->status))
+		cmd->status = WEXITSTATUS(cmd->status);
 	return (cmd->status);
 }
 

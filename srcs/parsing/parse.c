@@ -126,17 +126,12 @@ char		*extract_var_name(char *str)
 	return (name);
 }
 
-int			replace_var(char **str, char **start, t_command *global_command)
+char		*do_replace(char **start, char **str, t_command *global_command)
 {
 	char	*var_name;
 	char	*var_value;
 	char	*new;
 
-	if ((!ft_isalnum(*(*str + 1)) && (*(*str + 1) != '?')))
-	{
-		*str = *str + 1;
-		return (0);
-	}
 	var_name = extract_var_name(*str);
 	if (*var_name == '?')
 		var_value = ft_itoa(global_command->ret);
@@ -144,17 +139,31 @@ int			replace_var(char **str, char **start, t_command *global_command)
 		var_value = get_var(global_command->env_arr, var_name);
 	if (!(new = (char *)malloc(sizeof(char) * (ft_strlen(*start)
 				- ft_strlen(var_name + 1) + ft_strlen(var_value)))))
-		return (-1);
+		return (NULL);
 	ft_strlcpy(new, *start, *str - *start + 1);
 	ft_strlcat(new, var_value, ft_strlen(new)
 				+ ft_strlen(var_value) + 1);
 	ft_strlcat(new, *str + (ft_strlen(var_name) + 1),
 				ft_strlen(*start) + ft_strlen(var_value));
 	*str = new + ((*str - *start) + ft_strlen(var_value) - 1);
-	free(*start);
-	*start = new;
 	free(var_value);
 	free(var_name);
+	return (new);
+}
+
+int			replace_var(char **str, char **start, t_command *global_command)
+{
+	char	*new;
+
+	if ((!ft_isalnum(*(*str + 1)) && (*(*str + 1) != '?')))
+	{
+		*str = *str + 1;
+		return (0);
+	}
+	if ((new = do_replace(start, str, global_command)) == NULL)
+		return (-1);
+	free(*start);
+	*start = new;
 	return (0);
 }
 
