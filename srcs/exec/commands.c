@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 13:49:03 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/02/01 11:21:01 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/02/02 17:21:57 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		err_msg(char *com, int err)
 	ret = 0;
 	if (err == 1)
 	{
-		ft_putstr_fd("minishell: fork error\n", STDOUT_FILENO);
+		ft_putstr_fd("minishell: fork error\n", STDERR_FILENO);
 		ret = 127;
 	}
 	else if (err == 2)
