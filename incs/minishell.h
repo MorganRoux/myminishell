@@ -114,7 +114,7 @@ t_list_str				*parse_fdin(t_list_str *tkn, t_list_cmd **cur);
 /*
 ** Exec
 */
-
+void					exec_loop(char *line, t_command *g_globstruct);
 void					exec(t_command *mimi, t_list_cmd *cmds);
 char					*find_bin(char *bin, char *envp[]);
 int						exec_command(t_command *cmd, t_command *global);
@@ -170,7 +170,7 @@ void					free_strs(char **strs);
 void					free_cmds(t_list_cmd *cmds);
 void					free_cmd(void *param);
 char					**get_paths(char *envp[]);
-
+char					**split_commands(char *line);
 /*
 ** List
 */

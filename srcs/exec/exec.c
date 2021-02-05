@@ -129,3 +129,22 @@ void	exec(t_command *global_cmd, t_list_cmd *cmds)
 		free_strs(cmd);
 	}
 }
+
+void	exec_loop(char *line, t_command *g_globstruct)
+{
+	char	**command_list;
+	int		i;
+	t_list_cmd	*cmds;
+
+	i = 0;
+	command_list = split_commands(line);
+	while (command_list[i] != NULL)
+	{
+		if (!((cmds = parse(command_list[i], g_globstruct)) == NULL))
+			exec(g_globstruct, cmds);
+		i++;
+	}
+	
+	free(command_list);
+	free_cmds(cmds);
+}

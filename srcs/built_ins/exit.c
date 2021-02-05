@@ -66,6 +66,8 @@ int		arg_checker(char *str)
 
 void	com_exit_sup(t_command *mimi, char *str)
 {
+	if (mimi->ret == 2)
+		return;
 	if (str)
 	{
 		ft_putnbr_fd(ft_atoi(str), 2);

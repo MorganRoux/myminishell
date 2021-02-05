@@ -410,6 +410,8 @@ t_list_cmd	*parse(char *line, t_command *global_command)
 	{
 		if (!is_syntax_error(tokens))
 			cmds = parse_tokens(tokens, global_command);
+		else
+			global_command->ret = 2;
 	}
 	ft_lstclear(&tokens, free);
 	return (cmds);

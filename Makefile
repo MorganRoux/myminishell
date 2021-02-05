@@ -23,6 +23,7 @@ SRCS		=	srcs/main.c \
 				srcs/utils/list/ft_lstinit.c \
 				srcs/utils/list/ft_lstof.c \
 				srcs/utils/tokens/is_meta.c \
+				srcs/utils/split_commands/split_commands.c \
 				srcs/built_ins/cd.c \
 				srcs/built_ins/echo.c \
 				srcs/built_ins/env.c \

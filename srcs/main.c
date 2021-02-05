@@ -74,7 +74,6 @@ void	prompt(t_command *mimi)
 int		main(int argc, char *argv[], char *envp[])
 {
 	char		*line;
-	t_list_cmd	*cmds;
 	int			i;
 
 	(void)argc;
@@ -91,9 +90,7 @@ int		main(int argc, char *argv[], char *envp[])
 		sig_manag();
 		if ((i = get_next_line(0, &line, &g_globstruct)) == -1)
 			break ;
-		if (!((cmds = parse(line, &g_globstruct)) == NULL))
-			exec(&g_globstruct, cmds);
-		free_cmds(cmds);
+		exec_loop(line, &g_globstruct);
 		free(line);
 	}
 	return (0);
