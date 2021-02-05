@@ -25,8 +25,8 @@ t_list_cmd	*ft_lstinit(void)
 	cmd->files_out = NULL;
 	cmd->files_append = NULL;
 	cmd->pipe = NULL;
-	pipe(cmd->flux_in);
-	pipe(cmd->flux_out);
+	ft_printf("in:%d",pipe(cmd->flux_in));
+	ft_printf("out:%d",pipe(cmd->flux_out));
 	cmd->prev = NULL;
 	list = ft_lstnew(cmd);
 	return (list);

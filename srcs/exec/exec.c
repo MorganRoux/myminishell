@@ -79,16 +79,18 @@ int		exec_built_ins(t_command *global_cmd, char **cmd, t_command *cur_cmd)
 {
 	int		saved_stdin;
 	int		saved_stdout;
-
+	(void)cmd;
+	(void)global_cmd;
 	apply_redirections_in(cur_cmd);
 	apply_pipe_in(cur_cmd);
 	saved_stdin = dup(STDIN_FILENO);
 	saved_stdout = dup(STDOUT_FILENO);
 	if (is_redirection_in(cur_cmd) || is_pipe_in(cur_cmd))
 		dup2(cur_cmd->flux_in[0], STDIN_FILENO);
-	if (is_redirection_out(cur_cmd) || is_pipe_out(cur_cmd))
-		dup2(cur_cmd->flux_out[1], STDOUT_FILENO);
-	global_cmd->ret = do_built_ins(global_cmd, cmd);
+	//if (is_redirection_out(cur_cmd) || is_pipe_out(cur_cmd))
+		ft_printf("dup:%d",dup2(cur_cmd->flux_out[1], STDOUT_FILENO));
+	ft_printf("=====ici=====%d", cur_cmd->flux_out[1]);
+	//global_cmd->ret = do_built_ins(global_cmd, cmd);
 	dup2(saved_stdin, STDIN_FILENO);
 	dup2(saved_stdout, STDOUT_FILENO);
 	close(cur_cmd->flux_out[1]);
@@ -130,20 +132,44 @@ void	exec(t_command *global_cmd, t_list_cmd *cmds)
 	}
 }
 
+void	link_commands(t_list_cmd *last_cmd, t_list_cmd *new_cmd)
+{
+	t_command	*last_content;
+	t_command	*new_content;
+
+	new_content = new_cmd->content;
+	last_content = last_cmd->content;
+	if (last_content->pipe != NULL)
+	{
+		/*ft_printf("new");
+		print_cmds(new_cmd);
+		ft_printf("last");
+		print_cmds(last_cmd);*/
+		
+		new_content->prev = last_cmd->content;
+	}
+	else
+		ft_printf("damn");
+}
+
 void	exec_loop(char *line, t_command *g_globstruct)
 {
 	char	**command_list;
 	int		i;
 	t_list_cmd	*cmds;
+	t_list_cmd	*new_cmd;
 
 	i = 0;
 	cmds = NULL;
 	command_list = split_commands(line);
 	while (command_list[i] != NULL)
 	{
-		ft_printf(command_list[i]);
-		ft_lstadd_back(&cmds, parse(command_list[i], g_globstruct));
-		print_cmds(ft_lstlast(cmds));
+		//ft_printf(command_list[i]);
+		new_cmd = parse(command_list[i], g_globstruct);
+		if (cmds != NULL)
+			link_commands(ft_lstlast(cmds), new_cmd); 
+		ft_lstadd_back(&cmds, new_cmd);
+		//print_cmds(ft_lstlast(cmds));
 		exec(g_globstruct, ft_lstlast(cmds));
 		i++;
 	}

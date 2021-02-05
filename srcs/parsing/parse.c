@@ -256,8 +256,7 @@ int			setup_pipe(t_list_cmd **cur)
 	cmd = (*cur)->content;
 	if (!(cmd->pipe = malloc(2 * sizeof(int))))
 		return (-1);
-	pipe(cmd->pipe);
-	return (0);
+	return (pipe(cmd->pipe));
 }
 
 int			create_piped_command(t_list_cmd **cur)
@@ -275,9 +274,10 @@ int			create_piped_command(t_list_cmd **cur)
 
 t_list_str	*parse_pipe(t_list_str *tkn, t_list_cmd **cur)
 {
-	if (setup_pipe(cur) == -1)
-		return (NULL);
-	create_piped_command(cur);
+	(void)cur;
+	/*if (setup_pipe(cur) == -1)
+		return (NULL);*/
+	//create_piped_command(cur);
 	return (tkn->next);
 }
 
