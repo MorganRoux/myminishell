@@ -285,9 +285,11 @@ t_list_str	*parse_coma(t_list_str *tkn, t_list_cmd **cur)
 {
 	t_list_cmd	*new;
 
-	new = ft_lstinit();
+	(void)new;
+	(void)cur;
+	/*new = ft_lstinit();
 	(*cur)->next = new;
-	*cur = new;
+	*cur = new;*/
 	return (tkn->next);
 }
 
@@ -301,10 +303,10 @@ t_list_str	*parse_meta(t_list_str *tkn, t_list_cmd **cur, t_command *gc)
 	else if (ft_strcmp(tkn->content, ">") == 0
 			|| ft_strcmp(tkn->content, ">>") == 0)
 		return (parse_fdout(tkn, cur));
-/*	else if (ft_strcmp(tkn->content, "|") == 0)
+	else if (ft_strcmp(tkn->content, "|") == 0)
 		return (parse_pipe(tkn, cur));
 	else if (ft_strcmp(tkn->content, ";") == 0)
-		return (parse_coma(tkn, cur));*/
+		return (parse_coma(tkn, cur));
 	return (tkn->next);
 }
 
@@ -408,10 +410,10 @@ t_list_cmd	*parse(char *line, t_command *global_command)
 	cmds = NULL;
 	if ((tokens = split_tokens(line)))
 	{
-		if (!is_syntax_error(tokens))
+		//if (!is_syntax_error(tokens))
 			cmds = parse_tokens(tokens, global_command);
-		else
-			global_command->ret = 2;
+		/*else
+			global_command->ret = 2;*/
 	}
 	ft_lstclear(&tokens, free);
 	return (cmds);

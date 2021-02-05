@@ -137,15 +137,14 @@ void	exec_loop(char *line, t_command *g_globstruct)
 	t_list_cmd	*cmds;
 
 	i = 0;
+	cmds = NULL;
 	command_list = split_commands(line);
 	while (command_list[i] != NULL)
 	{
 		ft_printf(command_list[i]);
-		if (!((cmds = parse(command_list[i], g_globstruct)) == NULL))
-		{
-			print_cmds(cmds);
-			exec(g_globstruct, cmds);
-			}
+		ft_lstadd_back(&cmds, parse(command_list[i], g_globstruct));
+		print_cmds(ft_lstlast(cmds));
+		exec(g_globstruct, ft_lstlast(cmds));
 		i++;
 	}
 	
