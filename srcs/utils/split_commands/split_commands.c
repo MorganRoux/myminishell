@@ -44,7 +44,7 @@ static	char	**alloc_mem(int n_words, char const *s)
 		while (!is_sep(s[len]) && s[len] != 0)
 			len++;
 		s += len;
-		if (!(*strs = (char *)malloc((len + 1) * sizeof(char))))
+		if (!(*strs = (char *)malloc((len + 2) * sizeof(char))))
 			return (NULL);
 		strs++;
 	}
@@ -68,6 +68,7 @@ char			**ftt_split(char const *s)
 			s++;
 		while (!is_sep(*s) && *s != 0)
 			(*strs)[i++] = *s++;
+        (*strs)[i++] = *s++;
 		(*strs++)[i] = 0;
 	}
 	return (ret);
