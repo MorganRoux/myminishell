@@ -119,7 +119,7 @@ t_list_str	*split_commandss(char *s)
 			ft_lstclear(&ret, free);
 			return (NULL);
 		}
-		str = ft_substr(s, 0, len);
+		str = ft_substr(s, 0, len + (*(s + len) == 0 ? 0 : 1));
 		new = ft_lstnew(str);
 		ft_lstadd_back(&ret, new);
 		s = s + len + (*(s + len) == 0 ? 0 : 1);
