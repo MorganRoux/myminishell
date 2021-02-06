@@ -52,6 +52,7 @@ int		is_meta_str(char *c)
 		}
 		i++;
 	}
+	free(metacharacter);
 	return (0);
 }
 
@@ -72,5 +73,6 @@ int		is_space_str(char *c)
 		}
 		i++;
 	}
+	free(metacharacter);
 	return (0);
 }

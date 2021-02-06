@@ -176,6 +176,6 @@ void	exec_loop(char *line, t_command *global_command)
 		i++;
 	}
 	
-	free(command_list);
+	free_strs(command_list);
 	free_cmds(cmds);
 }
