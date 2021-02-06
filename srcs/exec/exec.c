@@ -149,8 +149,6 @@ void	link_commands(t_list_cmd *last_cmd, t_list_cmd *new_cmd)
 		
 		new_content->prev = last_cmd->content;
 	}
-	else
-		ft_printf("damn");
 }
 
 void	exec_loop(char *line, t_command *g_globstruct)
