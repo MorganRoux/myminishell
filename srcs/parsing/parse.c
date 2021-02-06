@@ -275,8 +275,8 @@ int			create_piped_command(t_list_cmd **cur)
 t_list_str	*parse_pipe(t_list_str *tkn, t_list_cmd **cur)
 {
 	(void)cur;
-	/*if (setup_pipe(cur) == -1)
-		return (NULL);*/
+	if (setup_pipe(cur) == -1)
+		return (NULL);
 	//create_piped_command(cur);
 	return (tkn->next);
 }

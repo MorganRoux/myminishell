@@ -83,11 +83,12 @@ int		exec_built_ins(t_command *global_cmd, char **cmd, t_command *cur_cmd)
 	(void)global_cmd;
 	apply_redirections_in(cur_cmd);
 	apply_pipe_in(cur_cmd);
+	close(cur_cmd->flux_in[1]);
 	saved_stdin = dup(STDIN_FILENO);
 	saved_stdout = dup(STDOUT_FILENO);
 	if (is_redirection_in(cur_cmd) || is_pipe_in(cur_cmd))
 		dup2(cur_cmd->flux_in[0], STDIN_FILENO);
-	//if (is_redirection_out(cur_cmd) || is_pipe_out(cur_cmd))
+	if (is_redirection_out(cur_cmd) || is_pipe_out(cur_cmd))
 		ft_printf("dup:%d",dup2(cur_cmd->flux_out[1], STDOUT_FILENO));
 	ft_printf("=====ici=====%d", cur_cmd->flux_out[1]);
 	//global_cmd->ret = do_built_ins(global_cmd, cmd);

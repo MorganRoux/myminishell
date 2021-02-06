@@ -40,7 +40,7 @@ int		apply_pipe_in(t_command *cmd)
 	prev = cmd->prev;
 	if (!is_pipe_in(cmd))
 		return (0);
-	close(prev->pipe[1]);
+	//close(prev->pipe[1]);
 	while (read(prev->pipe[0], &buf, 1) > 0)
 		write(cmd->flux_in[1], &buf, 1);
 	close(prev->pipe[0]);

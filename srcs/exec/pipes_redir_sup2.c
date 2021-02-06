@@ -32,7 +32,7 @@ int		apply_redirections_in(t_command *cmd)
 			i++;
 		}
 		close_fds(cmd->fd_in, number_of_redirection_in(cmd));
-		close(cmd->flux_in[1]);
+		
 	}
 	return (1);
 }
