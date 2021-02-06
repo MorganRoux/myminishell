@@ -113,6 +113,7 @@ t_list_str				*parse_fdin(t_list_str *tkn, t_list_cmd **cur);
 char					*solve_dollards(char *str, t_command *global_command);
 int						pass_dquotes(char *s);
 int						pass_squotes(char *s);
+int						check_errors(char *line, t_command *global_command);
 
 /*
 ** Exec

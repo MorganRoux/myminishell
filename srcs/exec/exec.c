@@ -160,6 +160,8 @@ void	exec_loop(char *line, t_command *global_command)
 
 	i = 0;
 	cmds = NULL;
+	if (check_errors(line, global_command))
+		return;
 	command_list = split_commands(line);
 	while (command_list[i] != NULL)
 	{

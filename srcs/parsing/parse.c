@@ -155,7 +155,7 @@ int			replace_var(char **str, char **start, t_command *global_command)
 {
 	char	*new;
 
-	if ((!ft_isalnum(*(*str + 1)) && (*(*str + 1) != '?')))
+	if ((!ft_isalpha(*(*str + 1)) && (*(*str + 1) != '?')))
 	{
 		*str = *str + 1;
 		return (0);
@@ -413,9 +413,27 @@ t_list_cmd	*parse(char *line, t_command *global_command)
 	{
 		//if (!is_syntax_error(tokens))
 			cmds = parse_tokens(tokens, global_command);
-		/*else
-			global_command->ret = 2;*/
+		// else
+		// 	global_command->ret = 2;
 	}
 	ft_lstclear(&tokens, free);
 	return (cmds);
+}
+
+int			check_errors(char *line, t_command *global_command)
+{
+	t_list_str	*tokens;
+
+	if ((tokens = split_tokens(line)))
+	{
+		if (!is_syntax_error(tokens))
+		{
+			ft_lstclear(&tokens, free);
+			return 0;
+		}
+		
+	}
+	ft_lstclear(&tokens, free);
+	global_command->ret = 2;
+	return 1;
 }
