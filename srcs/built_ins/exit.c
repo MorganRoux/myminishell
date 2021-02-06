@@ -91,6 +91,7 @@ void	com_exit(t_command *mimi, char **args)
 {
 	int i;
 
+	//ft_printf("exit: %d", mimi->ret);
 	i = 1;
 	if (args[i] && args[i + 1])
 	{
