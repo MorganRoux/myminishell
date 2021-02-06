@@ -110,6 +110,9 @@ t_list_str				*parse_meta(t_list_str *tkn, t_list_cmd **cur,
 t_list_str				*parse_pipe(t_list_str *tkn, t_list_cmd **cur);
 t_list_str				*parse_fdout(t_list_str *tkn, t_list_cmd **cur);
 t_list_str				*parse_fdin(t_list_str *tkn, t_list_cmd **cur);
+char					*solve_dollards(char *str, t_command *global_command);
+int						pass_dquotes(char *s);
+int						pass_squotes(char *s);
 
 /*
 ** Exec

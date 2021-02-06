@@ -12,25 +12,21 @@
 
 #include "minishell.h"
 
-char	**list2char(t_list_cmd *cmds)
+char	**list2char(t_list_str *lst)
 {
 	char		**strs;
-	t_command	*cmd;
 	int			count;
-	t_list_str	*args;
 
-	cmd = cmds->content;
-	count = ft_lstsize(cmd->args) + 1;
+	count = ft_lstsize(lst) + 1;
 	strs = malloc((count + 1) * sizeof(char *));
-	strs[0] = cmd->exec;
-	args = cmd->args;
-	count = 1;
-	while (args != 0)
+	count = 0;
+	while (lst != 0)
 	{
-		strs[count++] = args->content;
-		args = args->next;
+		strs[count++] = ft_strdup(lst->content);
+		lst = lst->next;
 	}
 	strs[count] = 0;
+
 	return (strs);
 }
 
@@ -67,3 +63,4 @@ char	**extract_command_and_args(t_command *cmd)
 	strs = strs - count;
 	return (strs);
 }
+

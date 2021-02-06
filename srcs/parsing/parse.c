@@ -213,8 +213,9 @@ void		insert_word(t_list_cmd **cur, char *word, t_command *global_command)
 	t_command	*cmd;
 	t_list_str	*arg;
 
+	(void)global_command;
 	str = ft_strdup(word);
-	str = solve_dollards(str, global_command);
+	//str = solve_dollards(str, global_command);
 	str = solve_quotings(str);
 	cmd = (*cur)->content;
 	if (cmd->exec == NULL)

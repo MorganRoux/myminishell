@@ -151,7 +151,7 @@ void	link_commands(t_list_cmd *last_cmd, t_list_cmd *new_cmd)
 	}
 }
 
-void	exec_loop(char *line, t_command *g_globstruct)
+void	exec_loop(char *line, t_command *global_command)
 {
 	char	**command_list;
 	int		i;
@@ -163,13 +163,14 @@ void	exec_loop(char *line, t_command *g_globstruct)
 	command_list = split_commands(line);
 	while (command_list[i] != NULL)
 	{
+		command_list[i] = solve_dollards(command_list[i], global_command);
 		//ft_printf(command_list[i]);
-		new_cmd = parse(command_list[i], g_globstruct);
+		new_cmd = parse(command_list[i], global_command);
 		if (cmds != NULL)
 			link_commands(ft_lstlast(cmds), new_cmd); 
 		ft_lstadd_back(&cmds, new_cmd);
 		//print_cmds(ft_lstlast(cmds));
-		exec(g_globstruct, ft_lstlast(cmds));
+		exec(global_command, ft_lstlast(cmds));
 		i++;
 	}
 	

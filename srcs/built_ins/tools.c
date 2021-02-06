@@ -15,7 +15,7 @@
 int	ft_itsokay(int c)
 {
 	if ((ft_isdigit(c) || ft_isalpha(c))
-		|| (c == '-' || c == '_' || c == ':' || c == '/'))
+		&& (c == '-' || c == '_' || c == ':' || c == '/'))
 		return (0);
 	return (1);
 }
