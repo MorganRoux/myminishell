@@ -12,6 +12,7 @@
 
 #include "minishell.h"
 
+
 int		*open_fds_in(t_command *content)
 {
 	char		*path;
@@ -28,7 +29,10 @@ int		*open_fds_in(t_command *content)
 		path = files->content;
 		fd[i] = open(path, O_RDONLY, S_IRWXU);
 		if (fd[i] < 0)
+		{
+			ft_printf("erreur %d avec %s\n",fd[i], path);
 			return (NULL);
+		}
 		files = files->next;
 		i++;
 	}
@@ -44,7 +48,10 @@ int		load_files(t_list_str *files, int flags, int *fd, int *i)
 		path = files->content;
 		fd[*i] = open(path, flags, S_IRWXU);
 		if (fd[*i] < 0)
+		{
+			ft_printf("erreur %d avec %s\n",fd[*i], path);
 			return (-1);
+		}
 		files = files->next;
 		(*i)++;
 	}
@@ -64,11 +71,11 @@ int		*open_fds_out(t_command *content)
 	if (!(fd = malloc(sizeof(int) *
 		(ft_lstsize(files_out) + ft_lstsize(files_append)))))
 		return (NULL);
-	if (load_files(files_out, O_WRONLY | O_CREAT | O_TRUNC, fd, &i) == -1)
-		return (NULL);
-	if (load_files(files_append, O_WRONLY | O_CREAT | O_APPEND, fd, &i) == -1)
-		return (NULL);
-	return (fd);
+	if ((load_files(files_out, O_WRONLY | O_CREAT | O_TRUNC, fd, &i) != -1) &&
+	   (load_files(files_append, O_WRONLY | O_CREAT | O_APPEND, fd, &i) != -1))
+		return (fd);
+	free(fd);
+	return (NULL);
 }
 
 int		open_redirections(t_list_cmd *cmd)

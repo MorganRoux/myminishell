@@ -113,7 +113,7 @@ int		is_built_in(char **cmd)
 	return (0);
 }
 
-void	exec(t_command *global_cmd, t_list_cmd *cmds)
+int		exec(t_command *global_cmd, t_list_cmd *cmds)
 {
 	char	**cmd;
 
@@ -123,7 +123,11 @@ void	exec(t_command *global_cmd, t_list_cmd *cmds)
 		if (cmd[0] == 0)
 			global_cmd->ret = 127;
 		if (open_redirections(cmds) == -1)
-			return ;
+		{
+			global_cmd->ret = 1;
+			free_strs(cmd);
+			return (-1);
+		}
 		if (is_built_in(cmd))
 			exec_built_ins(global_cmd, cmd, cmds->content);
 		else
@@ -131,6 +135,7 @@ void	exec(t_command *global_cmd, t_list_cmd *cmds)
 		cmds = cmds->next;
 		free_strs(cmd);
 	}
+	return (0);
 }
 
 void	link_commands(t_list_cmd *last_cmd, t_list_cmd *new_cmd)
@@ -172,7 +177,8 @@ void	exec_loop(char *line, t_command *global_command)
 			link_commands(ft_lstlast(cmds), new_cmd); 
 		ft_lstadd_back(&cmds, new_cmd);
 		//print_cmds(ft_lstlast(cmds));
-		exec(global_command, ft_lstlast(cmds));
+		if (exec(global_command, ft_lstlast(cmds)) == -1)
+			break;
 		i++;
 	}
 	

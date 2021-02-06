@@ -119,7 +119,7 @@ int						check_errors(char *line, t_command *global_command);
 ** Exec
 */
 void					exec_loop(char *line, t_command *g_globstruct);
-void					exec(t_command *mimi, t_list_cmd *cmds);
+int						exec(t_command *mimi, t_list_cmd *cmds);
 char					*find_bin(char *bin, char *envp[]);
 int						exec_command(t_command *cmd, t_command *global);
 
