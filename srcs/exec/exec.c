@@ -6,53 +6,11 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 14:23:44 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/02/02 19:10:37 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/02/07 18:24:40 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// int		do_built_ins(t_command *global_cmd, char **cmd)
-// {
-// 	if (!ft_strcmp(cmd[0], "echo"))
-// 	{
-// 		com_echo(global_cmd, cmd);
-// 		return (global_cmd->ret);
-// 	}
-// 	else if (!ft_strcmp(cmd[0], "cd"))
-// 	{
-// 		com_cd(global_cmd, cmd);
-// 		return (global_cmd->ret);
-// 	}
-// 	else if (!ft_strcmp(cmd[0], "env"))
-// 	{
-// 		com_env(global_cmd);
-// 		return (global_cmd->ret);
-// 	}
-// 	else if (!ft_strcmp(cmd[0], "pwd"))
-// 	{
-// 		com_pwd(global_cmd);
-// 		return (global_cmd->ret);
-// 	}
-// 	else if (!ft_strcmp(cmd[0], "exit"))
-// 	{
-// 		com_exit(global_cmd, cmd);
-// 		return (global_cmd->ret);
-// 	}
-// 	else if (!ft_strcmp(cmd[0], "unset"))
-// 	{
-// 		com_unset(global_cmd, cmd);
-// 		return (global_cmd->ret);
-// 	}
-// 	else if (!ft_strcmp(cmd[0], "export"))
-// 	{
-// 		com_export(global_cmd, cmd);
-// 		return (global_cmd->ret);
-// 	}
-// 	else
-// 		return (1);
-// 	return (0);
-// }
 
 int		do_built_ins(t_command *global_cmd, char **cmd)
 {
