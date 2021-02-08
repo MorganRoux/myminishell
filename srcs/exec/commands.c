@@ -85,7 +85,7 @@ char	*find_bin_with_env(char *bin, t_command *global_command)
 char	*find_bin(char *bin, t_command *global_command)
 {
 	if (has_path(bin))
-		return (bin);
+		return (ft_strdup(bin));
 	else 
 		return (find_bin_with_env(bin, global_command));
 }
