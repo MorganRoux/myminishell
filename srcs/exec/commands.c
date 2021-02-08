@@ -46,7 +46,19 @@ int		err_msg(char *com, int err)
 	return (ret);
 }
 
-char	*find_bin(char *bin, t_command *global_command)
+int		has_path(char *bin)
+{
+	while (*bin != 0)
+	{
+		if (*bin == '/')
+			return (1);
+		bin++;
+	}
+	return (0);
+}
+
+
+char	*find_bin_with_env(char *bin, t_command *global_command)
 {
 	char	*full_bin;
 	char	**paths;
@@ -68,6 +80,14 @@ char	*find_bin(char *bin, t_command *global_command)
 	}
 	free_strs(paths);
 	return (full_bin);
+}
+
+char	*find_bin(char *bin, t_command *global_command)
+{
+	if (has_path(bin))
+		return (bin);
+	else 
+		return (find_bin_with_env(bin, global_command));
 }
 
 void	exec_child(t_command *cmd, char *envp[], char *bin, char **params)
