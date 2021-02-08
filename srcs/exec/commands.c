@@ -46,14 +46,14 @@ int		err_msg(char *com, int err)
 	return (ret);
 }
 
-char	*find_bin(char *bin, char *envp[])
+char	*find_bin(char *bin, t_command *global_command)
 {
 	char	*full_bin;
 	char	**paths;
 	int		i;
 
 	i = 0;
-	paths = get_paths(envp);
+	paths = get_paths(global_command->env_arr);
 	full_bin = ft_strjoin(paths[0], bin);
 	while (open(full_bin, O_RDONLY) == -1)
 	{
@@ -61,7 +61,8 @@ char	*find_bin(char *bin, char *envp[])
 		if (paths[++i] == 0)
 		{
 			free_strs(paths);
-			return (ft_strdup(bin));
+			global_command->ret = err_msg(bin, 2);
+			return (NULL);
 		}
 		full_bin = ft_strjoin(paths[i], bin);
 	}
@@ -109,7 +110,8 @@ int		exec_command(t_command *cmd, t_command *global_command)
 
 	if (cmd->exec == NULL)
 		return (1);
-	bin = find_bin(cmd->exec, global_command->env_arr);
+	if ((bin = find_bin(cmd->exec, global_command)) == NULL)
+		return (-1);
 	params = extract_command_and_args(cmd);
 	apply_redirections_in(cmd);
 	apply_pipe_in(cmd);
