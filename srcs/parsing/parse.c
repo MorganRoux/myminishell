@@ -215,7 +215,6 @@ void		insert_word(t_list_cmd **cur, char *word, t_command *global_command)
 
 	(void)global_command;
 	str = ft_strdup(word);
-	//str = solve_dollards(str, global_command);
 	str = solve_quotings(str);
 	cmd = (*cur)->content;
 	if (cmd->exec == NULL)
@@ -278,7 +277,6 @@ t_list_str	*parse_pipe(t_list_str *tkn, t_list_cmd **cur)
 	(void)cur;
 	if (setup_pipe(cur) == -1)
 		return (NULL);
-	//create_piped_command(cur);
 	return (tkn->next);
 }
 
@@ -288,9 +286,6 @@ t_list_str	*parse_coma(t_list_str *tkn, t_list_cmd **cur)
 
 	(void)new;
 	(void)cur;
-	/*new = ft_lstinit();
-	(*cur)->next = new;
-	*cur = new;*/
 	return (tkn->next);
 }
 
@@ -347,7 +342,6 @@ void		testfree(void *param)
 
 int			display_error(char *err)
 {
-	//ft_printf("parse error near '%s'\n", err);
 	ft_putstr_fd("parse error near ", STDERR_FILENO);
 	ft_putstr_fd(err, STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);
@@ -410,12 +404,7 @@ t_list_cmd	*parse(char *line, t_command *global_command)
 
 	cmds = NULL;
 	if ((tokens = split_tokens(line)))
-	{
-		//if (!is_syntax_error(tokens))
-			cmds = parse_tokens(tokens, global_command);
-		// else
-		// 	global_command->ret = 2;
-	}
+		cmds = parse_tokens(tokens, global_command);
 	ft_lstclear(&tokens, free);
 	return (cmds);
 }
@@ -429,11 +418,10 @@ int			check_errors(char *line, t_command *global_command)
 		if (!is_syntax_error(tokens))
 		{
 			ft_lstclear(&tokens, free);
-			return 0;
+			return (0);
 		}
-		
 	}
 	ft_lstclear(&tokens, free);
 	global_command->ret = 2;
-	return 1;
+	return (1);
 }

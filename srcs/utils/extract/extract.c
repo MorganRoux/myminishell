@@ -63,4 +63,3 @@ char	**extract_command_and_args(t_command *cmd)
 	strs = strs - count;
 	return (strs);
 }
-

@@ -1,7 +1,6 @@
 #include "minishell.h"
 
-
-int             is_sep(char c)
+int				is_sep(char c)
 {
 	return ((c == ';' || c == '|') ? 1 : 0);
 }
@@ -68,14 +67,13 @@ char			**ftt_split(char const *s)
 			s++;
 		while (!is_sep(*s) && *s != 0)
 			(*strs)[i++] = *s++;
-        (*strs)[i++] = *s++;
+		(*strs)[i++] = *s++;
 		(*strs++)[i] = 0;
 	}
 	return (ret);
 }
 
-
-int			command_len(char *s)
+int				command_len(char *s)
 {
 	int			len;
 	int			l;
@@ -135,6 +133,5 @@ char	**split_commands(char *line)
 	lst = split_commandss(line);
 	strs = list2char(lst);
 	ft_lstclear(&lst, free);
-	//return (ftt_split(line));
 	return (strs);
 }

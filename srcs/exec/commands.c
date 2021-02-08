@@ -57,7 +57,6 @@ int		has_path(char *bin)
 	return (0);
 }
 
-
 char	*find_bin_with_env(char *bin, t_command *global_command)
 {
 	char	*full_bin;
@@ -86,7 +85,7 @@ char	*find_bin(char *bin, t_command *global_command)
 {
 	if (has_path(bin))
 		return (ft_strdup(bin));
-	else 
+	else
 		return (find_bin_with_env(bin, global_command));
 }
 
