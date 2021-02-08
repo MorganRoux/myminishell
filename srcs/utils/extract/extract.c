@@ -26,7 +26,6 @@ char	**list2char(t_list_str *lst)
 		lst = lst->next;
 	}
 	strs[count] = 0;
-
 	return (strs);
 }
 

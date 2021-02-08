@@ -83,7 +83,6 @@ int		main(int argc, char *argv[], char *envp[])
 	ft_bzero(&g_globstruct, sizeof(t_command));
 	env_filling(envp, &g_globstruct);
 	sig_manag();
-	//ft_printf("Minishell (alkanaev & mroux). Welcome ! :>\n");
 	while (i != 0)
 	{
 		prompt(&g_globstruct);
