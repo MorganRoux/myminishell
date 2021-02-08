@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 11:06:08 by mroux             #+#    #+#             */
-/*   Updated: 2021/02/01 12:03:19 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/02/07 14:27:54 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		get_next_line(int fd, char **line, t_command *mimi)
 		(fl.bytes_read = read(0, fl.buffer, BUFFER_SIZE)) <= 0)
 	{
 		if (fl.bytes_read == 0)
-			close_mimi(mimi, 1);
+			close_mimi(mimi, mimi->ret);
 		return (fl.bytes_read);
 	}
 	return (get_next_line_loop(&fl, mimi, line));

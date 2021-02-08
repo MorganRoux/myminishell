@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 17:01:12 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/29 13:13:12 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/02/07 14:28:25 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		arg_checker(char *str)
 void	com_exit_sup(t_command *mimi, char *str)
 {
 	if (mimi->ret == 2)
-		return;
+		return ;
 	if (str)
 	{
 		ft_putnbr_fd(ft_atoi(str), 2);
@@ -91,7 +91,6 @@ void	com_exit(t_command *mimi, char **args)
 {
 	int i;
 
-	//ft_printf("exit: %d", mimi->ret);
 	i = 1;
 	if (args[i] && args[i + 1])
 	{
