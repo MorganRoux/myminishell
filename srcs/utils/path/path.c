@@ -21,6 +21,11 @@ char	**get_paths(char *envp[])
 
 	len = 0;
 	var = get_var(envp, "PATH");
+	if (*var == 0)
+	{
+		free(var);
+		return (NULL);
+	}
 	paths = ft_split(var, ':');
 	while (paths[len] != 0)
 		len++;

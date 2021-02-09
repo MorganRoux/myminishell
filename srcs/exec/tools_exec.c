@@ -27,7 +27,8 @@ char	*find_bin_with_env(char *bin, t_command *gc)
 	int		i;
 
 	i = 0;
-	paths = get_paths(gc->env_arr);
+	if ((paths = get_paths(gc->env_arr)) == NULL)
+		return (ft_strdup(bin));
 	full_bin = ft_strjoin(paths[0], bin);
 	while (open(full_bin, O_RDONLY) == -1)
 	{
