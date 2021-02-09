@@ -7,7 +7,12 @@ LIBS		=	$(LIBFT)
 SRCS		=	srcs/main.c \
 				srcs/get_next_line/get_next_line.c \
 				srcs/get_next_line/get_next_line_utils.c \
-				srcs/parsing/parse.c \
+				srcs/parsing/parse1.c \
+				srcs/parsing/parse2.c \
+				srcs/parsing/parse3.c \
+				srcs/parsing/parse4.c \
+				srcs/parsing/parse5.c \
+				srcs/parsing/parse6.c \
 				srcs/parsing/split_tokens.c \
 				srcs/utils/extract/extract.c \
 				srcs/exec/exec.c \
@@ -16,6 +21,7 @@ SRCS		=	srcs/main.c \
 				srcs/exec/pipes.c \
 				srcs/exec/pipe_redir_sup.c \
 				srcs/exec/pipes_redir_sup2.c \
+				srcs/exec/tools_exec.c \
 				srcs/env/env.c \
 				srcs/utils/prints/prints.c \
 				srcs/utils/free/frees.c \

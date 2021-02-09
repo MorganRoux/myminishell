@@ -6,37 +6,11 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 14:17:29 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/30 10:58:46 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/02/09 10:00:00 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int		*open_fds_in(t_command *content)
-{
-	char		*path;
-	int			i;
-	int			*fd;
-	t_list_str	*files;
-
-	files = content->files_in;
-	i = 0;
-	if (!(fd = malloc(sizeof(int) * ft_lstsize(files))))
-		return (NULL);
-	while (files != NULL)
-	{
-		path = files->content;
-		fd[i] = open(path, O_RDONLY, S_IRWXU);
-		if (fd[i] < 0)
-		{
-			ft_printf("erreur %d avec %s\n", fd[i], path);
-			return (NULL);
-		}
-		files = files->next;
-		i++;
-	}
-	return (fd);
-}
 
 int		load_files(t_list_str *files, int flags, int *fd, int *i)
 {

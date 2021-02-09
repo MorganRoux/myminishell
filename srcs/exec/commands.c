@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 13:49:03 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/02/02 17:21:57 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/02/09 09:52:00 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,38 +55,6 @@ int		has_path(char *bin)
 		bin++;
 	}
 	return (0);
-}
-
-char	*find_bin_with_env(char *bin, t_command *global_command)
-{
-	char	*full_bin;
-	char	**paths;
-	int		i;
-
-	i = 0;
-	paths = get_paths(global_command->env_arr);
-	full_bin = ft_strjoin(paths[0], bin);
-	while (open(full_bin, O_RDONLY) == -1)
-	{
-		free(full_bin);
-		if (paths[++i] == 0)
-		{
-			free_strs(paths);
-			global_command->ret = err_msg(bin, 2);
-			return (NULL);
-		}
-		full_bin = ft_strjoin(paths[i], bin);
-	}
-	free_strs(paths);
-	return (full_bin);
-}
-
-char	*find_bin(char *bin, t_command *global_command)
-{
-	if (has_path(bin))
-		return (ft_strdup(bin));
-	else
-		return (find_bin_with_env(bin, global_command));
 }
 
 void	exec_child(t_command *cmd, char *envp[], char *bin, char **params)

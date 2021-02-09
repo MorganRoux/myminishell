@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 09:51:25 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/30 09:57:28 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/02/09 10:57:45 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,35 @@ void	print_lst_str(t_list_str *strs)
 	}
 }
 
+void	print_cmd_sup(t_command *cmd, int *i, t_list_str *lst)
+{
+	ft_printf("\n-----\nExec:%s:\n", cmd->exec);
+	*i = 0;
+	lst = cmd->args;
+	while (lst != 0)
+	{
+		ft_printf("Arg%d:%s:\n", *i, lst->content);
+		lst = lst->next;
+		(*i)++;
+	}
+	*i = 0;
+	lst = cmd->files_in;
+	while (lst != 0)
+	{
+		ft_printf("Fdin%d:%s:\n", *i, lst->content);
+		lst = lst->next;
+		(*i)++;
+	}
+	*i = 0;
+	lst = cmd->files_out;
+	while (lst != 0)
+	{
+		ft_printf("Fdout%d:%s:\n", *i, lst->content);
+		lst = lst->next;
+		(*i)++;
+	}
+}
+
 void	print_cmd(t_command *cmd)
 {
 	int			i;
@@ -37,31 +66,8 @@ void	print_cmd(t_command *cmd)
 
 	if (cmd == NULL)
 		return ;
-	ft_printf("\n-----\nExec:%s:\n", cmd->exec);
-	i = 0;
-	lst = cmd->args;
-	while (lst != 0)
-	{
-		ft_printf("Arg%d:%s:\n", i, lst->content);
-		lst = lst->next;
-		i++;
-	}
-	i = 0;
-	lst = cmd->files_in;
-	while (lst != 0)
-	{
-		ft_printf("Fdin%d:%s:\n", i, lst->content);
-		lst = lst->next;
-		i++;
-	}
-	i = 0;
-	lst = cmd->files_out;
-	while (lst != 0)
-	{
-		ft_printf("Fdout%d:%s:\n", i, lst->content);
-		lst = lst->next;
-		i++;
-	}
+	lst = NULL;
+	print_cmd_sup(cmd, &i, lst);
 	i = 0;
 	lst = cmd->files_append;
 	while (lst != 0)

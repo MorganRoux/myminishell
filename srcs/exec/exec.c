@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 14:23:44 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/02/07 18:24:40 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/02/09 09:56:24 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,17 +93,6 @@ int		exec(t_command *global_cmd, t_list_cmd *cmds)
 		free_strs(cmd);
 	}
 	return (0);
-}
-
-void	link_commands(t_list_cmd *last_cmd, t_list_cmd *new_cmd)
-{
-	t_command	*last_content;
-	t_command	*new_content;
-
-	new_content = new_cmd->content;
-	last_content = last_cmd->content;
-	if (last_content->pipe != NULL)
-		new_content->prev = last_cmd->content;
 }
 
 void	exec_loop(char *line, t_command *global_command)
