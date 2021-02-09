@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parce4.c                                           :+:      :+:    :+:   */
+/*   parse4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:14:47 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/02/09 10:19:31 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/02/09 13:14:31 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ char		*solve_dollards(char *str, t_command *global_command)
 	return (start);
 }
 
-void		insert_word(t_list_cmd **cur, char *word, t_command *global_command)
+void		insert_word(t_list_cmd **cur, char *word, t_command *gc)
 {
 	char		*str;
 	t_command	*cmd;
 	t_list_str	*arg;
 
-	(void)global_command;
+	(void)gc;
 	str = ft_strdup(word);
 	str = solve_quotings(str);
 	cmd = (*cur)->content;

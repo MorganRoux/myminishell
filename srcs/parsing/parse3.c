@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parce3.c                                           :+:      :+:    :+:   */
+/*   parse3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:14:42 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/02/09 10:18:10 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/02/09 13:12:54 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char		*extract_var_name(char *str)
 	return (name);
 }
 
-char		*do_replace(char **start, char **str, t_command *global_command)
+char		*do_replace(char **start, char **str, t_command *gc)
 {
 	char	*var_name;
 	char	*var_value;
@@ -58,9 +58,9 @@ char		*do_replace(char **start, char **str, t_command *global_command)
 
 	var_name = extract_var_name(*str);
 	if (*var_name == '?')
-		var_value = ft_itoa(global_command->ret);
+		var_value = ft_itoa(gc->ret);
 	else
-		var_value = get_var(global_command->env_arr, var_name);
+		var_value = get_var(gc->env_arr, var_name);
 	if (!(new = (char *)malloc(sizeof(char) * (ft_strlen(*start)
 				- ft_strlen(var_name + 1) + ft_strlen(var_value)))))
 		return (NULL);
@@ -75,7 +75,7 @@ char		*do_replace(char **start, char **str, t_command *global_command)
 	return (new);
 }
 
-int			replace_var(char **str, char **start, t_command *global_command)
+int			replace_var(char **str, char **start, t_command *gc)
 {
 	char	*new;
 
@@ -84,7 +84,7 @@ int			replace_var(char **str, char **start, t_command *global_command)
 		*str = *str + 1;
 		return (0);
 	}
-	if ((new = do_replace(start, str, global_command)) == NULL)
+	if ((new = do_replace(start, str, gc)) == NULL)
 		return (-1);
 	free(*start);
 	*start = new;

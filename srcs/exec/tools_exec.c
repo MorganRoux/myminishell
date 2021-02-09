@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 09:51:50 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/02/09 10:00:40 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/02/09 13:09:39 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 ** If found, return the whole path of the command
 */
 
-char	*find_bin_with_env(char *bin, t_command *global_command)
+char	*find_bin_with_env(char *bin, t_command *gc)
 {
 	char	*full_bin;
 	char	**paths;
 	int		i;
 
 	i = 0;
-	paths = get_paths(global_command->env_arr);
+	paths = get_paths(gc->env_arr);
 	full_bin = ft_strjoin(paths[0], bin);
 	while (open(full_bin, O_RDONLY) == -1)
 	{
@@ -35,7 +35,7 @@ char	*find_bin_with_env(char *bin, t_command *global_command)
 		if (paths[++i] == 0)
 		{
 			free_strs(paths);
-			global_command->ret = err_msg(bin, 2);
+			gc->ret = err_msg(bin, 2);
 			return (NULL);
 		}
 		full_bin = ft_strjoin(paths[i], bin);
@@ -56,15 +56,15 @@ char	*find_bin(char *bin, t_command *global_command)
 ** void	link_commands - from exec.c
 */
 
-void	link_commands(t_list_cmd *last_cmd, t_list_cmd *new_cmd)
+void	link_commands(t_list_cmd *l_cmd, t_list_cmd *new_cmd)
 {
 	t_command	*last_content;
 	t_command	*new_content;
 
 	new_content = new_cmd->content;
-	last_content = last_cmd->content;
+	last_content = l_cmd->content;
 	if (last_content->pipe != NULL)
-		new_content->prev = last_cmd->content;
+		new_content->prev = l_cmd->content;
 }
 
 /*

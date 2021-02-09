@@ -6,7 +6,7 @@
 /*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 12:35:37 by mroux             #+#    #+#             */
-/*   Updated: 2021/02/09 10:37:18 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/02/09 13:17:42 by alkanaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,9 @@ void					exec_loop(char *line, t_command *g_globstruct);
 int						exec(t_command *mimi, t_list_cmd *cmds);
 char					*find_bin(char *bin, t_command *global_command);
 int						exec_command(t_command *cmd, t_command *global);
-char					*find_bin_with_env(char *bin, t_command *global_command);
+char					*find_bin_with_env(char *bin, t_command *gc);
 char					*find_bin(char *bin, t_command *global_command);
-void					link_commands(t_list_cmd *last_cmd, t_list_cmd *new_cmd);
+void					link_commands(t_list_cmd *l_cmd, t_list_cmd *new_cmd);
 int						*open_fds_in(t_command *content);
 int						solve_dquotes(char **str, char **content);
 int						solve_squotes(char **str, char **content);
@@ -133,19 +133,23 @@ int						solve_word(char **str, char **content);
 char					*solve_quotings(char *content);
 t_list_str				*parse_fdin(t_list_str *tkn, t_list_cmd **cur);
 char					*extract_var_name(char *str);
-char					*do_replace(char **start, char **str, t_command *global_command);
-int						replace_var(char **str, char **start, t_command *global_command);
+char					*do_replace(char **start, char **str, t_command *gc);
+int						replace_var(char **str, char **start, t_command *gc);
 void					skip_squotes(char **str);
 char					*solve_dollards(char *str, t_command *global_command);
-void					insert_word(t_list_cmd **cur, char *word, t_command *global_command);
+void					insert_word(t_list_cmd **cur, char *word,
+									t_command *gc);
 t_list_str				*parse_fdout(t_list_str *tkn, t_list_cmd **cur);
 int						setup_pipe(t_list_cmd **cur);
 int						create_piped_command(t_list_cmd **cur);
 t_list_str				*parse_pipe(t_list_str *tkn, t_list_cmd **cur);
 t_list_str				*parse_coma(t_list_str *tkn, t_list_cmd **cur);
-t_list_str				*parse_meta(t_list_str *tkn, t_list_cmd **cur, t_command *gc);
-t_list_str				*parse_word(t_list_str *tkn, t_list_cmd **cur, t_command *gc);
-t_list_cmd				*parse_tokens(t_list_str *tokens, t_command *global_command);
+t_list_str				*parse_meta(t_list_str *tkn, t_list_cmd **cur,
+									t_command *gc);
+t_list_str				*parse_word(t_list_str *tkn, t_list_cmd **cur,
+									t_command *gc);
+t_list_cmd				*parse_tokens(t_list_str *tokens,
+									t_command *global_command);
 void					testfree(void *param);
 int						display_error(char *err);
 int						is_blank(char *str);
@@ -156,7 +160,8 @@ t_list_cmd				*parse(char *line, t_command *global_command);
 int						check_errors(char *line, t_command *global_command);
 int						err_msg(char *com, int err);
 int						has_path(char *bin);
-void					exec_child(t_command *cmd, char *envp[], char *bin, char **params);
+void					exec_child(t_command *cmd, char *envp[],
+									char *bin, char **params);
 int						exec_parent(pid_t pid, char *bin, t_command *cmd);
 int						exec_command(t_command *cmd, t_command *global_command);
 
@@ -212,6 +217,12 @@ void					free_cmds(t_list_cmd *cmds);
 void					free_cmd(void *param);
 char					**get_paths(char *envp[]);
 char					**split_commands(char *line);
+int						is_sep(char c);
+char					**ftt_split(char const *s);
+int						command_len(char *s);
+t_list_str				*split_commandss(char *s);
+char					**split_commands(char *line);
+
 /*
 ** List
 */
