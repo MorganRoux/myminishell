@@ -25,6 +25,8 @@ t_list_cmd	*ft_lstinit(void)
 	cmd->files_out = NULL;
 	cmd->files_append = NULL;
 	cmd->pipe = NULL;
+	cmd->fd_in = NULL;
+	cmd->fd_out = NULL;
 	pipe(cmd->flux_in);
 	pipe(cmd->flux_out);
 	cmd->prev = NULL;
