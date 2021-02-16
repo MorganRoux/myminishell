@@ -202,7 +202,8 @@ char					*get_var(char *envp[], char *var);
 /*
 ** Utils
 */
-
+int     				ft_isalpha_u(char c);
+int     				ft_isalnum_u(char c);
 void					print_strs(char **strs);
 void					print_lst_str(t_list_str *strs);
 void					print_cmd(t_command *cmd);

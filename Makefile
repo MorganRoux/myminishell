@@ -31,6 +31,7 @@ SRCS		=	srcs/main.c \
 				srcs/utils/tokens/is_meta.c \
 				srcs/utils/split_commands/split_commands.c \
 				srcs/utils/split_commands/s_c_sup.c \
+				srcs/utils/ft_isalpha_u/ft_isalpha_u.c \
 				srcs/built_ins/cd.c \
 				srcs/built_ins/echo.c \
 				srcs/built_ins/env.c \

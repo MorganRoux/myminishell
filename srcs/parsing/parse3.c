@@ -42,7 +42,7 @@ char		*extract_var_name(char *str)
 		name = ft_strdup("?");
 		return (name);
 	}
-	while (str[i] != 0 && ft_isalnum(str[i]) == 1)
+	while (str[i] != 0 && ft_isalnum_u(str[i]) == 1)
 		i++;
 	if (!(name = (char *)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
@@ -79,7 +79,7 @@ int			replace_var(char **str, char **start, t_command *gc)
 {
 	char	*new;
 
-	if ((!ft_isalpha(*(*str + 1)) && (*(*str + 1) != '?')))
+	if ((!ft_isalpha_u(*(*str + 1)) && (*(*str + 1) != '?')))
 	{
 		*str = *str + 1;
 		return (0);
