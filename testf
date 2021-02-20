@@ -1,0 +1,12 @@
+incs
+libftprintf.a
+libs
+Makefile
+minishell
+minishell-tester
+minishell_unit_test
+srcs
+test
+testa
+testb
+testf

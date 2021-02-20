@@ -105,6 +105,7 @@ void					echo(t_command *global_command, t_command *cmd);
 void   					env(t_command *global_command, t_command *cmd);
 void    				pwd(t_command *global_command, t_command *cmd);
 void    				cd(t_command *global_command, t_command *cmd);
+void    				unset(t_command *global_command, t_command *cmd);
 void    				do_exit(t_command *global_command, t_command *cmd);
 /*
 ** Parsing
@@ -207,6 +208,7 @@ int						is_pipe_out(t_command *cmd);
 */
 
 char					*get_var(char *envp[], char *var);
+int						get_var_index(char *envp[], char *text);
 
 /*
 ** Utils

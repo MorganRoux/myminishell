@@ -12,6 +12,26 @@
 
 #include "minishell.h"
 
+
+int		get_var_index(char *envp[], char *text)
+{
+	char	*var;
+	int		i;
+
+	i = 0;
+	var = ft_strjoin(text, "=");
+	while (ft_strnstr(envp[i], var, ft_strlen(var)) == NULL)
+	{
+		if (envp[++i] == 0)
+		{
+			free(var);
+			return (-1);
+		}
+	}
+	free(var);
+	return (i);
+}
+
 char	*get_var(char *envp[], char *text)
 {
 	char	*res;
