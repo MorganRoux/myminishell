@@ -29,13 +29,13 @@ char    **unset_from_env(char *env[], int index)
 
 
 }
-void    unset(t_command *global_command, t_command *cmd)
+int    unset(t_command *global_command, t_command *cmd)
 {
     t_list_str  *args;
-    int        index;
+    int         index;
 
     if ((args = cmd->args) == NULL)
-        return;
+        return (0);
     while (args != NULL)
     {
         index = get_var_index(global_command->env_arr, args->content);
@@ -43,4 +43,5 @@ void    unset(t_command *global_command, t_command *cmd)
             global_command->env_arr = unset_from_env(global_command->env_arr, index);
         args = args->next;
     }
+    return (0);
 }

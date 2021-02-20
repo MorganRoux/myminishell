@@ -24,17 +24,18 @@ int     check_export_arg(char *arg)
     return (1);
 }
 
-void    export(t_command *global_command, t_command *cmd)
+int     export(t_command *global_command, t_command *cmd)
 {
     t_list_str  *args;
 
     if((args = cmd->args) == NULL)
-        return ;
+        return (0);
     while (args != NULL)
     {
         if (!check_export_arg(args->content))
-            return ;
+            return (2);
         global_command->env_arr = add_to_env(global_command->env_arr, args->content);
         args = args->next;
     }
+    return (0);
 }

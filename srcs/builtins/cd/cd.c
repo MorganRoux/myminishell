@@ -41,19 +41,23 @@ char    *replace_tilde(char *new_dir, t_command *global_command)
     return (ret);
 }
 
-void    cd(t_command *global_command, t_command *cmd)
+int    cd(t_command *global_command, t_command *cmd)
 {
     char    *new_dir;
-
+    if (cmd->args == NULL)
+        return 0;    
     if ((new_dir = check_and_extract_cd_argument(cmd)) == NULL)
     {
         ft_printf("error");
-        return;
+        return (2);
     }
     if(new_dir[0] == '~')
         new_dir = replace_tilde(new_dir, global_command);
     if (chdir(new_dir) == -1)
+    {
         ft_printf("error\n");
+        return (2);
+    }
     free(new_dir);
-    global_command->ret = 0;
+    return (0);
 }

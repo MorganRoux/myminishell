@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void    pwd(t_command *global_command, t_command *cmd)
+int    pwd(t_command *global_command, t_command *cmd)
 {
     (void)cmd;
     char    *cwd;
@@ -8,5 +8,5 @@ void    pwd(t_command *global_command, t_command *cmd)
     cwd = getcwd(NULL, 0);
     ft_printf("%s\n", cwd);
     free(cwd);
-    global_command->ret = 0;
+    return (0);
 }

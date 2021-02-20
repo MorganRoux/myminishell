@@ -15,36 +15,20 @@
 int		do_built_ins(t_command *global_cmd, t_command *cmd)
 {
 	if (!ft_strcmp(cmd->exec, "echo"))
-		echo(global_cmd, cmd);
+		return(echo(global_cmd, cmd));
 	if (!ft_strcmp(cmd->exec, "env"))
-		env(global_cmd, cmd);
+		return(env(global_cmd, cmd));
 	if (!ft_strcmp(cmd->exec, "pwd"))
-		pwd(global_cmd, cmd);
+		return(pwd(global_cmd, cmd));
 	if (!ft_strcmp(cmd->exec, "cd"))
-		cd(global_cmd, cmd);
+		return(cd(global_cmd, cmd));
 	if (!ft_strcmp(cmd->exec, "exit"))
 		do_exit(global_cmd, cmd);
 	if (!ft_strcmp(cmd->exec, "unset"))
-		unset(global_cmd, cmd);
+		return(unset(global_cmd, cmd));
 	if (!ft_strcmp(cmd->exec, "export"))
-		export(global_cmd, cmd);
-	// 	com_echo(global_cmd, cmd);
-	// else if (!ft_strcmp(cmd[0], "cd"))
-	// 	com_cd(global_cmd, cmd);
-	// else if (!ft_strcmp(cmd[0], "env"))
-	// 	com_env(global_cmd);
-	// else if (!ft_strcmp(cmd[0], "pwd"))
-	// 	com_pwd(global_cmd);
-	// else if (!ft_strcmp(cmd[0], "exit"))
-	// 	com_exit(global_cmd, cmd);
-	// else if (!ft_strcmp(cmd[0], "unset"))
-	// 	com_unset(global_cmd, cmd);
-	// else if (!ft_strcmp(cmd[0], "export"))
-	// 	com_export(global_cmd, cmd);
-	// else
-	// 	return (1);
-
-	return (global_cmd->ret);
+		return(export(global_cmd, cmd));
+	return (0);
 }
 
 int		exec_built_ins(t_command *global_cmd, t_command *cur_cmd)

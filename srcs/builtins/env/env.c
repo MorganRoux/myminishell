@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void    env(t_command *global_command, t_command *cmd)
+int    env(t_command *global_command, t_command *cmd)
 {
     char    **env;
 
@@ -13,6 +13,5 @@ void    env(t_command *global_command, t_command *cmd)
         ft_printf("%s\n", *env);
         env++;
     }
-    global_command->ret = 0;
-    return ;
+    return (0);
 }
