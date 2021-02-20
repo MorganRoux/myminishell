@@ -1,18 +1,32 @@
 #include "minishell.h"
 
+int     is_option_n(t_list_str *args)
+{
+    return (ft_strcmp(args->content, "-n") == 0 ? 1 : 0);
+}
+
 void    echo(t_command *global_command, t_command *cmd)
 {
     t_list_str  *args;
-    (void)global_command;
+    int         option_n;
 
-    args = cmd->args;
+    option_n = 0;
+    global_command->ret = 0;
+    if ((args = cmd->args) == NULL)
+        return;
+    if (is_option_n(args))
+    {
+        option_n = 1;
+        args = args->next;
+    }
     while (args != NULL)
     {
         ft_printf(args->content);
         args = args->next;
         if (args != NULL)
-            ft_printf(" ");
+            ft_printf(" "); 
     }
-    ft_printf("\n");
+    if (option_n == 0)
+        ft_printf("\n");
     return ;
 }
