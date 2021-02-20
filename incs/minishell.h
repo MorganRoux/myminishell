@@ -104,6 +104,7 @@ typedef struct			s_fl
 void					echo(t_command *global_command, t_command *cmd);
 void   					env(t_command *global_command, t_command *cmd);
 void    				pwd(t_command *global_command, t_command *cmd);
+void    				cd(t_command *global_command, t_command *cmd);
 /*
 ** Parsing
 */
