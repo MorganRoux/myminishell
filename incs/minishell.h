@@ -98,6 +98,12 @@ typedef struct			s_fl
 }						t_fl;
 
 /*
+** init
+*/
+
+void    				init_globals(char *envp[]);
+void    				signal_callback(int signumber);
+/*
 ** builtins
 */
 
@@ -108,6 +114,7 @@ void    				cd(t_command *global_command, t_command *cmd);
 void    				export(t_command *global_command, t_command *cmd);
 void    				unset(t_command *global_command, t_command *cmd);
 void    				do_exit(t_command *global_command, t_command *cmd);
+
 /*
 ** Parsing
 */

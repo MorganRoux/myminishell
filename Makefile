@@ -51,7 +51,8 @@ SRCS		=	srcs/main.c \
 				srcs/builtins/cd/cd.c \
 				srcs/builtins/exit/exit.c \
 				srcs/builtins/unset/unset.c \
-				srcs/builtins/export/export.c
+				srcs/builtins/export/export.c \
+				srcs/utils/init/init.c 
 
 SRCS_PG		=	playground/main.c
 
