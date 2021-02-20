@@ -105,6 +105,7 @@ void					echo(t_command *global_command, t_command *cmd);
 void   					env(t_command *global_command, t_command *cmd);
 void    				pwd(t_command *global_command, t_command *cmd);
 void    				cd(t_command *global_command, t_command *cmd);
+void    				export(t_command *global_command, t_command *cmd);
 void    				unset(t_command *global_command, t_command *cmd);
 void    				do_exit(t_command *global_command, t_command *cmd);
 /*
@@ -213,6 +214,7 @@ int						get_var_index(char *envp[], char *text);
 /*
 ** Utils
 */
+int     				get_strs_len(char **strs);
 int     				ft_isalpha_u(char c);
 int     				ft_isalnum_u(char c);
 void					print_strs(char **strs);

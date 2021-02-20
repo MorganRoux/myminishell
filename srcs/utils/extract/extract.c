@@ -12,6 +12,18 @@
 
 #include "minishell.h"
 
+int     get_strs_len(char **strs)
+{
+    int i;
+
+    i = 0;
+    if (strs == 0)
+        return 0;
+    while (strs[i] != NULL)
+        i++;
+    return (i);
+}
+
 char	**list2char(t_list_str *lst)
 {
 	char		**strs;

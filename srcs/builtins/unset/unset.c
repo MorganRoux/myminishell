@@ -1,17 +1,5 @@
 #include "minishell.h"
 
-int     get_strs_len(char **strs)
-{
-    int i;
-
-    i = 0;
-    if (strs == 0)
-        return 0;
-    while (strs[i] != NULL)
-        i++;
-    return (i);
-}
-
 char    **unset_from_env(char *env[], int index)
 {
     char    **new_env;
@@ -46,9 +34,6 @@ void    unset(t_command *global_command, t_command *cmd)
     t_list_str  *args;
     int        index;
 
-    (void)global_command;
-    (void)cmd;
-    (void)index;
     if ((args = cmd->args) == NULL)
         return;
     while (args != NULL)
