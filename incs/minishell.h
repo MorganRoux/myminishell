@@ -102,6 +102,7 @@ typedef struct			s_fl
 */
 
 void					echo(t_command *global_command, t_command *cmd);
+void   					env(t_command *global_command, t_command *cmd);
 /*
 ** Parsing
 */
@@ -254,7 +255,7 @@ void					com_cd(t_command *mimi, char **cmd);
 int						cnt_com_parts(char **str);
 int						check_nl(char *cmds);
 void					com_echo_sup(int k, int i, int argc, char **cmds);
-void					com_echo(t_command *mimi, char **cmds);
+//void					com_echo(t_command *mimi, char **cmds);
 void					arr_cleaner(char **str);
 int						ind_of_envvar(t_command *mimi, char *var);
 void					del_envvar(t_command *mimi, char *var);
@@ -264,7 +265,7 @@ void					envvar_print(char *env_arr);
 void					envvar_pr_sort(t_command *mimi);
 void					strdel(char **s);
 void					env_filling(char **envp, t_command *g_globstruct);
-void					com_env(t_command *mimi);
+//void					com_env(t_command *mimi);
 // int						exec_built_ins(t_command *mimi, char **cmd,
 // 									t_command *cur_cmd);
 int						arg_checker(char *str);
