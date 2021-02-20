@@ -22,6 +22,8 @@ int		do_built_ins(t_command *global_cmd, t_command *cmd)
 		pwd(global_cmd, cmd);
 	if (!ft_strcmp(cmd->exec, "cd"))
 		cd(global_cmd, cmd);
+	if (!ft_strcmp(cmd->exec, "exit"))
+		do_exit(global_cmd, cmd);
 	// 	com_echo(global_cmd, cmd);
 	// else if (!ft_strcmp(cmd[0], "cd"))
 	// 	com_cd(global_cmd, cmd);
