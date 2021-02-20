@@ -7,7 +7,7 @@ int    env(t_command *global_command, t_command *cmd)
     (void)cmd;
     env = global_command->env_arr;
     if (env == NULL)
-        return ;
+        return (0);
     while (*env != NULL)
     {
         ft_printf("%s\n", *env);
