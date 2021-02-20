@@ -18,6 +18,8 @@ int		do_built_ins(t_command *global_cmd, t_command *cmd)
 		echo(global_cmd, cmd);
 	if (!ft_strcmp(cmd->exec, "env"))
 		env(global_cmd, cmd);
+	if (!ft_strcmp(cmd->exec, "pwd"))
+		pwd(global_cmd, cmd);
 	// 	com_echo(global_cmd, cmd);
 	// else if (!ft_strcmp(cmd[0], "cd"))
 	// 	com_cd(global_cmd, cmd);
