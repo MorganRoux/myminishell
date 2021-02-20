@@ -86,7 +86,6 @@ int		main(int argc, char *argv[], char *envp[])
 	while (i != 0)
 	{
 		prompt(&g_globstruct);
-		sig_manag();
 		if ((i = get_next_line(0, &line, &g_globstruct)) == -1)
 			break ;
 		exec_loop(line, &g_globstruct);

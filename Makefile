@@ -44,7 +44,8 @@ SRCS		=	srcs/main.c \
 				srcs/built_ins/sig.c \
 				srcs/built_ins/tools.c \
 				srcs/built_ins/env_manag.c \
-				srcs/built_ins/env_manage2.c
+				srcs/built_ins/env_manage2.c \
+				srcs/builtins/echo/echo.c
 
 SRCS_PG		=	playground/main.c
 
