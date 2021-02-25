@@ -87,10 +87,15 @@ int		main(int argc, char *argv[], char *envp[])
 	{
 		prompt(&g_globstruct);
 		sig_manag();
-		if ((i = get_next_line(0, &line, &g_globstruct)) == -1)
+		if ((i = get_next_line(0, &line, &g_globstruct)) == 0)
 			break ;
 		exec_loop(line, &g_globstruct);
 		free(line);
 	}
-	return (0);
+	free(line);
+	ft_printf("exit\n");
+    if (g_globstruct.ret == 0)
+        return (0);
+    errno = g_globstruct.ret;
+	return (errno);
 }

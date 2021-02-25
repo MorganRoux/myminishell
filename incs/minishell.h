@@ -113,7 +113,7 @@ int	    				pwd(t_command *global_command, t_command *cmd);
 int	    				cd(t_command *global_command, t_command *cmd);
 int		   				export(t_command *global_command, t_command *cmd);
 int	    				unset(t_command *global_command, t_command *cmd);
-void	    				do_exit(t_command *global_command, t_command *cmd);
+void	    			do_exit(t_command *global_command, t_command *cmd);
 
 /*
 ** Parsing

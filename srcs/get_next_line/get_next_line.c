@@ -16,7 +16,7 @@
 int		get_next_line_loop(t_fl *fl, t_command *mimi, char **line)
 {
 	int	ln;
-
+	(void)mimi;
 	ln = 0;
 	while ((ln = find_line(fl)) == -1)
 	{
@@ -26,7 +26,7 @@ int		get_next_line_loop(t_fl *fl, t_command *mimi, char **line)
 		if ((fl->bytes_read = read(fl->fd, fl->buffer, BUFFER_SIZE)) < 0)
 		{
 			if (fl->bytes_read == 0 && *line == NULL)
-				close_mimi(mimi, 1);
+				return (0);//close_mimi(mimi, 1);
 			reinit(fl);
 			return (fl->bytes_read);
 		}
@@ -38,6 +38,7 @@ int		get_next_line_loop(t_fl *fl, t_command *mimi, char **line)
 
 int		get_next_line(int fd, char **line, t_command *mimi)
 {
+	(void)mimi;
 	static t_fl		fl;
 
 	if (init(&fl, fd, line) == 0)
@@ -45,8 +46,8 @@ int		get_next_line(int fd, char **line, t_command *mimi)
 	if (fl.pos == 0 &&
 		(fl.bytes_read = read(0, fl.buffer, BUFFER_SIZE)) <= 0)
 	{
-		if (fl.bytes_read == 0)
-			close_mimi(mimi, mimi->ret);
+		//if (fl.bytes_read == 0)
+		//	close_mimi(mimi, mimi->ret);
 		return (fl.bytes_read);
 	}
 	return (get_next_line_loop(&fl, mimi, line));
