@@ -20,15 +20,21 @@ void	env_filling(char **envp, t_command *mimi)
 	int			len;
 
 	i = 0;
-	len = cnt_com_parts(envp);
+	len = get_strs_len(envp);
 	mimi->env_arr = (char **)ft_calloc(sizeof(char *), (len + 1));
 	if (!(mimi->env_arr))
-		close_mimi(mimi, 1);
+	{
+		ft_printf("exit");
+		exit(1);
+	}
 	while (envp[i])
 	{
 		mimi->env_arr[i] = ft_strdup(envp[i]);
 		if (!(mimi->env_arr))
-			close_mimi(mimi, 1);
+		{
+			ft_printf("exit");
+			exit(1);
+		}
 		i++;
 	}
 }

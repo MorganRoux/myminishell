@@ -37,8 +37,8 @@ void	close_mimi(t_command *mimi, int ret)
 	// 	arr_cleaner(mimi->env_arr);
 	// if (mimi->dir_now)
 	// 	free(mimi->dir_now);
-	if (mimi)
-		mimi = NULL;
+	// if (mimi)
+	// 	mimi = NULL;
 	ft_putstr_fd("exit\n", STDERR_FILENO);
 	exit(ret);
 }

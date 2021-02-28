@@ -41,9 +41,9 @@ SRCS		=	srcs/main.c \
 				srcs/builtins/exit/exit.c \
 				srcs/builtins/unset/unset.c \
 				srcs/builtins/export/export.c \
-				srcs/builtins/signal/signal.c \
-				srcs/built_ins/echo.c \
-				srcs/built_ins/exit.c 
+				srcs/builtins/signal/signal.c 
+				# srcs/built_ins/echo.c 
+				# srcs/built_ins/exit.c 
 				# srcs/built_ins/cd.c \
 				# srcs/built_ins/env.c \
 				# srcs/built_ins/export.c \
