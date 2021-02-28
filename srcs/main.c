@@ -12,7 +12,6 @@
 
 #include "../incs/minishell.h"
 
-t_command	g_globstruct;
 
 // void	env_filling(char **envp, t_command *mimi)
 // {
@@ -58,7 +57,7 @@ int		main(int argc, char *argv[], char *envp[])
 	(void)argv;
 	line = NULL;
 	i = 1;
-	init_globals(envp, &g_globstruct);
+	init_globals(envp);
 	// ft_bzero(&g_globstruct, sizeof(t_command));
 	// env_filling(envp, &g_globstruct);
 	signal_callback();
@@ -66,9 +65,9 @@ int		main(int argc, char *argv[], char *envp[])
 	{
 		prompt();
 		signal_callback();
-		if ((i = get_next_line(0, &line, &g_globstruct)) == 0)
+		if ((i = get_next_line(0, &line)) == 0)
 			break ;
-		exec_loop(line, &g_globstruct);
+		exec_loop(line);
 		free(line);
 	}
 	free(line);

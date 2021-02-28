@@ -12,8 +12,6 @@
 
 #include "minishell.h"
 
-t_command	g_globstruct;
-
 int		is_meta_char(char c)
 {
 	char	*metacharacter;

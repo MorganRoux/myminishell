@@ -76,10 +76,14 @@ typedef struct			s_command
 	int					flux_out[2];
 	struct s_command	*prev;
 	int					status;
+}						t_command;
+
+typedef struct			s_globals
+{
 	char				**env_arr;
 	int					ret;
 	pid_t				pid;
-}						t_command;
+}						t_globals;
 
 /*
 ** gnl
@@ -94,10 +98,15 @@ typedef struct			s_fl
 }						t_fl;
 
 /*
+** globals
+*/
+
+t_globals	g_globstruct;
+/*
 ** init
 */
 
-void    				init_globals(char *envp[], t_command *g_globstruct);
+void    				init_globals(char *envp[]);
 void    				signal_callback();
 /*
 ** builtins
@@ -257,7 +266,7 @@ void					sig_manag(void);
 int						err_msg(char *cmd, int code);
 
 
-int						get_next_line(int fd, char **line, t_command *mimi);
+int						get_next_line(int fd, char **line);
 int						find_line(t_fl *fl);
 char					*ft_strnjoin(char *s1, char const *s2, size_t n);
 int						init(t_fl *fl, int fd, char **line);

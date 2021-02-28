@@ -2,17 +2,17 @@
 
 t_command	g_globstruct;
 
-void    init_globals(char *envp[], t_command *g_globstruct)
+void    init_globals(char *envp[])
 {
     int len;
     int i;
 
     i = -1;
-    ft_bzero(g_globstruct, sizeof(t_command));
+    ft_bzero(&g_globstruct, sizeof(t_command));
     len = get_strs_len(envp);
-    g_globstruct->env_arr = (char **) calloc(sizeof(char *), (len + 1));
+    g_globstruct.env_arr = (char **) calloc(sizeof(char *), (len + 1));
     while (++i < len)
-        g_globstruct->env_arr[i] = ft_strdup(envp[i]);
+        g_globstruct.env_arr[i] = ft_strdup(envp[i]);
 }
 
 /*

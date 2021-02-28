@@ -11,12 +11,10 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 
-int		get_next_line_loop(t_fl *fl, t_command *mimi, char **line)
+int		get_next_line_loop(t_fl *fl, char **line)
 {
 	int	ln;
-	(void)mimi;
 	ln = 0;
 	while ((ln = find_line(fl)) == -1)
 	{
@@ -26,7 +24,7 @@ int		get_next_line_loop(t_fl *fl, t_command *mimi, char **line)
 		if ((fl->bytes_read = read(fl->fd, fl->buffer, BUFFER_SIZE)) < 0)
 		{
 			if (fl->bytes_read == 0 && *line == NULL)
-				return (0);//close_mimi(mimi, 1);
+				return (0);
 			reinit(fl);
 			return (fl->bytes_read);
 		}
@@ -36,19 +34,14 @@ int		get_next_line_loop(t_fl *fl, t_command *mimi, char **line)
 	return (1);
 }
 
-int		get_next_line(int fd, char **line, t_command *mimi)
+int		get_next_line(int fd, char **line)
 {
-	(void)mimi;
 	static t_fl		fl;
 
 	if (init(&fl, fd, line) == 0)
 		return (-1);
 	if (fl.pos == 0 &&
 		(fl.bytes_read = read(0, fl.buffer, BUFFER_SIZE)) <= 0)
-	{
-		//if (fl.bytes_read == 0)
-		//	close_mimi(mimi, mimi->ret);
 		return (fl.bytes_read);
-	}
-	return (get_next_line_loop(&fl, mimi, line));
+	return (get_next_line_loop(&fl, line));
 }
