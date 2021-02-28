@@ -39,33 +39,14 @@ void	env_filling(char **envp, t_command *mimi)
 	}
 }
 
-/*
-** update cwd in the structure
-*/
-
-// void	upd_cwd(t_command *mimi, char *cwd)
-// {
-// 	if (mimi->dir_now)
-// 		free(mimi->dir_now);
-// 	mimi->dir_now = ft_strdup(cwd);
-// }
-
-/*
-** /Users/alina9012/Desktop/folder_now $ // or we can leave just a $
-*/
-
-void	prompt(t_command *mimi)
+void	prompt()
 {
 	char		*cwd;
-	(void)mimi;
+
 	cwd = getcwd(NULL, 0);
-	// if (!cwd && mimi->dir_now)
-	// 	cwd = ft_strdup(mimi->dir_now);
 	ft_putstr_fd(cwd, 2);
 	ft_putstr_fd(" $ ", 2);
 	free(cwd);
-	// upd_cwd(mimi, cwd);
-	// strdel(&cwd);
 }
 
 int		main(int argc, char *argv[], char *envp[])
@@ -79,11 +60,11 @@ int		main(int argc, char *argv[], char *envp[])
 	i = 1;
 	ft_bzero(&g_globstruct, sizeof(t_command));
 	env_filling(envp, &g_globstruct);
-	sig_manag();
+	signal_callback();
 	while (i != 0)
 	{
-		prompt(&g_globstruct);
-		sig_manag();
+		prompt();
+		signal_callback();
 		if ((i = get_next_line(0, &line, &g_globstruct)) == 0)
 			break ;
 		exec_loop(line, &g_globstruct);

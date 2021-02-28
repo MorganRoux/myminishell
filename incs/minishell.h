@@ -98,7 +98,7 @@ typedef struct			s_fl
 */
 
 void    				init_globals(char *envp[]);
-void    				signal_callback(int signumber);
+void    				signal_callback();
 /*
 ** builtins
 */
@@ -250,75 +250,12 @@ char					**split_commands(char *line);
 t_list_cmd				*ft_lstinit();
 t_list					*ft_lstof(t_list *lst, int index);
 
-/*
-** buit-ins, signals and stuff around
-*/
-
-void					upd_newenv2(t_command *mimi, char *env_upd);
-void					upd_newenv2_sup(t_command *mimi, char **tmp, int j);
-void					c_exp_sup(t_command *mimi, char **cmd, int k, int len);
-int						ft_itsokay(int c);
-int						c_exp_sup2(t_command *mimi, char **cmd, int k);
-void					c_exp_sup3(t_command *mimi, char **cmd, int *k,
-								int *len);
-
-void					dirnow_update(t_command *mimi, char *dir_now);
-char					*parh_checker(t_command *mimi, char *cmd);
-void					cd_err_case(t_command *mimi, char *str, int err_code);
-void					com_cd(t_command *mimi, char **cmd);
-int						cnt_com_parts(char **str);
-int						check_nl(char *cmds);
-void					com_echo_sup(int k, int i, int argc, char **cmds);
-//void					com_echo(t_command *mimi, char **cmds);
-void					arr_cleaner(char **str);
-int						ind_of_envvar(t_command *mimi, char *var);
-void					del_envvar(t_command *mimi, char *var);
-void					envvar_update(t_command *mimi, char *var);
-void					envvar_sort(char **env_arr, int len);
-void					envvar_print(char *env_arr);
-void					envvar_pr_sort(t_command *mimi);
-void					strdel(char **s);
-void					env_filling(char **envp, t_command *g_globstruct);
-//void					com_env(t_command *mimi);
-// int						exec_built_ins(t_command *mimi, char **cmd,
-// 									t_command *cur_cmd);
-int						arg_checker(char *str);
-void					com_exit_sup(t_command *mimi, char *str);
-void					com_exit(t_command *mimi, char **args);
-int						space_checker(char *str);
-int						env_valid(char *env_arr);
-void					upd_newenv(t_command *mimi, char *env_update);
-int						exp_err_case(t_command *mimi, char *cmd);
-int						val_adder(char *var);
-void					com_export(t_command *mimi, char **cmd);
-int						get_char_pos(char *str, char c);
-char					*var_checker(t_command *mimi, char **env_arr,
-									char *var);
-void					com_pwd(t_command *mimi);
-int						check_pres(char ch, char *str);
-int						wrd_cnt(char *str, char *charset);
-char					*cutter(char *str, char *charset, int *i);
-char					**split_mod(char *str, char *charset);
-char					*join_mod(char const *s1, const char *s2,
-									char const *s3);
-int						env_checker(t_command *mimi, char *var);
-int						undet_err_case(t_command *mimi, char *cmd);
-void					com_unset_sup(int i, int argc, t_command *mimi,
-									char **cmd);
-void					com_unset(t_command *mimi, char **cmd);
-void					close_mimi(t_command *mimi, int ret);
-
-void					upd_cwd(t_command *mimi, char *cwd);
-void					prompt(t_command *mimi);
+void					prompt();
 void					sig_ctrlc(int signal);
 void					sig_ctrlbs(int signal);
 void					sig_manag(void);
 int						err_msg(char *cmd, int code);
 
-/*
-** gnl - я понятия не имею что именно я сделала, но без gnl в mimishell.h
-** оно перестало работать... Нет времени разбираться.
-*/
 
 int						get_next_line(int fd, char **line, t_command *mimi);
 int						find_line(t_fl *fl);

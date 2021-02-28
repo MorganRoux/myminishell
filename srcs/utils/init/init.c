@@ -25,10 +25,10 @@ void		sig_int(int signal)
 {
 	ft_putstr_fd("\n", STDOUT_FILENO);
 	if (!(g_globstruct.pid))
-		prompt(&g_globstruct);
+		prompt();
 	else
 	{
-		prompt(&g_globstruct);
+		prompt();
 		kill(g_globstruct.pid, signal);
 	}
 	g_globstruct.ret = 130;
@@ -44,10 +44,8 @@ void		sig_quit(int signal)
 	}
 }
 
-void    signal_callback(int signumber)
+void    signal_callback()
 {
-    if (signumber == SIGQUIT)
-        sig_quit(signumber);
-    if (signumber == SIGINT)
-        sig_int(signumber);
+    signal(SIGQUIT, &sig_quit);
+    signal(SIGINT, &sig_int);
 }
