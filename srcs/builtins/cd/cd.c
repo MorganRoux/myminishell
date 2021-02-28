@@ -27,7 +27,7 @@ int    cd(t_command *cmd)
         return 0;    
     if ((new_dir = check_and_extract_cd_argument(cmd)) == NULL)
     {
-        ft_printf("error");
+        ft_putstr_fd("error", 2);
         return (2);
     }
     if(new_dir[0] == '~')
@@ -35,8 +35,8 @@ int    cd(t_command *cmd)
     if (chdir(new_dir) == -1)
     {
         free(new_dir);
-        ft_printf("error\n");
-        return (2);
+        ft_putstr_fd("error\n", 2);
+        return (1);
     }
     free(new_dir);
     return (0);

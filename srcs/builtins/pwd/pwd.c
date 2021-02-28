@@ -8,7 +8,7 @@ int    pwd(t_command *cmd)
     cwd = getcwd(NULL, 0);
     if (cwd == NULL)
     {
-        ft_printf("erreur");
+        ft_putstr_fd("erreur", 2);
         return (2);
     }
     ft_printf("%s\n", cwd);

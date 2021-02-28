@@ -43,6 +43,11 @@ void	prompt()
 	char		*cwd;
 
 	cwd = getcwd(NULL, 0);
+	if (cwd == NULL)
+	{
+		ft_putstr_fd("erreur de détermination du répertoire actuel", 2);
+		return ;
+	}
 	ft_putstr_fd(cwd, 2);
 	ft_putstr_fd(" $ ", 2);
 	free(cwd);
@@ -71,7 +76,7 @@ int		main(int argc, char *argv[], char *envp[])
 		free(line);
 	}
 	free(line);
-	ft_printf("exit\n");
+	ft_putstr_fd("exit\n",2);
     if (g_globstruct.ret == 0)
         return (0);
     errno = g_globstruct.ret;
