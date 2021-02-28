@@ -14,30 +14,30 @@
 
 t_command	g_globstruct;
 
-void	env_filling(char **envp, t_command *mimi)
-{
-	int			i;
-	int			len;
+// void	env_filling(char **envp, t_command *mimi)
+// {
+// 	int			i;
+// 	int			len;
 
-	i = 0;
-	len = get_strs_len(envp);
-	mimi->env_arr = (char **)ft_calloc(sizeof(char *), (len + 1));
-	if (!(mimi->env_arr))
-	{
-		ft_printf("exit");
-		exit(1);
-	}
-	while (envp[i])
-	{
-		mimi->env_arr[i] = ft_strdup(envp[i]);
-		if (!(mimi->env_arr))
-		{
-			ft_printf("exit");
-			exit(1);
-		}
-		i++;
-	}
-}
+// 	i = 0;
+// 	len = get_strs_len(envp);
+// 	mimi->env_arr = (char **)ft_calloc(sizeof(char *), (len + 1));
+// 	if (!(mimi->env_arr))
+// 	{
+// 		ft_printf("exit");
+// 		exit(1);
+// 	}
+// 	while (envp[i])
+// 	{
+// 		mimi->env_arr[i] = ft_strdup(envp[i]);
+// 		if (!(mimi->env_arr))
+// 		{
+// 			ft_printf("exit");
+// 			exit(1);
+// 		}
+// 		i++;
+// 	}
+// }
 
 void	prompt()
 {
@@ -58,8 +58,9 @@ int		main(int argc, char *argv[], char *envp[])
 	(void)argv;
 	line = NULL;
 	i = 1;
-	ft_bzero(&g_globstruct, sizeof(t_command));
-	env_filling(envp, &g_globstruct);
+	init_globals(envp, &g_globstruct);
+	// ft_bzero(&g_globstruct, sizeof(t_command));
+	// env_filling(envp, &g_globstruct);
 	signal_callback();
 	while (i != 0)
 	{

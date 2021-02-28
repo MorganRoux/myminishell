@@ -97,7 +97,7 @@ typedef struct			s_fl
 ** init
 */
 
-void    				init_globals(char *envp[]);
+void    				init_globals(char *envp[], t_command *g_globstruct);
 void    				signal_callback();
 /*
 ** builtins
