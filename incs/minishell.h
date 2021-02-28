@@ -78,11 +78,7 @@ typedef struct			s_command
 	int					status;
 	char				**env_arr;
 	int					ret;
-	int					check_pipe;
-	int					bad_pipe;
-	char				*dir_now;
 	pid_t				pid;
-	int					ch;
 }						t_command;
 
 /*
@@ -222,6 +218,7 @@ int						get_var_index(char *envp[], char *text);
 /*
 ** Utils
 */
+char					*get_var_name(char *str);
 char   					**duplicate_strs(char **strs);
 void    				ft_sort_string_tab(char **tab);
 int     				get_strs_len(char **strs);

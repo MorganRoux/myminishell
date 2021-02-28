@@ -17,7 +17,10 @@ int    echo(t_command *global_command, t_command *cmd)
     option_n = 0;
     global_command->ret = 0;
     if ((args = cmd->args) == NULL)
+    {
+        ft_printf("\n");
         return (0);
+    }  
     if (check_option_n(&args))
         option_n = 1;
     while (args != NULL)

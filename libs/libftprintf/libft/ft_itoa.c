@@ -33,5 +33,6 @@ char	*ft_itoa(int n)
 		ret[len--] = base[nbr % 10];
 	if (n < 0)
 		ret[0] = '-';
+	free(base);
 	return (ret);
 }

@@ -57,7 +57,7 @@ char		*do_replace(char **start, char **str, t_command *gc)
 	char	*new;
 
 	var_name = extract_var_name(*str);
-	if (*var_name == '?')
+	if (ft_strcmp(var_name, "?") == 0)
 		var_value = ft_itoa(gc->ret);
 	else
 		var_value = get_var(gc->env_arr, var_name);

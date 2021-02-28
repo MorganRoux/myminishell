@@ -68,10 +68,7 @@ void	exec_child(t_command *cmd, char *envp[], char *bin, char **params)
 	close(cmd->flux_out[0]);
 	close(cmd->flux_out[1]);
 	if (execve(bin, params, envp) == -1)
-	{
-		strdel(&bin);
 		exit(cmd->ret = err_msg(params[0], errno));
-	}
 }
 
 int		exec_parent(pid_t pid, char *bin, t_command *cmd)

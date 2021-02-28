@@ -14,7 +14,6 @@ SRCS		=	srcs/main.c \
 				srcs/parsing/parse5.c \
 				srcs/parsing/parse6.c \
 				srcs/parsing/split_tokens.c \
-				srcs/utils/extract/extract.c \
 				srcs/exec/exec.c \
 				srcs/exec/commands.c \
 				srcs/exec/redirections.c \
@@ -24,6 +23,7 @@ SRCS		=	srcs/main.c \
 				srcs/exec/tools_exec.c \
 				srcs/env/env.c \
 				srcs/utils/prints/prints.c \
+				srcs/utils/extract/extract.c \
 				srcs/utils/free/frees.c \
 				srcs/utils/path/path.c \
 				srcs/utils/list/ft_lstinit.c \
@@ -32,19 +32,8 @@ SRCS		=	srcs/main.c \
 				srcs/utils/split_commands/split_commands.c \
 				srcs/utils/split_commands/s_c_sup.c \
 				srcs/utils/ft_isalpha_u/ft_isalpha_u.c \
-				srcs/built_ins/cd.c \
-				srcs/built_ins/echo.c \
-				srcs/built_ins/env.c \
-				srcs/built_ins/exit.c \
-				srcs/built_ins/export.c \
-				srcs/built_ins/export_sup.c \
-				srcs/built_ins/pwd.c \
-				srcs/built_ins/split_join_mod.c \
-				srcs/built_ins/unset.c \
-				srcs/built_ins/sig.c \
-				srcs/built_ins/tools.c \
-				srcs/built_ins/env_manag.c \
-				srcs/built_ins/env_manage2.c \
+				srcs/utils/init/init.c \
+				srcs/utils/sort/sort.c \
 				srcs/builtins/echo/echo.c \
 				srcs/builtins/env/env.c \
 				srcs/builtins/pwd/pwd.c \
@@ -52,8 +41,20 @@ SRCS		=	srcs/main.c \
 				srcs/builtins/exit/exit.c \
 				srcs/builtins/unset/unset.c \
 				srcs/builtins/export/export.c \
-				srcs/utils/init/init.c \
-				srcs/utils/sort/sort.c
+				srcs/builtins/signal/signal.c \
+				srcs/built_ins/echo.c \
+				srcs/built_ins/exit.c 
+				# srcs/built_ins/cd.c \
+				# srcs/built_ins/env.c \
+				# srcs/built_ins/export.c \
+				# srcs/built_ins/export_sup.c \
+				# srcs/built_ins/pwd.c \
+				# srcs/built_ins/split_join_mod.c \
+				# srcs/built_ins/unset.c \
+				# srcs/built_ins/sig.c \
+				# srcs/built_ins/tools.c \
+				# srcs/built_ins/env_manag.c \
+				# srcs/built_ins/env_manage2.c 
 
 SRCS_PG		=	playground/main.c
 

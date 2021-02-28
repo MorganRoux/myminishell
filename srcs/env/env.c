@@ -12,6 +12,18 @@
 
 #include "minishell.h"
 
+char	*get_var_name(char *str)
+{
+	char	**splitted;
+	char	*ret;
+
+	splitted = ft_split(str, '=');
+	if (splitted == NULL)
+		return (NULL);
+	ret = ft_strdup(splitted[0]);
+	free_strs(splitted);
+	return (ret);
+}
 
 int		get_var_index(char *envp[], char *text)
 {

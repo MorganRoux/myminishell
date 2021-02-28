@@ -57,10 +57,52 @@ char    **add_to_env(char *env[], char *var)
     return (new_env);
 }
 
-int     check_export_arg(char *arg)
+int     check_export_arg(char *str)
 {
-    (void)arg;
+    char    *var_name;
+    int     i;
+
+    i = 0;
+    if (str == NULL)
+        return (1);
+    var_name = get_var_name(str);
+    while (var_name[i] != 0)
+    {
+        if (!ft_isalnum_u(var_name[i++]))
+        {
+            free(var_name);
+            return(0);
+        }
+    }
+    free(var_name);
     return (1);
+}
+
+int     check_export_args(t_list_str *args)
+{
+    (void)args;
+    while (args != NULL)
+    {
+        if (!check_export_arg(args->content))
+        {
+            ft_printf("export: %s : identifiant non valable\n", args->content);
+            return (0);
+        }
+        args = args->next;
+    }
+    return (1);
+}
+
+int     find_equal(char *str)
+{
+    if (str == NULL)
+        return 0;
+    while (*str != 0)
+    {
+        if (*str++ == '=')
+            return (1);
+    }
+    return (0);
 }
 
 int     export(t_command *global_command, t_command *cmd)
@@ -69,12 +111,15 @@ int     export(t_command *global_command, t_command *cmd)
 
     if((args = cmd->args) == NULL)
         return (sorted_env(global_command->env_arr));
+    if (!check_export_args(args))
+        return (1);
     while (args != NULL)
     {
-        if (!check_export_arg(args->content))
-            return (2);
-        global_command->env_arr  = delete_from_env(global_command->env_arr, args->content);
-        global_command->env_arr = add_to_env(global_command->env_arr, args->content);
+        if (find_equal(args->content))
+        {
+            global_command->env_arr  = delete_from_env(global_command->env_arr, args->content);
+            global_command->env_arr = add_to_env(global_command->env_arr, args->content);
+        }
         args = args->next;
     }
     return (0);

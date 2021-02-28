@@ -33,10 +33,10 @@
 
 void	close_mimi(t_command *mimi, int ret)
 {
-	if (mimi->env_arr)
-		arr_cleaner(mimi->env_arr);
-	if (mimi->dir_now)
-		free(mimi->dir_now);
+	// if (mimi->env_arr)
+	// 	arr_cleaner(mimi->env_arr);
+	// if (mimi->dir_now)
+	// 	free(mimi->dir_now);
 	if (mimi)
 		mimi = NULL;
 	ft_putstr_fd("exit\n", STDERR_FILENO);
@@ -99,6 +99,6 @@ void	com_exit(t_command *mimi, char **args)
 		return ;
 	}
 	com_exit_sup(mimi, args[i]);
-	arr_cleaner(args);
+	// arr_cleaner(args);
 	close_mimi(mimi, mimi->ret);
 }

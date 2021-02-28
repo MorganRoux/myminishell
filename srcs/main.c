@@ -37,12 +37,12 @@ void	env_filling(char **envp, t_command *mimi)
 ** update cwd in the structure
 */
 
-void	upd_cwd(t_command *mimi, char *cwd)
-{
-	if (mimi->dir_now)
-		free(mimi->dir_now);
-	mimi->dir_now = ft_strdup(cwd);
-}
+// void	upd_cwd(t_command *mimi, char *cwd)
+// {
+// 	if (mimi->dir_now)
+// 		free(mimi->dir_now);
+// 	mimi->dir_now = ft_strdup(cwd);
+// }
 
 /*
 ** /Users/alina9012/Desktop/folder_now $ // or we can leave just a $
@@ -51,25 +51,16 @@ void	upd_cwd(t_command *mimi, char *cwd)
 void	prompt(t_command *mimi)
 {
 	char		*cwd;
-
+	(void)mimi;
 	cwd = getcwd(NULL, 0);
-	if (!cwd && mimi->dir_now)
-		cwd = ft_strdup(mimi->dir_now);
+	// if (!cwd && mimi->dir_now)
+	// 	cwd = ft_strdup(mimi->dir_now);
 	ft_putstr_fd(cwd, 2);
 	ft_putstr_fd(" $ ", 2);
-	upd_cwd(mimi, cwd);
-	strdel(&cwd);
+	free(cwd);
+	// upd_cwd(mimi, cwd);
+	// strdel(&cwd);
 }
-
-/*
-** Salut! Ca va ?:)
-** I delete initialisation of t_command g_globstruct variable from main
-** because it creates a conflictst with the eponymous variable
-** in the beginnign of the file. I need it exactly here - otherwise
-** it will not connect to our structure and I will not be able to manage
-** exit codes of the signals needed.
-** Have a great day !
-*/
 
 int		main(int argc, char *argv[], char *envp[])
 {
