@@ -8,19 +8,19 @@ char    *check_and_extract_cd_argument(t_command *cmd)
 }
 
 
-char    *replace_tilde(char *new_dir, t_command *global_command)
+char    *replace_tilde(char *new_dir)
 {
     char    *ret;
     char    *home;
 
-    home = get_var(global_command->env_arr, "HOME");
+    home = get_var(g_globstruct.env_arr, "HOME");
     ret = ft_strjoin(home, ++new_dir);
     free(--new_dir);
     free(home);
     return (ret);
 }
 
-int    cd(t_command *global_command, t_command *cmd)
+int    cd(t_command *cmd)
 {
     char    *new_dir;
     if (cmd->args == NULL)
@@ -31,7 +31,7 @@ int    cd(t_command *global_command, t_command *cmd)
         return (2);
     }
     if(new_dir[0] == '~')
-        new_dir = replace_tilde(new_dir, global_command);
+        new_dir = replace_tilde(new_dir);
     if (chdir(new_dir) == -1)
     {
         free(new_dir);

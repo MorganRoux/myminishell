@@ -9,13 +9,13 @@ int     check_option_n(t_list_str **args)
     return (1);
 }
 
-int    echo(t_command *global_command, t_command *cmd)
+int    echo(t_command *cmd)
 {
     t_list_str  *args;
     int         option_n;
 
     option_n = 0;
-    global_command->ret = 0;
+    g_globstruct.ret = 0;
     if ((args = cmd->args) == NULL)
     {
         ft_printf("\n");

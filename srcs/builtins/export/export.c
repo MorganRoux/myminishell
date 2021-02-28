@@ -105,20 +105,20 @@ int     find_equal(char *str)
     return (0);
 }
 
-int     export(t_command *global_command, t_command *cmd)
+int     export(t_command *cmd)
 {
     t_list_str  *args;
 
     if((args = cmd->args) == NULL)
-        return (sorted_env(global_command->env_arr));
+        return (sorted_env(g_globstruct.env_arr));
     if (!check_export_args(args))
         return (1);
     while (args != NULL)
     {
         if (find_equal(args->content))
         {
-            global_command->env_arr  = delete_from_env(global_command->env_arr, args->content);
-            global_command->env_arr = add_to_env(global_command->env_arr, args->content);
+            g_globstruct.env_arr  = delete_from_env(g_globstruct.env_arr, args->content);
+            g_globstruct.env_arr = add_to_env(g_globstruct.env_arr, args->content);
         }
         args = args->next;
     }

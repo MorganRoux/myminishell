@@ -50,7 +50,7 @@ char		*extract_var_name(char *str)
 	return (name);
 }
 
-char		*do_replace(char **start, char **str, t_command *gc)
+char		*do_replace(char **start, char **str)
 {
 	char	*var_name;
 	char	*var_value;
@@ -58,9 +58,9 @@ char		*do_replace(char **start, char **str, t_command *gc)
 
 	var_name = extract_var_name(*str);
 	if (ft_strcmp(var_name, "?") == 0)
-		var_value = ft_itoa(gc->ret);
+		var_value = ft_itoa(g_globstruct.ret);
 	else
-		var_value = get_var(gc->env_arr, var_name);
+		var_value = get_var(g_globstruct.env_arr, var_name);
 	if (!(new = (char *)malloc(sizeof(char) * (ft_strlen(*start)
 				- ft_strlen(var_name + 1) + ft_strlen(var_value)))))
 		return (NULL);
@@ -75,7 +75,7 @@ char		*do_replace(char **start, char **str, t_command *gc)
 	return (new);
 }
 
-int			replace_var(char **str, char **start, t_command *gc)
+int			replace_var(char **str, char **start)
 {
 	char	*new;
 
@@ -84,7 +84,7 @@ int			replace_var(char **str, char **start, t_command *gc)
 		*str = *str + 1;
 		return (0);
 	}
-	if ((new = do_replace(start, str, gc)) == NULL)
+	if ((new = do_replace(start, str)) == NULL)
 		return (-1);
 	free(*start);
 	*start = new;

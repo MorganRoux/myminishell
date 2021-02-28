@@ -20,14 +20,14 @@
 ** If found, return the whole path of the command
 */
 
-char	*find_bin_with_env(char *bin, t_command *gc)
+char	*find_bin_with_env(char *bin)
 {
 	char	*full_bin;
 	char	**paths;
 	int		i;
 
 	i = 0;
-	if ((paths = get_paths(gc->env_arr)) == NULL)
+	if ((paths = get_paths(g_globstruct.env_arr)) == NULL)
 		return (ft_strdup(bin));
 	full_bin = ft_strjoin(paths[0], bin);
 	while (open(full_bin, O_RDONLY) == -1)
@@ -36,7 +36,7 @@ char	*find_bin_with_env(char *bin, t_command *gc)
 		if (paths[++i] == 0)
 		{
 			free_strs(paths);
-			gc->ret = err_msg(bin, 2);
+			g_globstruct.ret = err_msg(bin, 2);
 			return (NULL);
 		}
 		full_bin = ft_strjoin(paths[i], bin);
@@ -45,12 +45,12 @@ char	*find_bin_with_env(char *bin, t_command *gc)
 	return (full_bin);
 }
 
-char	*find_bin(char *bin, t_command *global_command)
+char	*find_bin(char *bin)
 {
 	if (has_path(bin))
 		return (ft_strdup(bin));
 	else
-		return (find_bin_with_env(bin, global_command));
+		return (find_bin_with_env(bin));
 }
 
 /*

@@ -16,12 +16,12 @@ int     sorted_env(char **env)
     return (0);
 }
 
-int     env(t_command *global_command, t_command *cmd)
+int     env(t_command *cmd)
 {
     char    **env;
 
     (void)cmd;
-    env = global_command->env_arr;
+    env = g_globstruct.env_arr;
     if (env == NULL)
         return (0);
     while (*env != NULL)

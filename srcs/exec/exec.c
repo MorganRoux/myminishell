@@ -12,26 +12,26 @@
 
 #include "minishell.h"
 
-int		do_built_ins(t_command *global_cmd, t_command *cmd)
+int		do_built_ins(t_command *cmd)
 {
 	if (!ft_strcmp(cmd->exec, "echo"))
-		return(echo(global_cmd, cmd));
+		return(echo(cmd));
 	if (!ft_strcmp(cmd->exec, "env"))
-		return(env(global_cmd, cmd));
+		return(env(cmd));
 	if (!ft_strcmp(cmd->exec, "pwd"))
-		return(pwd(global_cmd, cmd));
+		return(pwd(cmd));
 	if (!ft_strcmp(cmd->exec, "cd"))
-		return(cd(global_cmd, cmd));
+		return(cd(cmd));
 	if (!ft_strcmp(cmd->exec, "exit"))
-		do_exit(global_cmd, cmd);
+		do_exit(cmd);
 	if (!ft_strcmp(cmd->exec, "unset"))
-		return(unset(global_cmd, cmd));
+		return(unset(cmd));
 	if (!ft_strcmp(cmd->exec, "export"))
-		return(export(global_cmd, cmd));
+		return(export(cmd));
 	return (0);
 }
 
-int		exec_built_ins(t_command *global_cmd, t_command *cur_cmd)
+int		exec_built_ins(t_command *cur_cmd)
 {
 	int		saved_stdin;
 	int		saved_stdout;
@@ -45,7 +45,7 @@ int		exec_built_ins(t_command *global_cmd, t_command *cur_cmd)
 		dup2(cur_cmd->flux_in[0], STDIN_FILENO);
 	if (is_redirection_out(cur_cmd) || is_pipe_out(cur_cmd))
 		dup2(cur_cmd->flux_out[1], STDOUT_FILENO);
-	global_cmd->ret = do_built_ins(global_cmd, cur_cmd);
+	g_globstruct.ret = do_built_ins(cur_cmd);
 	dup2(saved_stdin, STDIN_FILENO);
 	dup2(saved_stdout, STDOUT_FILENO);
 	close(cur_cmd->flux_out[1]);
@@ -67,29 +67,29 @@ int		is_built_in(char *cmd)
 	return (0);
 }
 
-int		exec(t_command *global_cmd, t_list_cmd *cmds)
+int		exec( t_list_cmd *cmds)
 {
 	t_command	*cur_cmd;
 	while (cmds != NULL)
 	{
 		cur_cmd = cmds->content;
 		if (cur_cmd->exec == 0)
-			global_cmd->ret = 127;
+			g_globstruct.ret = 127;
 		if (open_redirections(cmds) == -1)
 		{
-			global_cmd->ret = 1;
+			g_globstruct.ret = 1;
 			return (-1);
 		}
 		if (is_built_in(cur_cmd->exec))
-			exec_built_ins(global_cmd, cur_cmd);
+			exec_built_ins(cur_cmd);
 		else
-			exec_command(cmds->content, global_cmd);
+			exec_command(cmds->content);
 		cmds = cmds->next;
 	}
 	return (0);
 }
 
-void	exec_loop(char *line, t_command *global_command)
+void	exec_loop(char *line)
 {
 	char		**command_list;
 	int			i;
@@ -98,17 +98,17 @@ void	exec_loop(char *line, t_command *global_command)
 
 	i = 0;
 	cmds = NULL;
-	if (check_errors(line, global_command))
+	if (check_errors(line))
 		return ;
 	command_list = split_commands(line);
 	while (command_list[i] != NULL)
 	{
-		command_list[i] = solve_dollards(command_list[i], global_command);
-		new_cmd = parse(command_list[i], global_command);
+		command_list[i] = solve_dollards(command_list[i]);
+		new_cmd = parse(command_list[i]);
 		if (cmds != NULL)
 			link_commands(ft_lstlast(cmds), new_cmd);
 		ft_lstadd_back(&cmds, new_cmd);
-		if (exec(global_command, ft_lstlast(cmds)) == -1)
+		if (exec(ft_lstlast(cmds)) == -1)
 			break ;
 		i++;
 	}

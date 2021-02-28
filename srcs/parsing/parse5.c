@@ -29,9 +29,8 @@ t_list_str	*parse_coma(t_list_str *tkn, t_list_cmd **cur)
 	return (tkn->next);
 }
 
-t_list_str	*parse_meta(t_list_str *tkn, t_list_cmd **cur, t_command *gc)
+t_list_str	*parse_meta(t_list_str *tkn, t_list_cmd **cur)
 {
-	(void)gc;
 	if (ft_strcmp(tkn->content, " ") == 0)
 		return (tkn->next);
 	else if (ft_strcmp(tkn->content, "<") == 0)
@@ -46,13 +45,13 @@ t_list_str	*parse_meta(t_list_str *tkn, t_list_cmd **cur, t_command *gc)
 	return (tkn->next);
 }
 
-t_list_str	*parse_word(t_list_str *tkn, t_list_cmd **cur, t_command *gc)
+t_list_str	*parse_word(t_list_str *tkn, t_list_cmd **cur)
 {
-	insert_word(cur, tkn->content, gc);
+	insert_word(cur, tkn->content);
 	return (tkn->next);
 }
 
-t_list_cmd	*parse_tokens(t_list_str *tokens, t_command *global_command)
+t_list_cmd	*parse_tokens(t_list_str *tokens)
 {
 	t_list_cmd	*cmds;
 	t_list_cmd	*cur;
@@ -64,9 +63,9 @@ t_list_cmd	*parse_tokens(t_list_str *tokens, t_command *global_command)
 	while (tkn != 0)
 	{
 		if (is_meta_str(tkn->content))
-			tkn = parse_meta(tkn, &cur, global_command);
+			tkn = parse_meta(tkn, &cur);
 		else
-			tkn = parse_word(tkn, &cur, global_command);
+			tkn = parse_word(tkn, &cur);
 	}
 	return (cmds);
 }

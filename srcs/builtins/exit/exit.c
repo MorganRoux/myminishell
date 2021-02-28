@@ -9,7 +9,7 @@ void    exit_arg(t_list_str *arg)
     }
     exit(ft_atoi(arg->content));
 }
-void    do_exit(t_command *global_command, t_command *cmd)
+void    do_exit(t_command *cmd)
 {
     (void)cmd;
 
@@ -20,9 +20,9 @@ void    do_exit(t_command *global_command, t_command *cmd)
         exit_arg(cmd->args);
     else
     {
-        if (global_command->ret == 0)
+        if (g_globstruct.ret == 0)
         exit(0);
-        errno = global_command->ret;
+        errno = g_globstruct.ret;
         exit(errno);
     }
 }

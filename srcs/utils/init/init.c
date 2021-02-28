@@ -1,7 +1,5 @@
 #include "minishell.h"
 
-t_command	g_globstruct;
-
 void    init_globals(char *envp[])
 {
     int len;

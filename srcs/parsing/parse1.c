@@ -55,19 +55,19 @@ int			is_syntax_error(t_list_str *tokens)
 	return (0);
 }
 
-t_list_cmd	*parse(char *line, t_command *global_command)
+t_list_cmd	*parse(char *line)
 {
 	t_list_cmd	*cmds;
 	t_list_str	*tokens;
 
 	cmds = NULL;
 	if ((tokens = split_tokens(line)))
-		cmds = parse_tokens(tokens, global_command);
+		cmds = parse_tokens(tokens);
 	ft_lstclear(&tokens, free);
 	return (cmds);
 }
 
-int			check_errors(char *line, t_command *global_command)
+int			check_errors(char *line)
 {
 	t_list_str	*tokens;
 
@@ -80,6 +80,6 @@ int			check_errors(char *line, t_command *global_command)
 		}
 	}
 	ft_lstclear(&tokens, free);
-	global_command->ret = 2;
+	g_globstruct.ret = 2;
 	return (1);
 }

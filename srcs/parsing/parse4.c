@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-char		*solve_dollards(char *str, t_command *global_command)
+char		*solve_dollards(char *str)
 {
 	int		escape;
 	char	*start;
@@ -24,7 +24,7 @@ char		*solve_dollards(char *str, t_command *global_command)
 		if (*str == '\\' && escape == 0)
 			escape = 1;
 		else if (*str == '$' && escape == 0)
-			replace_var(&str, &start, global_command);
+			replace_var(&str, &start);
 		else if (*str == '\'' && escape == 0)
 			skip_squotes(&str);
 		else if (escape == 1)
@@ -34,13 +34,12 @@ char		*solve_dollards(char *str, t_command *global_command)
 	return (start);
 }
 
-void		insert_word(t_list_cmd **cur, char *word, t_command *gc)
+void		insert_word(t_list_cmd **cur, char *word)
 {
 	char		*str;
 	t_command	*cmd;
 	t_list_str	*arg;
 
-	(void)gc;
 	str = ft_strdup(word);
 	str = solve_quotings(str);
 	cmd = (*cur)->content;

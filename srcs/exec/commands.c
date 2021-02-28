@@ -68,7 +68,7 @@ void	exec_child(t_command *cmd, char *envp[], char *bin, char **params)
 	close(cmd->flux_out[0]);
 	close(cmd->flux_out[1]);
 	if (execve(bin, params, envp) == -1)
-		exit(cmd->ret = err_msg(params[0], errno));
+		exit(g_globstruct.ret = err_msg(params[0], errno));
 }
 
 int		exec_parent(pid_t pid, char *bin, t_command *cmd)
@@ -87,23 +87,23 @@ int		exec_parent(pid_t pid, char *bin, t_command *cmd)
 ** I moved pid to the structure to manage errs
 */
 
-int		exec_command(t_command *cmd, t_command *global_command)
+int		exec_command(t_command *cmd)
 {
 	char	**params;
 	char	*bin;
 
 	if (cmd->exec == NULL)
 		return (1);
-	if ((bin = find_bin(cmd->exec, global_command)) == NULL)
+	if ((bin = find_bin(cmd->exec)) == NULL)
 		return (-1);
 	params = extract_command_and_args(cmd);
 	apply_redirections_in(cmd);
 	apply_pipe_in(cmd);
-	if ((global_command->pid = fork()) < 0)
+	if ((g_globstruct.pid = fork()) < 0)
 		return (-1);
-	else if (global_command->pid == 0)
-		exec_child(cmd, global_command->env_arr, bin, params);
-	global_command->ret = exec_parent(global_command->pid, bin, cmd);
+	else if (g_globstruct.pid == 0)
+		exec_child(cmd, g_globstruct.env_arr, bin, params);
+	g_globstruct.ret = exec_parent(g_globstruct.pid, bin, cmd);
 	apply_redirections_out(cmd);
 	free_strs(params);
 	return (1);
