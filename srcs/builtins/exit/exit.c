@@ -13,7 +13,7 @@ void    do_exit(t_command *global_command, t_command *cmd)
 {
     (void)cmd;
 
-    //ft_printf("exit\n");
+    ft_printf("exit\n");
     if (ft_lstsize(cmd->args) > 1)
         ft_printf("exit: too many arguments");
     else if (ft_lstsize(cmd->args) == 1)
