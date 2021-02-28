@@ -62,7 +62,7 @@ char		*do_replace(char **start, char **str)
 	else
 		var_value = get_var(g_globstruct.env_arr, var_name);
 	if (!(new = (char *)malloc(sizeof(char) * (ft_strlen(*start)
-				- ft_strlen(var_name + 1) + ft_strlen(var_value)))))
+				- ft_strlen(var_name) + 1 + ft_strlen(var_value)))))
 		return (NULL);
 	ft_strlcpy(new, *start, *str - *start + 1);
 	ft_strlcat(new, var_value, ft_strlen(new)
@@ -79,11 +79,16 @@ int			replace_var(char **str, char **start)
 {
 	char	*new;
 
-	if ((!ft_isalpha_u(*(*str + 1)) && (*(*str + 1) != '?')))
+	if (*(*str + 1) == 0)
 	{
 		*str = *str + 1;
 		return (0);
 	}
+	// if ((!ft_isalpha_u(*(*str + 1)) && (*(*str + 1) != '?')))
+	// {
+	// 	*str = *str + 1;
+	// 	return (0);
+	// }
 	if ((new = do_replace(start, str)) == NULL)
 		return (-1);
 	free(*start);

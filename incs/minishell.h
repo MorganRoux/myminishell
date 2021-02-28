@@ -102,6 +102,7 @@ typedef struct			s_fl
 */
 
 t_globals	g_globstruct;
+
 /*
 ** init
 */

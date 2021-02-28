@@ -21,15 +21,18 @@ char		*solve_dollards(char *str)
 	escape = 0;
 	while (*str != 0)
 	{
-		if (*str == '\\' && escape == 0)
-			escape = 1;
-		else if (*str == '$' && escape == 0)
+		if (*str == '$' && escape == 0)
 			replace_var(&str, &start);
 		else if (*str == '\'' && escape == 0)
 			skip_squotes(&str);
-		else if (escape == 1)
-			escape = 0;
-		str++;
+		else if (*str != 0)
+		{
+			if (*str == '\\' && escape == 0)
+				escape = 1;
+			else if (escape == 1)
+				escape = 0;
+			str++;
+		}
 	}
 	return (start);
 }
