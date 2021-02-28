@@ -68,7 +68,7 @@ int     export(t_command *global_command, t_command *cmd)
     t_list_str  *args;
 
     if((args = cmd->args) == NULL)
-        return (0);
+        return (sorted_env(global_command->env_arr));
     while (args != NULL)
     {
         if (!check_export_arg(args->content))

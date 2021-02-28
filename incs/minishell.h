@@ -109,6 +109,7 @@ void    				signal_callback(int signumber);
 
 int						echo(t_command *global_command, t_command *cmd);
 int	   					env(t_command *global_command, t_command *cmd);
+int     				sorted_env(char **env);
 int	    				pwd(t_command *global_command, t_command *cmd);
 int	    				cd(t_command *global_command, t_command *cmd);
 int		   				export(t_command *global_command, t_command *cmd);
@@ -221,6 +222,8 @@ int						get_var_index(char *envp[], char *text);
 /*
 ** Utils
 */
+char   					**duplicate_strs(char **strs);
+void    				ft_sort_string_tab(char **tab);
 int     				get_strs_len(char **strs);
 int     				ft_isalpha_u(char c);
 int     				ft_isalnum_u(char c);
