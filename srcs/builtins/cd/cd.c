@@ -2,6 +2,8 @@
 
 char    *check_and_extract_cd_argument(t_command *cmd)
 {
+    if (cmd->args == NULL)
+        return (ft_strdup("~"));
     if (ft_lstsize(cmd->args) != 1)
         return (NULL);
     return (ft_strdup(ft_lstof(cmd->args, 0)->content));
@@ -23,8 +25,7 @@ char    *replace_tilde(char *new_dir)
 int    cd(t_command *cmd)
 {
     char    *new_dir;
-    if (cmd->args == NULL)
-        return 0;    
+    
     if ((new_dir = check_and_extract_cd_argument(cmd)) == NULL)
     {
         ft_putstr_fd("error", 2);

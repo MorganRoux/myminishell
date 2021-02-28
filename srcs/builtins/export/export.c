@@ -66,6 +66,8 @@ int     check_export_arg(char *str)
     if (str == NULL)
         return (1);
     var_name = get_var_name(str);
+    if (var_name == NULL)
+        return (0);
     while (var_name[i] != 0)
     {
         if (!ft_isalnum_u(var_name[i++]))
