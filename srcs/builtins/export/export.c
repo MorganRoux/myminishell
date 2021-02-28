@@ -68,6 +68,11 @@ int     check_export_arg(char *str)
     var_name = get_var_name(str);
     if (var_name == NULL)
         return (0);
+    if (ft_isdigit(var_name[0]))
+    {
+        free(var_name);
+        return (0);
+    }
     while (var_name[i] != 0)
     {
         if (!ft_isalnum_u(var_name[i++]))
