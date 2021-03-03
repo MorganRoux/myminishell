@@ -6,7 +6,7 @@
 /*   By: mroux <mroux@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:41:07 by mroux             #+#    #+#             */
-/*   Updated: 2021/03/03 21:41:09 by mroux            ###   ########.fr       */
+/*   Updated: 2021/03/03 21:50:20 by mroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,6 @@ int			replace_var(char **str, char **start)
 		*str = *str + 1;
 		return (0);
 	}
-	// if ((!ft_isalpha_u(*(*str + 1)) && (*(*str + 1) != '?')))
-	// {
-	// 	*str = *str + 1;
-	// 	return (0);
-	// }
 	if ((new = do_replace(start, str)) == NULL)
 		return (-1);
 	free(*start);
