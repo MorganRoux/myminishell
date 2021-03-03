@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isalpha_u.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mroux <mroux@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/03 21:44:26 by mroux             #+#    #+#             */
+/*   Updated: 2021/03/03 21:44:29 by mroux            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int     ft_isalpha_u(char c)
+int		ft_isalpha_u(char c)
 {
 	return ((ft_isalpha(c) || c == '_') ? 1 : 0);
 }
 
-int     ft_isalnum_u(char c)
+int		ft_isalnum_u(char c)
 {
 	return ((ft_isalnum(c) || c == '_') ? 1 : 0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mroux <mroux@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 12:35:37 by mroux             #+#    #+#             */
-/*   Updated: 2021/02/09 13:17:42 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/03/03 21:48:59 by mroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,20 +107,23 @@ t_globals	g_globstruct;
 ** init
 */
 
-void    				init_globals(char *envp[]);
-void    				signal_callback();
+void					init_globals(char *envp[]);
+void					signal_callback();
 /*
 ** builtins
 */
 
 int						echo(t_command *cmd);
-int	   					env(t_command *cmd);
-int     				sorted_env(char **env);
-int	    				pwd(t_command *cmd);
-int	    				cd(t_command *cmd);
-int		   				export(t_command *cmd);
-int	    				unset(t_command *cmd);
-void	    			do_exit(t_command *cmd);
+int						env(t_command *cmd);
+int						sorted_env(char **env);
+int						pwd(t_command *cmd);
+int						cd(t_command *cmd);
+int						export(t_command *cmd);
+char					**add_to_env(char *env[], char *var);
+char					**delete_from_env(char *env[], char *var);
+char					**delete_var(char *env[], int index);
+int						unset(t_command *cmd);
+void					do_exit(t_command *cmd);
 
 /*
 ** Parsing
@@ -222,12 +225,13 @@ int						get_var_index(char *envp[], char *text);
 /*
 ** Utils
 */
+
 char					*get_var_name(char *str);
-char   					**duplicate_strs(char **strs);
-void    				ft_sort_string_tab(char **tab);
-int     				get_strs_len(char **strs);
-int     				ft_isalpha_u(char c);
-int     				ft_isalnum_u(char c);
+char					**duplicate_strs(char **strs);
+void					ft_sort_string_tab(char **tab);
+int						get_strs_len(char **strs);
+int						ft_isalpha_u(char c);
+int						ft_isalnum_u(char c);
 void					print_strs(char **strs);
 void					print_lst_str(t_list_str *strs);
 void					print_cmd(t_command *cmd);
@@ -260,7 +264,9 @@ void					sig_ctrlbs(int signal);
 void					sig_manag(void);
 int						err_msg(char *cmd, int code);
 
-
+/*
+** Get_next_line
+*/
 int						get_next_line(int fd, char **line);
 int						find_line(t_fl *fl);
 char					*ft_strnjoin(char *s1, char const *s2, size_t n);

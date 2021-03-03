@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pipes_redir_sup2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mroux <mroux@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/29 14:14:16 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/29 14:45:19 by alkanaev         ###   ########.fr       */
+/*   Created: 2021/03/03 21:38:52 by mroux             #+#    #+#             */
+/*   Updated: 2021/03/03 21:47:54 by mroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/minishell.h"
+#include "minishell.h"
 
 /*
 ** for redirections 2nd

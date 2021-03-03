@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mroux <mroux@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 11:06:08 by mroux             #+#    #+#             */
-/*   Updated: 2021/02/07 14:27:54 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/03/03 21:37:33 by mroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		get_next_line_loop(t_fl *fl, char **line)
 {
 	int	ln;
+
 	ln = 0;
 	while ((ln = find_line(fl)) == -1)
 	{

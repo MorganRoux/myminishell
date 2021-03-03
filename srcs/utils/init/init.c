@@ -1,16 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mroux <mroux@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/03 21:43:04 by mroux             #+#    #+#             */
+/*   Updated: 2021/03/03 21:44:59 by mroux            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-void    init_globals(char *envp[])
+void	init_globals(char *envp[])
 {
-    int len;
-    int i;
+	int		len;
+	int		i;
 
-    i = -1;
-    ft_bzero(&g_globstruct, sizeof(t_command));
-    len = get_strs_len(envp);
-    g_globstruct.env_arr = (char **) calloc(sizeof(char *), (len + 1));
-    while (++i < len)
-        g_globstruct.env_arr[i] = ft_strdup(envp[i]);
+	i = -1;
+	ft_bzero(&g_globstruct, sizeof(t_command));
+	len = get_strs_len(envp);
+	g_globstruct.env_arr = (char **)calloc(sizeof(char *), (len + 1));
+	while (++i < len)
+		g_globstruct.env_arr[i] = ft_strdup(envp[i]);
 }
 
 /*
@@ -18,7 +30,7 @@ void    init_globals(char *envp[])
 ** SIGQUIT : ^\
 */
 
-void		sig_int(int signal)
+void	sig_int(int signal)
 {
 	ft_putstr_fd("\n", STDOUT_FILENO);
 	if (!(g_globstruct.pid))
@@ -31,7 +43,7 @@ void		sig_int(int signal)
 	g_globstruct.ret = 130;
 }
 
-void		sig_quit(int signal)
+void	sig_quit(int signal)
 {
 	if (g_globstruct.pid)
 	{
@@ -41,8 +53,8 @@ void		sig_quit(int signal)
 	}
 }
 
-void    signal_callback()
+void	signal_callback(void)
 {
-    signal(SIGQUIT, &sig_quit);
-    signal(SIGINT, &sig_int);
+	signal(SIGQUIT, &sig_quit);
+	signal(SIGINT, &sig_int);
 }

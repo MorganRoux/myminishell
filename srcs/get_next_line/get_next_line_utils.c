@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mroux <mroux@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:19:41 by mroux             #+#    #+#             */
-/*   Updated: 2021/01/30 09:24:23 by alkanaev         ###   ########.fr       */
+/*   Updated: 2021/03/03 21:37:43 by mroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
-
-// size_t	ft_strlen(const char *str)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (str[i] != 0)
-// 	{
-// 		i++;
-// 	}
-// 	return (i);
-// }
 
 char	*ft_strnjoin(char *s1, char const *s2, size_t n)
 {

@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   extract.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mroux <mroux@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/30 09:36:01 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/30 09:38:57 by alkanaev         ###   ########.fr       */
+/*   Created: 2021/03/03 21:43:53 by mroux             #+#    #+#             */
+/*   Updated: 2021/03/03 21:45:22 by mroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int     get_strs_len(char **strs)
+int		get_strs_len(char **strs)
 {
-    int i;
+	int		i;
 
-    i = 0;
-    if (strs == 0)
-        return 0;
-    while (strs[i] != NULL)
-        i++;
-    return (i);
+	i = 0;
+	if (strs == 0)
+		return (0);
+	while (strs[i] != NULL)
+		i++;
+	return (i);
 }
 
 char	**list2char(t_list_str *lst)

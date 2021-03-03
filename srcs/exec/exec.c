@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mroux <mroux@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/16 14:23:44 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/02/09 09:56:24 by alkanaev         ###   ########.fr       */
+/*   Created: 2021/03/03 21:38:05 by mroux             #+#    #+#             */
+/*   Updated: 2021/03/03 21:47:07 by mroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 int		do_built_ins(t_command *cmd)
 {
 	if (!ft_strcmp(cmd->exec, "echo"))
-		return(echo(cmd));
+		return (echo(cmd));
 	if (!ft_strcmp(cmd->exec, "env"))
-		return(env(cmd));
+		return (env(cmd));
 	if (!ft_strcmp(cmd->exec, "pwd"))
-		return(pwd(cmd));
+		return (pwd(cmd));
 	if (!ft_strcmp(cmd->exec, "cd"))
-		return(cd(cmd));
+		return (cd(cmd));
 	if (!ft_strcmp(cmd->exec, "exit"))
 		do_exit(cmd);
 	if (!ft_strcmp(cmd->exec, "unset"))
-		return(unset(cmd));
+		return (unset(cmd));
 	if (!ft_strcmp(cmd->exec, "export"))
-		return(export(cmd));
+		return (export(cmd));
 	return (0);
 }
 
@@ -67,9 +67,10 @@ int		is_built_in(char *cmd)
 	return (0);
 }
 
-int		exec( t_list_cmd *cmds)
+int		exec(t_list_cmd *cmds)
 {
 	t_command	*cur_cmd;
+
 	while (cmds != NULL)
 	{
 		cur_cmd = cmds->content;

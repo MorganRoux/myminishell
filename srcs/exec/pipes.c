@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mroux <mroux@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/29 14:01:33 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/01/29 14:11:46 by alkanaev         ###   ########.fr       */
+/*   Created: 2021/03/03 21:39:05 by mroux             #+#    #+#             */
+/*   Updated: 2021/03/03 21:46:47 by mroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/minishell.h"
+#include "minishell.h"
 
 int		open_pipe(t_list_cmd *cmd)
 {

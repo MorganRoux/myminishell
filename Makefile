@@ -41,9 +41,10 @@ SRCS		=	srcs/main.c \
 				srcs/builtins/exit/exit.c \
 				srcs/builtins/unset/unset.c \
 				srcs/builtins/export/export.c \
-				# srcs/builtins/signal/signal.c 
-				# srcs/built_ins/echo.c 
-				# srcs/built_ins/exit.c 
+				srcs/builtins/export/export2.c
+				# srcs/builtins/signal/signal.c
+				# srcs/built_ins/echo.c
+				# srcs/built_ins/exit.c
 				# srcs/built_ins/cd.c \
 				# srcs/built_ins/env.c \
 				# srcs/built_ins/export.c \
@@ -54,7 +55,7 @@ SRCS		=	srcs/main.c \
 				# srcs/built_ins/sig.c \
 				# srcs/built_ins/tools.c \
 				# srcs/built_ins/env_manag.c \
-				# srcs/built_ins/env_manage2.c 
+				# srcs/built_ins/env_manage2.c
 
 SRCS_PG		=	playground/main.c
 
@@ -64,21 +65,21 @@ FLAGS		=	-Wall -Wextra -Werror -g
 INC_PATH	=	-I./incs
 COMPILE		=	$(CC) $(FLAGS) $(INC_PATH) -L$(LIBFT_DIR) -lftprintf
 
-%.o : %.c	
+%.o : %.c
 			$(CC) $(FLAGS) $(INC_PATH) -c $<  -o $(<:.c=.o)
 
 all:		$(NAME)
 
 $(NAME):	$(LIBS) ${OBJS}
 			$(COMPILE) $(OBJS) $(LIBS) -o $(NAME)
-$(LIBFT):	
+$(LIBFT):
 			make -C $(LIBFT_DIR)
 
-clean:		
+clean:
 			make clean -C $(LIBFT_DIR)
 			rm -f ${OBJS}
 
-fclean:		
+fclean:
 			make fclean -C $(LIBFT_DIR)
 			rm -f ${OBJS}
 			rm -f ${NAME}
@@ -92,4 +93,4 @@ playground:	$(LIBS) $(SRCS_PG)
 test:		all
 			sh ./test/test.sh
 
-.PHONY:		clean fclean all re 
+.PHONY:		clean fclean all re

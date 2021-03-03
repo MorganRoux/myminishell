@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tools_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alkanaev <alkanaev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mroux <mroux@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/09 09:51:50 by alkanaev          #+#    #+#             */
-/*   Updated: 2021/02/09 13:09:39 by alkanaev         ###   ########.fr       */
+/*   Created: 2021/03/03 21:39:39 by mroux             #+#    #+#             */
+/*   Updated: 2021/03/03 21:39:49 by mroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*
-** find_bin_with_env and find_bin - from commands.c
-** find_bin()
-** Search the command in all the paths from the PATH env variable.
-** If not found, return the command
-** If found, return the whole path of the command
-*/
 
 char	*find_bin_with_env(char *bin)
 {
@@ -53,10 +45,6 @@ char	*find_bin(char *bin)
 		return (find_bin_with_env(bin));
 }
 
-/*
-** void	link_commands - from exec.c
-*/
-
 void	link_commands(t_list_cmd *l_cmd, t_list_cmd *new_cmd)
 {
 	t_command	*last_content;
@@ -67,10 +55,6 @@ void	link_commands(t_list_cmd *l_cmd, t_list_cmd *new_cmd)
 	if (last_content->pipe != NULL)
 		new_content->prev = l_cmd->content;
 }
-
-/*
-** open_fds_in - from redirections.c
-*/
 
 int		*open_fds_in(t_command *content)
 {
