@@ -6,7 +6,7 @@
 /*   By: mroux <mroux@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:43:04 by mroux             #+#    #+#             */
-/*   Updated: 2021/03/03 21:44:59 by mroux            ###   ########.fr       */
+/*   Updated: 2021/03/04 19:28:34 by mroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ void	sig_int(int signal)
 	if (!(g_globstruct.pid))
 		prompt();
 	else
-	{
-		prompt();
 		kill(g_globstruct.pid, signal);
-	}
 	g_globstruct.ret = 130;
 }
 
@@ -49,7 +46,7 @@ void	sig_quit(int signal)
 	{
 		kill(g_globstruct.pid, signal);
 		g_globstruct.ret = 131;
-		ft_putstr_fd("\nquit (core dumped)\n", STDERR_FILENO);
+		ft_putstr_fd("quit (core dumped)\n", STDERR_FILENO);
 	}
 }
 

@@ -6,18 +6,11 @@
 /*   By: mroux <mroux@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:38:37 by mroux             #+#    #+#             */
-/*   Updated: 2021/03/03 21:47:03 by mroux            ###   ########.fr       */
+/*   Updated: 2021/03/04 19:17:28 by mroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*
-** find_bin()
-** Search the command in all the paths from the PATH env variable.
-** If not found, return the command
-** If found, return the whole path of the command
-*/
 
 int		err_msg(char *com, int err)
 {
@@ -83,10 +76,6 @@ int		exec_parent(pid_t pid, char *bin, t_command *cmd)
 	return (cmd->status);
 }
 
-/*
-** I moved pid to the structure to manage errs
-*/
-
 int		exec_command(t_command *cmd)
 {
 	char	**params;
@@ -104,6 +93,7 @@ int		exec_command(t_command *cmd)
 	else if (g_globstruct.pid == 0)
 		exec_child(cmd, g_globstruct.env_arr, bin, params);
 	g_globstruct.ret = exec_parent(g_globstruct.pid, bin, cmd);
+	g_globstruct.pid = 0;
 	apply_redirections_out(cmd);
 	free_strs(params);
 	return (1);
