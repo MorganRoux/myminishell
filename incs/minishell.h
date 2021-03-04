@@ -6,7 +6,7 @@
 /*   By: mroux <mroux@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 12:35:37 by mroux             #+#    #+#             */
-/*   Updated: 2021/03/04 19:28:42 by mroux            ###   ########.fr       */
+/*   Updated: 2021/03/04 21:30:26 by mroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,10 +146,9 @@ int						check_errors(char *line);
 */
 void					exec_loop(char *line);
 int						exec(t_list_cmd *cmds);
-char					*find_bin(char *bin);
+char					*find_bin(t_command *cmd);
 int						exec_command(t_command *cmd);
 char					*find_bin_with_env(char *bin);
-char					*find_bin(char *bin);
 void					link_commands(t_list_cmd *l_cmd, t_list_cmd *new_cmd);
 int						*open_fds_in(t_command *content);
 int						solve_dquotes(char **str, char **content);

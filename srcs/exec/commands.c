@@ -6,7 +6,7 @@
 /*   By: mroux <mroux@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:38:37 by mroux             #+#    #+#             */
-/*   Updated: 2021/03/04 19:17:28 by mroux            ###   ########.fr       */
+/*   Updated: 2021/03/04 21:29:38 by mroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int		exec_command(t_command *cmd)
 
 	if (cmd->exec == NULL)
 		return (1);
-	if ((bin = find_bin(cmd->exec)) == NULL)
+	if ((bin = find_bin(cmd)) == NULL)
 		return (-1);
 	params = extract_command_and_args(cmd);
 	apply_redirections_in(cmd);

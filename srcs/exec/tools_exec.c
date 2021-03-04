@@ -6,7 +6,7 @@
 /*   By: mroux <mroux@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:39:39 by mroux             #+#    #+#             */
-/*   Updated: 2021/03/03 21:39:49 by mroux            ###   ########.fr       */
+/*   Updated: 2021/03/04 21:31:37 by mroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,24 @@ char	*find_bin_with_env(char *bin)
 	return (full_bin);
 }
 
-char	*find_bin(char *bin)
+char	*find_bin(t_command *cmd)
 {
-	if (has_path(bin))
-		return (ft_strdup(bin));
+	char	*ret;
+
+	if (has_path(cmd->exec))
+		return (ft_strdup(cmd->exec));
 	else
-		return (find_bin_with_env(bin));
+	{
+		ret = find_bin_with_env(cmd->exec);
+		if (ret == NULL)
+		{
+			close_fds(cmd->fd_out, number_of_redirection_out(cmd));
+			close(cmd->flux_out[0]);
+			if (is_pipe_out(cmd))
+				close(cmd->pipe[1]);
+		}
+		return (ret);
+	}
 }
 
 void	link_commands(t_list_cmd *l_cmd, t_list_cmd *new_cmd)
